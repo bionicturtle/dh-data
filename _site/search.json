@@ -3,17 +3,17 @@
     {
       "path": "about.html",
       "title": "About this blog",
-      "description": "Some additional details about the blog",
+      "description": "Using R to analyze/illustrate data and backup some of the FRM questions",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-01-10T19:00:18-08:00"
+      "last_modified": "2022-01-10T19:52:12-08:00"
     },
     {
       "path": "index.html",
       "title": "DH (BT) blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-01-10T19:00:19-08:00"
+      "last_modified": "2022-01-10T19:52:13-08:00"
     }
   ],
   "collections": ["posts/posts.json"]

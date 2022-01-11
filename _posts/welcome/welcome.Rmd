@@ -14,8 +14,8 @@ output:
     self_contained: false
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+```{r setup, include = TRUE}
+knitr::opts_chunk$set(echo = TRUE)
 
 # Learn more about creating blogs with Distill at:
 # https://rstudio.github.io/distill/blog.html

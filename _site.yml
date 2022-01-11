@@ -1,7 +1,8 @@
 name: "dh-data"
-title: "DH (BT) blog"
+title: "DH (BT) data blog"
+theme: tidymodels.css
 description: |
-  DH (BT) blog
+  Using R to analyze and illustrate data
 output_dir: "_site"
 navbar:
   right:
