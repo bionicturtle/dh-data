@@ -15,22 +15,5 @@
     "preview": {},
     "last_modified": "2022-01-12T20:56:31-08:00",
     "input_file": {}
-  },
-  {
-    "path": "posts/welcome/",
-    "title": "Welcome to DH (BT) blog",
-    "description": "Welcome to our new blog, DH (BT) blog. We hope you enjoy \nreading what we have to say!",
-    "author": [
-      {
-        "name": "David Harper",
-        "url": "https://example.com/norajones"
-      }
-    ],
-    "date": "2022-01-10",
-    "categories": [],
-    "contents": "\r\n\r\n\r\nknitr::opts_chunk$set(echo = TRUE)\r\n\r\n# Learn more about creating blogs with Distill at:\r\n# https://rstudio.github.io/distill/blog.html\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-    "preview": {},
-    "last_modified": "2022-01-10T19:43:03-08:00",
-    "input_file": {}
   }
 ]
