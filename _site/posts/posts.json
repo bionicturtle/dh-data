@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2022-01-11-new-distill-site-in-15-minutes/",
+    "title": "New distill site in 15 minutes",
+    "description": "This is so much easier than blogdown",
+    "author": [
+      {
+        "name": "David Harper",
+        "url": "https://example.com/norajones"
+      }
+    ],
+    "date": "2022-01-11",
+    "categories": [],
+    "contents": "\r\nMy current (soon previous) data blog is a blogdown site. But blogdown is a PITA to maintain; e.g., new plots broke on the last package update. On Sunday after hours trying to fix the blogdown configuration, I even resorted to hiring quick help at codementor.com for the first time in my life, but even their expert could not fix the problem. The first time it was pretty straightforward, and it should still be, but after searching to debug my problem, I observed that I was not alone in my frustration with blogdown. I figured, there MUST be a better way to simply share data analyses (without going to Rpubs, I mean)?\r\nAnd then I stumbled onto the distill package. Boom. This site here took me about all of 15 minutes to install, absolutely no glithes!. It’s light-weight and somewhat customizable; e.g., I temporarily borrowed the tidymodels.css stylesheet. No mess. No fuss. Here are the steps.\r\nimage: \r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2022-01-12T20:19:34-08:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/welcome/",
     "title": "Welcome to DH (BT) blog",
     "description": "Welcome to our new blog, DH (BT) blog. We hope you enjoy \nreading what we have to say!",

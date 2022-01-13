@@ -4,6 +4,6 @@ description: |
   Using R to analyze/illustrate data and backup some of the FRM questions
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
+Hello! I'm David Harper, CFA, FRM. I started [bionicturtle.com](http://www.bionicturtle.com) in 2004 and built it into the #1 exam preparation provider (EPP) for the Financial Risk Manager (FRM). In February of 2021, I sold the business to [CeriFi](http://cerifi.com) and continue to run it as President, Bionic Turtle, a CeriFi company. 
+
+This is a [distill blog](https://github.com/rstudio/distill) that holds my code snippets. 
