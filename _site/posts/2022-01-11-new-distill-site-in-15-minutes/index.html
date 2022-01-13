@@ -2445,11 +2445,11 @@ d-appendix d-footnote-list a.footnote-backlink {
 
 <div class="d-article">
 <p>My current (soon previous) <a href="https://www.davidsdatablog.com/">data blog is a blogdown site</a>. But blogdown is a PITA to maintain; e.g., new plots broke on the last package update. On Sunday after hours trying to fix the blogdown configuration, I even resorted to hiring quick help at codementor.com for the first time in my life, but even their expert could not fix the problem. The first time it was pretty straightforward, and <a href="https://www.apreshill.com/blog/2020-12-new-year-new-blogdown/">it should still be</a>, but after searching to debug my problem, I observed that I was not alone in my frustration with blogdown. I figured, there MUST be a better way to simply share data analyses (without going to Rpubs, I mean)?</p>
-<p>Then I stumbled onto <a href="https://distillery.rbind.io/posts/2021-02-08-distill-it-down/">Lisa Lendway’s post</a>. She also had a “blogdown fail!” and she explains why she switched to the <a href="https://pkgs.rstudio.com/distill/">distill package</a>. How did I miss this revelation?! Boom. This setup here took me a grand total of 15 minutes to install. Absolutely no glithes! It’s light-weight and somewhat customizable; e.g., I temporarily borrowed the tidymodels.css stylesheet. No mess. No fuss. Here are the basic steps:</p>
+<p>Then I stumbled onto <a href="https://distillery.rbind.io/posts/2021-02-08-distill-it-down/">Lisa Lendway’s post</a>. She also had a “blogdown fail!” and she explains why she switched to the <a href="https://pkgs.rstudio.com/distill/">distill package</a>. How did I miss this revelation?! Boom. This setup here took me a grand total of 15 minutes to install. No glitches! Distill is light-weight and somewhat customizable; e.g., I borrowed the tidymodels.css stylesheet and changed my titles to CeriFi’s color (#193053) because, you know, color makes me happy. No mess. No fuss. Here are the basic steps:</p>
 <ol type="1">
 <li>Install distill package and build site with create_website (one line of code)</li>
 <li>Create a local git repo (at the directory we just created) and connect that to a remote GitHub repo; <a href="https://github.com/bionicturtle/dh-data">mine is here</a> and so this github repo is basically a copy of this webite</li>
-<li>Use the amazing <a href="https://www.netlify.com/">netlify</a> to publish from the _site sub-directory</li>
+<li>Use the <a href="https://www.netlify.com/">netlify</a> to publish from the _site sub-directory. If Netflify goes public, I will be buying their shares :)</li>
 </ol>
 <p>Detailed steps TBD here</p>
 <figure>
