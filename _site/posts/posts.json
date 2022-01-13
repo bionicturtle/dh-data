@@ -2,7 +2,7 @@
   {
     "path": "posts/2022-01-11-new-distill-site-in-15-minutes/",
     "title": "New distill site in 15 minutes",
-    "description": "This is so much easier than blogdown",
+    "description": "Distill is so much easier than blogdown",
     "author": [
       {
         "name": "David Harper",
@@ -11,10 +11,10 @@
     ],
     "date": "2022-01-11",
     "categories": [],
-    "contents": "\r\nMy current (soon previous) data blog is a blogdown site. But blogdown is a PITA to maintain; e.g., new plots broke on the last package update. On Sunday after hours trying to fix the blogdown configuration, I even resorted to hiring quick help at codementor.com for the first time in my life, but even their expert could not fix the problem. The first time it was pretty straightforward, and it should still be, but after searching to debug my problem, I observed that I was not alone in my frustration with blogdown. I figured, there MUST be a better way to simply share data analyses (without going to Rpubs, I mean)?\r\nAnd then I stumbled onto the distill package. Boom. This site here took me about all of 15 minutes to install, absolutely no glithes!. It’s light-weight and somewhat customizable; e.g., I temporarily borrowed the tidymodels.css stylesheet. No mess. No fuss. Here are the steps.\r\nimage: \r\nLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
+    "contents": "\r\nMy current (soon previous) data blog is a blogdown site. But blogdown is a PITA to maintain; e.g., new plots broke on the last package update. On Sunday after hours trying to fix the blogdown configuration, I even resorted to hiring quick help at codementor.com for the first time in my life, but even their expert could not fix the problem. The first time it was pretty straightforward, and it should still be, but after searching to debug my problem, I observed that I was not alone in my frustration with blogdown. I figured, there MUST be a better way to simply share data analyses (without going to Rpubs, I mean)?\r\nThen I stumbled onto Lisa Lendway’s post. She also had a “blogdown fail!” and she explains why she switched to the distill package. How did I miss this revelation?! Boom. This setup here took me a grand total of 15 minutes to install. Absolutely no glithes! It’s light-weight and somewhat customizable; e.g., I temporarily borrowed the tidymodels.css stylesheet. No mess. No fuss. Here are the basic steps:\r\nInstall distill package and build site with create_website (one line of code)\r\nCreate a local git repo (at the directory we just created) and connect that to a remote GitHub repo; mine is here and so this github repo is basically a copy of this webite\r\nUse the amazing netlify to publish from the _site sub-directory\r\nDetailed steps TBD here\r\nCreate Distill Blog dialogLearn more about using Distill at https://rstudio.github.io/distill.\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2022-01-12T20:19:34-08:00",
-    "input_file": {}
+    "last_modified": "2022-01-12T20:50:41-08:00",
+    "input_file": "new-distill-site-in-15-minutes.knit.md"
   },
   {
     "path": "posts/welcome/",
