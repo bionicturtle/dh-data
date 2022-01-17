@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["new-distill-site-in-15-minutes_files/anchor-4.2.2/anchor.min.js","new-distill-site-in-15-minutes_files/bowser-1.9.3/bowser.min.js","new-distill-site-in-15-minutes_files/distill-2.2.21/template.v2.js","new-distill-site-in-15-minutes_files/header-attrs-2.11/header-attrs.js","new-distill-site-in-15-minutes_files/jquery-3.6.0/jquery-3.6.0.js","new-distill-site-in-15-minutes_files/jquery-3.6.0/jquery-3.6.0.min.js","new-distill-site-in-15-minutes_files/jquery-3.6.0/jquery-3.6.0.min.map","new-distill-site-in-15-minutes_files/popper-2.6.0/popper.min.js","new-distill-site-in-15-minutes_files/tippy-6.2.7/tippy-bundle.umd.min.js","new-distill-site-in-15-minutes_files/tippy-6.2.7/tippy-light-border.css","new-distill-site-in-15-minutes_files/tippy-6.2.7/tippy.css","new-distill-site-in-15-minutes_files/tippy-6.2.7/tippy.umd.min.js","new-distill-site-in-15-minutes_files/webcomponents-2.0.0/webcomponents.js","new-project-distill-blog.png"]}
+  {"type":"character","attributes":{},"value":["distill-simple-file-structure.png","distill-site_tml.png","new-distill-site-in-15-minutes_files/anchor-4.2.2/anchor.min.js","new-distill-site-in-15-minutes_files/bowser-1.9.3/bowser.min.js","new-distill-site-in-15-minutes_files/distill-2.2.21/template.v2.js","new-distill-site-in-15-minutes_files/header-attrs-2.11/header-attrs.js","new-distill-site-in-15-minutes_files/jquery-3.6.0/jquery-3.6.0.js","new-distill-site-in-15-minutes_files/jquery-3.6.0/jquery-3.6.0.min.js","new-distill-site-in-15-minutes_files/jquery-3.6.0/jquery-3.6.0.min.map","new-distill-site-in-15-minutes_files/popper-2.6.0/popper.min.js","new-distill-site-in-15-minutes_files/tippy-6.2.7/tippy-bundle.umd.min.js","new-distill-site-in-15-minutes_files/tippy-6.2.7/tippy-light-border.css","new-distill-site-in-15-minutes_files/tippy-6.2.7/tippy.css","new-distill-site-in-15-minutes_files/tippy-6.2.7/tippy.umd.min.js","new-distill-site-in-15-minutes_files/webcomponents-2.0.0/webcomponents.js","new-project-distill-blog.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1482,18 +1482,29 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<p>My current (soon previous) <a href="https://www.davidsdatablog.com/">data blog is a blogdown site</a>. But blogdown is a PITA to maintain; e.g., new plots broke on the last package update. On Sunday after hours trying to fix the blogdown configuration, I even resorted to hiring quick help at codementor.com for the first time in my life, but even their expert could not fix the problem. The first time it was pretty straightforward, and <a href="https://www.apreshill.com/blog/2020-12-new-year-new-blogdown/">it should still be</a>, but after searching to debug my problem, I observed that I was not alone in my frustration with blogdown. I figured, there MUST be a better way to simply share data analyses (without going to Rpubs, I mean)?</p>
+<p>My current (soon to be previous) <a href="https://www.davidsdatablog.com/">data blog is a blogdown site</a>. The setup/installation of <a href="https://www.linkedin.com/posts/bionicturtle_rstats-datascience-frm-activity-6708062373758038016-lC7h">blogdown was not difficult</a>, but it is a PITA to maintain; e.g., new ggplot images aren’t rendering on the last package update. On Sunday after hours trying to fix the blogdown configuration, I even resorted to hiring quick help at codementor.com for the first time in my life, but even their expert could not fix the problem. The first time it was pretty straightforward, and <a href="https://www.apreshill.com/blog/2020-12-new-year-new-blogdown/">it should still be</a>, but after searching to debug my problem, I observed that I was not alone in my frustration with blogdown. I figured, there MUST be a better way to simply share data analyses (without going to Rpubs, I mean)?</p>
 <p>Then I stumbled onto <a href="https://distillery.rbind.io/posts/2021-02-08-distill-it-down/">Lisa Lendway’s post</a>. She also had a “blogdown fail!” and she explains why she switched to the <a href="https://pkgs.rstudio.com/distill/">distill package</a>. How did I miss this revelation?! Boom. This setup here took me a grand total of 15 minutes to install. No glitches! Distill is light-weight and somewhat customizable; e.g., I borrowed the tidymodels.css stylesheet and changed my titles to CeriFi’s color (#193053) because, you know, color makes me happy. No mess. No fuss. Here are the basic steps:</p>
 <ol type="1">
-<li>Install distill package and build site with create_website (one line of code)</li>
-<li>Create a local git repo (at the directory we just created) and connect that to a remote GitHub repo; <a href="https://github.com/bionicturtle/dh-data">mine is here</a> and so this github repo is basically a copy of this webite</li>
-<li>Use the <a href="https://www.netlify.com/">netlify</a> to publish from the _site sub-directory. If Netflify goes public, I will be buying their shares :)</li>
+<li>Install distill package and build site with create_website (ype, one line of code!)</li>
+<li>Create a local git repo (at the distill directory just created) and connect that to a remote GitHub repo; <a href="https://github.com/bionicturtle/dh-data">mine is here</a>. So this github repo is remote a copy of the webite</li>
+<li>Use the <a href="https://www.netlify.com/">netlify</a> to publish from the _site sub-directory. Netflify is amazing.</li>
 </ol>
-<p>Detailed steps TBD here</p>
+<p>Adding a blog entry is easy:</p>
+<ol type="1">
+<li>create_post(title = “I love distill because it’s easy and it works!”) which is an RMarkdown file</li>
+<li>Knit the post (to view locally); article must be knitted individually</li>
+<li>When ready, “Build Website” in RStuio’s Build pane; i.e., executes rmarkdown::render_site()</li>
+<li>Commit and push to github. Netlify allows for continous deployment if you build from the github repo and specify _site as the Publish directory</li>
+</ol>
+<h3 id="distills-lightweight-file-structure">Distill’s lightweight file structure</h3>
+<p>With the command create_website(), a simple file structure is created:</p>
 <figure>
-<img src="new-project-distill-blog.png" style="width:60.0%" alt="Create Distill Blog dialog" /><figcaption aria-hidden="true">Create Distill Blog dialog</figcaption>
+<img src="distill-simple-file-structure.png" style="width:50.0%" alt="create_website() installs these files" /><figcaption aria-hidden="true">create_website() installs these files</figcaption>
 </figure>
-<p>Learn more about using Distill at <a href="https://rstudio.github.io/distill" class="uri">https://rstudio.github.io/distill</a>.</p>
+<p>The _site.yml contains the reference to the theme.css. I borrowed the <a href="https://rstudio.github.io/distill/website.html#example-themes">tidymodels.css</a> theme with only a color change.</p>
+<figure>
+<img src="distill-site_tml.png" style="width:60.0%" alt="_site.yml controls details" /><figcaption aria-hidden="true">_site.yml controls details</figcaption>
+</figure>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
