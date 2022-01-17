@@ -1482,6 +1482,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
+<h2 id="goodbye-blogdown-hugo-hello-distill">Goodbye Blogdown (+hugo), hello Distill</h2>
 <p>My current (soon to be previous) <a href="https://www.davidsdatablog.com/">data blog is a blogdown site</a>. The setup/installation of <a href="https://www.linkedin.com/posts/bionicturtle_rstats-datascience-frm-activity-6708062373758038016-lC7h">blogdown was not difficult</a>, but it is a PITA to maintain; e.g., new ggplot images aren’t rendering on the last package update. On Sunday after hours trying to fix the blogdown configuration, I even resorted to hiring quick help at codementor.com for the first time in my life, but even their expert could not fix the problem. The first time it was pretty straightforward, and <a href="https://www.apreshill.com/blog/2020-12-new-year-new-blogdown/">it should still be</a>, but after searching to debug my problem, I observed that I was not alone in my frustration with blogdown. I figured, there MUST be a better way to simply share data analyses (without going to Rpubs, I mean)?</p>
 <p>Then I stumbled onto <a href="https://distillery.rbind.io/posts/2021-02-08-distill-it-down/">Lisa Lendway’s post</a>. She also had a “blogdown fail!” and she explains why she switched to the <a href="https://pkgs.rstudio.com/distill/">distill package</a>. How did I miss this revelation?! Boom. This setup here took me a grand total of 15 minutes to install. No glitches! Distill is light-weight and somewhat customizable; e.g., I borrowed the tidymodels.css stylesheet and changed my titles to CeriFi’s color (#193053) because, you know, color makes me happy. No mess. No fuss. Here are the basic steps:</p>
 <ol type="1">
@@ -1496,7 +1497,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li>When ready, “Build Website” in RStuio’s Build pane; i.e., executes rmarkdown::render_site()</li>
 <li>Commit and push to github. Netlify allows for continous deployment if you build from the github repo and specify _site as the Publish directory</li>
 </ol>
-<h3 id="distills-lightweight-file-structure">Distill’s lightweight file structure</h3>
+<h2 id="distills-lightweight-file-structure">Distill’s lightweight file structure</h2>
 <p>With the command create_website(), a simple file structure is created:</p>
 <figure>
 <img src="distill-simple-file-structure.png" style="width:50.0%" alt="create_website() installs these files" /><figcaption aria-hidden="true">create_website() installs these files</figcaption>
