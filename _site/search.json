@@ -6,14 +6,14 @@
       "description": "Using R to analyze/illustrate data and backup some of the FRM questions",
       "author": [],
       "contents": "\r\nHello! I’m David Harper, CFA, FRM. I started bionicturtle.com in 2004 and built it into the #1 exam preparation provider (EPP) for the Financial Risk Manager (FRM). In February of 2021, I sold the business to CeriFi where I continue to run it as President, Bionic Turtle, a CeriFi company. And now I’m part of a great team that is building the world’s greatest platform for financial education at every stage of your career.\r\nI love teaching (and learning about) risk. I’m also write articles at Seeking Alpha, where I disclose my portfolio/trades and practice risk management. I have a BA, Economics from UC, Berkeley. I earned my CFA in 2003 and my FRM in 2004. I’m also always practicing some data science.\r\nThis is a distill blog that holds my code snippets.\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-01-17T15:59:30-08:00"
+      "last_modified": "2022-01-17T16:32:28-08:00"
     },
     {
       "path": "index.html",
       "title": "DH (BT) blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2022-01-17T15:59:31-08:00"
+      "last_modified": "2022-01-17T16:32:29-08:00"
     }
   ],
   "collections": ["posts/posts.json"]

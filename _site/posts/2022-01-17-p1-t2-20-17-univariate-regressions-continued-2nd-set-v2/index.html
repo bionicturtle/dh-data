@@ -87,38 +87,38 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-<title>David's (BT) data blog: BT PQ P1-T2-20-16-1: Univariate regression: Inflation versus unemployment</title>
+<title>David's (BT) data blog: P1-T2-20-17. Univariate regressions continued (2nd set v2)</title>
 
-<meta property="description" itemprop="description" content="With FRED data and applying gt_table"/>
+<meta property="description" itemprop="description" content="Coefficient confidence interval (CI); hypothesis test; interpretation of SE, t-stat and p-value"/>
 
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2022-01-04"/>
-<meta property="article:created" itemprop="dateCreated" content="2022-01-04"/>
+<meta property="article:published" itemprop="datePublished" content="2022-01-07"/>
+<meta property="article:created" itemprop="dateCreated" content="2022-01-07"/>
 <meta name="article:author" content="David Harper"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="David&#39;s (BT) data blog: BT PQ P1-T2-20-16-1: Univariate regression: Inflation versus unemployment"/>
+<meta property="og:title" content="David&#39;s (BT) data blog: P1-T2-20-17. Univariate regressions continued (2nd set v2)"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="With FRED data and applying gt_table"/>
+<meta property="og:description" content="Coefficient confidence interval (CI); hypothesis test; interpretation of SE, t-stat and p-value"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="David&#39;s (BT) data blog"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary"/>
-<meta property="twitter:title" content="David&#39;s (BT) data blog: BT PQ P1-T2-20-16-1: Univariate regression: Inflation versus unemployment"/>
-<meta property="twitter:description" content="With FRED data and applying gt_table"/>
+<meta property="twitter:title" content="David&#39;s (BT) data blog: P1-T2-20-17. Univariate regressions continued (2nd set v2)"/>
+<meta property="twitter:description" content="Coefficient confidence interval (CI); hypothesis test; interpretation of SE, t-stat and p-value"/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["BT PQ P1-T2-20-16-1: Univariate regression: Inflation versus unemployment"]},{"type":"character","attributes":{},"value":["With FRED data and applying gt_table"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["David Harper"]},{"type":"character","attributes":{},"value":["https://www.bionicturtle.com/"]}]}]},{"type":"character","attributes":{},"value":["2022-01-04"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["P1-T2-20-17. Univariate regressions continued (2nd set v2)"]},{"type":"character","attributes":{},"value":["Coefficient confidence interval (CI); hypothesis test; interpretation of SE, t-stat and p-value"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["David Harper"]},{"type":"character","attributes":{},"value":["https://www.bionicturtle.com/"]}]}]},{"type":"character","attributes":{},"value":["2022-01-07"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/anchor-4.2.2/anchor.min.js","bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/bowser-1.9.3/bowser.min.js","bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/distill-2.2.21/template.v2.js","bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/figure-html5/unnamed-chunk-3-1.png","bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/header-attrs-2.11/header-attrs.js","bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/jquery-3.6.0/jquery-3.6.0.js","bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/jquery-3.6.0/jquery-3.6.0.min.js","bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/jquery-3.6.0/jquery-3.6.0.min.map","bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/popper-2.6.0/popper.min.js","bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/tippy-6.2.7/tippy-bundle.umd.min.js","bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/tippy-6.2.7/tippy-light-border.css","bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/tippy-6.2.7/tippy.css","bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/tippy-6.2.7/tippy.umd.min.js","bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["p1-t2-20-17-univariate-regressions-continued-2nd-set-v2_files/anchor-4.2.2/anchor.min.js","p1-t2-20-17-univariate-regressions-continued-2nd-set-v2_files/bowser-1.9.3/bowser.min.js","p1-t2-20-17-univariate-regressions-continued-2nd-set-v2_files/distill-2.2.21/template.v2.js","p1-t2-20-17-univariate-regressions-continued-2nd-set-v2_files/figure-html5/unnamed-chunk-2-1.png","p1-t2-20-17-univariate-regressions-continued-2nd-set-v2_files/figure-html5/unnamed-chunk-3-1.png","p1-t2-20-17-univariate-regressions-continued-2nd-set-v2_files/figure-html5/unnamed-chunk-4-1.png","p1-t2-20-17-univariate-regressions-continued-2nd-set-v2_files/header-attrs-2.11/header-attrs.js","p1-t2-20-17-univariate-regressions-continued-2nd-set-v2_files/jquery-3.6.0/jquery-3.6.0.js","p1-t2-20-17-univariate-regressions-continued-2nd-set-v2_files/jquery-3.6.0/jquery-3.6.0.min.js","p1-t2-20-17-univariate-regressions-continued-2nd-set-v2_files/jquery-3.6.0/jquery-3.6.0.min.map","p1-t2-20-17-univariate-regressions-continued-2nd-set-v2_files/popper-2.6.0/popper.min.js","p1-t2-20-17-univariate-regressions-continued-2nd-set-v2_files/tippy-6.2.7/tippy-bundle.umd.min.js","p1-t2-20-17-univariate-regressions-continued-2nd-set-v2_files/tippy-6.2.7/tippy-light-border.css","p1-t2-20-17-univariate-regressions-continued-2nd-set-v2_files/tippy-6.2.7/tippy.css","p1-t2-20-17-univariate-regressions-continued-2nd-set-v2_files/tippy-6.2.7/tippy.umd.min.js","p1-t2-20-17-univariate-regressions-continued-2nd-set-v2_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2408,7 +2408,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"BT PQ P1-T2-20-16-1: Univariate regression: Inflation versus unemployment","description":"With FRED data and applying gt_table","authors":[{"author":"David Harper","authorURL":"https://www.bionicturtle.com/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-01-04T00:00:00.000-08:00","citationText":"Harper, 2022"}
+{"title":"P1-T2-20-17. Univariate regressions continued (2nd set v2)","description":"Coefficient confidence interval (CI); hypothesis test; interpretation of SE, t-stat and p-value","authors":[{"author":"David Harper","authorURL":"https://www.bionicturtle.com/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-01-07T00:00:00.000-08:00","citationText":"Harper, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2431,492 +2431,158 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>BT PQ P1-T2-20-16-1: Univariate regression: Inflation versus unemployment</h1>
+<h1>P1-T2-20-17. Univariate regressions continued (2nd set v2)</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>With FRED data and applying gt_table</p></p>
+<p><p>Coefficient confidence interval (CI); hypothesis test; interpretation of SE, t-stat and p-value</p></p>
 </div>
 
 <div class="d-byline">
   David Harper <a href="https://www.bionicturtle.com/" class="uri">https://www.bionicturtle.com/</a> 
   
-<br/>2022-01-04
+<br/>2022-01-07
 </div>
 
 <div class="d-article">
-<h2 id="background">Background</h2>
-<p>BT is known for our tough training-style practice questions, but I wanted to take it further and add more realism. I’ve been writing a fresh question sets on the regression topics; I’m always writing new questions! It takes more time, but in these regression sets I’ve been pulling actual datasets. For this question, I pulled inflation and unemployment rates from the FRED database (see below). In combination with actual <em>code-based applications</em>, these new question sets are much more <strong>realistic</strong> than typical exam-prep fare. Let’s face it: in the real world, quantitative tasks (e.g., regression) are performed in software, not with calculators. In a way, it’s our responsibility to help candidates get exposure to tools that are actually useful. We’ve always been the only FRM exam prep provider (EPP) who develops virtually the entire, broad array of quantitative risk (FRM) topics in spreadsheet workbooks (this is a massive construction of hundreds of spreadsheets that has taken me the better part of a decade to build). Now I’ve started to develop associated code-based applications for the ultimate in <em>realistic</em> study material.</p>
-<h2 id="using-the-gt-package-to-render-the-regression-output-table">Using the gt package to render the regression output table</h2>
-<p>I thought I’d try the <a href="https://github.com/rstudio/gt">gt package</a> to see if I could improve the presentation of the regression output table. It’s fairly intuitive but a little unexpected because you pipe (“%&gt;%”) additional format features.</p>
-<p>This question (my first in the new regression set) reads as follows:</p>
-<blockquote>
-<p>“20.16.1. Debra is an analyst at a governmental agency. Her boss asked her to investigate whether the Phillips curve applies during high-inflation regimes. To answer the question, Debra collected data from the FRED database at the St. Louis Fed (<a href="https://fred.stlouisfed.org/" class="uri">https://fred.stlouisfed.org/</a>). The Phillips curve describes an inverse relationship between unemployment rates and inflation rates; <a href="https://en.wikipedia.org/wiki/Phillips_curve" class="uri">https://en.wikipedia.org/wiki/Phillips_curve</a>. Debra collected monthly data and she regressed the inflation rate against the unemployment rate (conditional on high-inflation regimes). Her independent variable is unemployment rate (FRED code: UNRATE) and here dependent variable is the Inflation rate (CPIAUCSL). The units are percentages not decimals; e.g., the dataset includes the month of January in 1982 when the unemployment rate was 8.9 and the inflation rate was 6.38. Her regression results are presented below.”</p>
-</blockquote>
-<p>We load the packages</p>
+<h3 id="learning-objectives">Learning objectives</h3>
+<ul>
+<li>Construct, apply, and interpret hypothesis tests and confidence intervals for a single regression coefficient in a regression.</li>
+<li>Explain the steps needed to perform a hypothesis test in a linear regression.</li>
+<li>Describe the relationship between a t-statistic, its p-value, and a confidence interval.</li>
+</ul>
+<p>Let’s load some packages!</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://gt.rstudio.com/'>gt</a></span><span class='op'>)</span> <span class='co'># library(reactable) is another table package I haven't used</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/onnokleen/alfred/'>alfred</a></span><span class='op'>)</span> <span class='co'># Direct access to FRED</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/business-science/tidyquant'>tidyquant</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://lubridate.tidyverse.org'>lubridate</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readxl.tidyverse.org'>readxl</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/business-science/timetk'>timetk</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/business-science/tibbletime'>tibbletime</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://www.quantmod.com'>quantmod</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/braverock/PerformanceAnalytics'>PerformanceAnalytics</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://scales.r-lib.org'>scales</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://broom.tidymodels.org/'>broom</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://gt.rstudio.com/'>gt</a></span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>And then see if we might find a super-simple (ie, linear) Phillips curve (BT Question P1.T2.20.16.1)</p>
+<h3 id="first-question">First question</h3>
+<p>BT 20.17.1. Below the results of a linear regression analysis are displayed. The dataset is monthly returns over a six-year period; i.e., n = 72 months. The gross returns of Apple’s stock (ticker: AAPL) were regressed against the S&amp;P 1500 Index (the S&amp;P 1500 is our proxy for the market). The explanatory variable is SP_1500 and the response (aka, dependent) variable is AAPL.</p>
+<p>Question: Which is nearest to the 90.0% confidence interval for the beta of Apple’s (AAPL) stock?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>startdate</span> <span class='op'>&lt;-</span> <span class='st'>"1980-01-01"</span>
-<span class='va'>enddate</span> <span class='op'>&lt;-</span> <span class='st'>"2020-01-01"</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>AAPL</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidyquant/man/tq_get.html'>tq_get</a></span><span class='op'>(</span><span class='st'>'AAPL'</span>,
+               from <span class='op'>=</span> <span class='st'>"2009-01-01"</span>,
+               to <span class='op'>=</span> <span class='st'>"2020-01-01"</span><span class='op'>)</span>
 
-<span class='co'># Phillips x = unemployment</span>
-<span class='va'>unrate</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/alfred/man/get_fred_series.html'>get_fred_series</a></span><span class='op'>(</span><span class='st'>"UNRATE"</span>, <span class='st'>"Unemployment"</span>, observation_start <span class='op'>=</span> <span class='va'>startdate</span>, observation_end <span class='op'>=</span> <span class='va'>enddate</span><span class='op'>)</span>
-<span class='va'>inflation</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/alfred/man/get_fred_series.html'>get_fred_series</a></span><span class='op'>(</span><span class='st'>"CPIAUCSL"</span>, <span class='st'>"inflation"</span>, observation_start <span class='op'>=</span> <span class='va'>startdate</span>, observation_end <span class='op'>=</span> <span class='va'>enddate</span><span class='op'>)</span>
-<span class='va'>inflation_rate</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/alfred/man/get_fred_series.html'>get_fred_series</a></span><span class='op'>(</span><span class='st'>"PCETRIM12M159SFRBDAL"</span>, <span class='st'>"Inflation_Rate"</span>, observation_start <span class='op'>=</span> <span class='va'>startdate</span>, observation_end <span class='op'>=</span> <span class='va'>enddate</span><span class='op'>)</span>
-<span class='va'>df1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>inflation</span>, <span class='va'>unrate</span>, <span class='va'>inflation_rate</span><span class='op'>)</span>
-<span class='va'>df1</span> <span class='op'>&lt;-</span> <span class='va'>df1</span><span class='op'>[</span> , <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>6</span><span class='op'>)</span><span class='op'>]</span>
-<span class='va'>df2</span> <span class='op'>&lt;-</span> <span class='va'>df1</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Inflation_Rate</span> <span class='op'>&gt;</span> <span class='fl'>4.3</span><span class='op'>)</span>
-<span class='va'>df_fit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>Inflation_Rate</span> <span class='op'>~</span> <span class='va'>Unemployment</span>, data <span class='op'>=</span> <span class='va'>df2</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>df_fit</span><span class='op'>)</span>
+<span class='va'>SP1500</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidyquant/man/tq_get.html'>tq_get</a></span><span class='op'>(</span><span class='st'>'SPTM'</span>,
+               from <span class='op'>=</span> <span class='st'>"2009-01-01"</span>,
+               to <span class='op'>=</span> <span class='st'>"2020-01-01"</span><span class='op'>)</span>
+
+<span class='va'>AAPL</span> <span class='op'>&lt;-</span> <span class='va'>AAPL</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>date</span>, <span class='va'>adjusted</span><span class='op'>)</span>
+<span class='va'>SP1500</span> <span class='op'>&lt;-</span> <span class='va'>SP1500</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>date</span>, <span class='va'>adjusted</span><span class='op'>)</span>
+
+<span class='va'>AAPL_monthly</span> <span class='op'>&lt;-</span> <span class='va'>AAPL</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidyquant/man/tq_mutate.html'>tq_transmute</a></span><span class='op'>(</span>select <span class='op'>=</span> <span class='va'>adjusted</span>, mutate <span class='op'>=</span> <span class='va'>to.monthly</span>, indexAt <span class='op'>=</span> <span class='st'>"lastof"</span><span class='op'>)</span>
+<span class='va'>SP1500_monthly</span> <span class='op'>&lt;-</span> <span class='va'>SP1500</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidyquant/man/tq_mutate.html'>tq_transmute</a></span><span class='op'>(</span>select <span class='op'>=</span> <span class='va'>adjusted</span>, mutate <span class='op'>=</span> <span class='va'>to.monthly</span>, indexAt <span class='op'>=</span> <span class='st'>"lastof"</span><span class='op'>)</span>
+
+<span class='va'>AAPL_monthly</span> <span class='op'>&lt;-</span> <span class='va'>AAPL_monthly</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
+  r_m_AAPL <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>adjusted</span><span class='op'>/</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/lead-lag.html'>lag</a></span><span class='op'>(</span><span class='va'>adjusted</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>SP1500_monthly</span> <span class='op'>&lt;-</span><span class='va'>SP1500_monthly</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
+  r_m_SP <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>adjusted</span><span class='op'>/</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/lead-lag.html'>lag</a></span><span class='op'>(</span><span class='va'>adjusted</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>AAPL_monthly</span> <span class='op'>&lt;-</span> <span class='va'>AAPL_monthly</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>date_AAPL <span class='op'>=</span> <span class='va'>date</span>,
+         adj_AAPL <span class='op'>=</span> <span class='va'>adjusted</span><span class='op'>)</span>
+<span class='va'>SP1500_monthly</span> <span class='op'>&lt;-</span> <span class='va'>SP1500_monthly</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>date_SP <span class='op'>=</span> <span class='va'>date</span>,
+         adj_SP <span class='op'>=</span> <span class='va'>adjusted</span><span class='op'>)</span>
+
+<span class='va'>both_monthly</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>SP1500_monthly</span>, <span class='va'>AAPL_monthly</span><span class='op'>)</span>
+
+<span class='va'>both_72</span> <span class='op'>&lt;-</span> <span class='va'>both_monthly</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>60</span><span class='op'>)</span>, <span class='op'>]</span>
+<span class='va'>both_72</span> <span class='op'>&lt;-</span> <span class='va'>both_72</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>r_SP_1500 <span class='op'>=</span> <span class='va'>r_m_SP</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>saveRDS</a></span><span class='op'>(</span><span class='va'>both_72</span>, <span class='st'>"t2-20-17-aapl-sp1500.rds"</span><span class='op'>)</span>
+
+<span class='va'>con</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/connections.html'>url</a></span><span class='op'>(</span><span class='st'>"http://frm-bionicturtle.s3.amazonaws.com/david/t2-20-17-aapl-sp1500.rds"</span><span class='op'>)</span>
+<span class='va'>both_72</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>readRDS</a></span><span class='op'>(</span><span class='va'>con</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/connections.html'>close</a></span><span class='op'>(</span><span class='va'>con</span><span class='op'>)</span>
+
+
+<span class='va'>model_72</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>r_m_AAPL</span> <span class='op'>~</span> <span class='va'>r_SP_1500</span>, data <span class='op'>=</span> <span class='va'>both_72</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model_72</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code>
 Call:
-lm(formula = Inflation_Rate ~ Unemployment, data = df2)
+lm(formula = r_m_AAPL ~ r_SP_1500, data = both_72)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--1.27424 -0.22839 -0.03048  0.25065  0.83494 
+      Min        1Q    Median        3Q       Max 
+-0.226290 -0.027060  0.002344  0.040667  0.131313 
 
 Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  16.39276    0.47342   34.63   &lt;2e-16 ***
-Unemployment -1.10612    0.05577  -19.83   &lt;2e-16 ***
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 0.007969   0.007477   1.066     0.29    
+r_SP_1500   1.269627   0.215600   5.889 1.23e-07 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 0.473 on 38 degrees of freedom
-Multiple R-squared:  0.9119,    Adjusted R-squared:  0.9096 
-F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 0.06123 on 70 degrees of freedom
+Multiple R-squared:  0.3313,    Adjusted R-squared:  0.3217 
+F-statistic: 34.68 on 1 and 70 DF,  p-value: 1.23e-07</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df_fit_tidy</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>df_fit</span><span class='op'>)</span>
-<span class='va'>gt_table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://gt.rstudio.com/reference/gt.html'>gt</a></span><span class='op'>(</span><span class='va'>df_fit_tidy</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p1_model_72</span> <span class='op'>&lt;-</span> <span class='va'>both_72</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>r_SP_1500</span>, <span class='va'>r_m_AAPL</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span><span class='op'>)</span>
 
-<span class='co'># This is the standard gt table which is an improvement</span>
-<span class='va'>gt_table</span>
-</code></pre>
-</div>
-<div id="ozugixkafs" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
-}
+<span class='va'>model_72_tidy</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model_72</span><span class='op'>)</span>
 
-#ozugixkafs .gt_table {
-  display: table;
-  border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
+<span class='va'>gt_table_model_72</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://gt.rstudio.com/reference/gt.html'>gt</a></span><span class='op'>(</span><span class='va'>model_72_tidy</span><span class='op'>)</span>
 
-#ozugixkafs .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#ozugixkafs .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#ozugixkafs .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 4px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#ozugixkafs .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#ozugixkafs .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#ozugixkafs .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#ozugixkafs .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#ozugixkafs .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#ozugixkafs .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#ozugixkafs .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#ozugixkafs .gt_group_heading {
-  padding: 8px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#ozugixkafs .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#ozugixkafs .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#ozugixkafs .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#ozugixkafs .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#ozugixkafs .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 12px;
-}
-
-#ozugixkafs .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ozugixkafs .gt_first_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-}
-
-#ozugixkafs .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ozugixkafs .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#ozugixkafs .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#ozugixkafs .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#ozugixkafs .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#ozugixkafs .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding: 4px;
-}
-
-#ozugixkafs .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#ozugixkafs .gt_sourcenote {
-  font-size: 90%;
-  padding: 4px;
-}
-
-#ozugixkafs .gt_left {
-  text-align: left;
-}
-
-#ozugixkafs .gt_center {
-  text-align: center;
-}
-
-#ozugixkafs .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#ozugixkafs .gt_font_normal {
-  font-weight: normal;
-}
-
-#ozugixkafs .gt_font_bold {
-  font-weight: bold;
-}
-
-#ozugixkafs .gt_font_italic {
-  font-style: italic;
-}
-
-#ozugixkafs .gt_super {
-  font-size: 65%;
-}
-
-#ozugixkafs .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
-  font-size: 65%;
-}
-</style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">term</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">estimate</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">std.error</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">statistic</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">p.value</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_right">16.392765</td>
-<td class="gt_row gt_right">0.47342061</td>
-<td class="gt_row gt_right">34.62622</td>
-<td class="gt_row gt_right">2.380425e-30</td></tr>
-    <tr><td class="gt_row gt_left">Unemployment</td>
-<td class="gt_row gt_right">-1.106116</td>
-<td class="gt_row gt_right">0.05576808</td>
-<td class="gt_row gt_right">-19.83421</td>
-<td class="gt_row gt_right">1.206197e-21</td></tr>
-  </tbody>
-  
-  
-</table>
-</div>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># But here we'll utilize the pipe to specifically style the table</span>
-<span class='va'>gt_table</span> <span class='op'>&lt;-</span> 
-  <span class='va'>gt_table</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+<span class='va'>gt_table_model_72</span> <span class='op'>&lt;-</span> 
+  <span class='va'>gt_table_model_72</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
   <span class='fu'><a href='https://gt.rstudio.com/reference/tab_options.html'>tab_options</a></span><span class='op'>(</span>
     table.font.size <span class='op'>=</span> <span class='fl'>14</span>
-  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
   <span class='fu'><a href='https://gt.rstudio.com/reference/tab_style.html'>tab_style</a></span><span class='op'>(</span>
     style <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/cell_text.html'>cell_text</a></span><span class='op'>(</span>weight <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
     locations <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/cells_body.html'>cells_body</a></span><span class='op'>(</span><span class='op'>)</span>
-  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
   <span class='fu'><a href='https://gt.rstudio.com/reference/tab_header.html'>tab_header</a></span><span class='op'>(</span>
-    title <span class='op'>=</span> <span class='st'>"Inflation Rate (CPIAUCSL) regressed against Unemployment Rate (UNRATE)"</span>,
-    subtitle <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"1980 to 2020 Monthly but conditioned on high inflation regimes"</span><span class='op'>)</span>
-  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+    title <span class='op'>=</span> <span class='st'>"AAPL versus S&amp;P_1500: Gross (incl. Rf) monthly log return"</span>,
+    subtitle <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"Six years (2014 - 2019), n = 72 months"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
   <span class='fu'><a href='https://gt.rstudio.com/reference/tab_source_note.html'>tab_source_note</a></span><span class='op'>(</span>
-    source_note <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"Source: FRED at https://fred.stlouisfed.org/"</span><span class='op'>)</span>
-  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/cols_label.html'>cols_label</a></span><span class='op'>(</span>
+    source_note <span class='op'>=</span> <span class='st'>"Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/"</span>
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/cols_label.html'>cols_label</a></span><span class='op'>(</span>
     term <span class='op'>=</span> <span class='st'>"Coefficient"</span>,
     estimate <span class='op'>=</span> <span class='st'>"Estimate"</span>,
     std.error <span class='op'>=</span> <span class='st'>"Std Error"</span>,
     statistic <span class='op'>=</span> <span class='st'>"t-stat"</span>,
     p.value <span class='op'>=</span> <span class='st'>"p value"</span>
-  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/fmt_number.html'>fmt_number</a></span><span class='op'>(</span>
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/fmt_number.html'>fmt_number</a></span><span class='op'>(</span>
     columns <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>estimate</span>, <span class='va'>std.error</span>, <span class='va'>statistic</span><span class='op'>)</span>,
     decimals <span class='op'>=</span> <span class='fl'>3</span>
-  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/fmt_scientific.html'>fmt_scientific</a></span><span class='op'>(</span>
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/fmt_scientific.html'>fmt_scientific</a></span><span class='op'>(</span>
     columns <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>p.value</span><span class='op'>)</span>,
-  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
   <span class='fu'><a href='https://gt.rstudio.com/reference/tab_options.html'>tab_options</a></span><span class='op'>(</span>
     heading.title.font.size <span class='op'>=</span> <span class='fl'>14</span>,
     heading.subtitle.font.size <span class='op'>=</span> <span class='fl'>12</span>
-  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
-  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_footnote.html'>tab_footnote</a></span><span class='op'>(</span>
-    footnote <span class='op'>=</span> <span class='st'>"Filtered on months with inflation &gt;4.3% deliberately to generate regression results"</span>,
-    locations <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/cells_title.html'>cells_title</a></span><span class='op'>(</span><span class='st'>"subtitle"</span><span class='op'>)</span>
   <span class='op'>)</span>
 
-<span class='va'>gt_table</span>
+<span class='va'>gt_table_model_72</span>
 </code></pre>
 </div>
-<div id="iajtywlnkz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="itmsrapfed" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#iajtywlnkz .gt_table {
+#itmsrapfed .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2941,7 +2607,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#iajtywlnkz .gt_heading {
+#itmsrapfed .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2953,7 +2619,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#iajtywlnkz .gt_title {
+#itmsrapfed .gt_title {
   color: #333333;
   font-size: 14px;
   font-weight: initial;
@@ -2963,7 +2629,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-bottom-width: 0;
 }
 
-#iajtywlnkz .gt_subtitle {
+#itmsrapfed .gt_subtitle {
   color: #333333;
   font-size: 12px;
   font-weight: initial;
@@ -2973,13 +2639,13 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-top-width: 0;
 }
 
-#iajtywlnkz .gt_bottom_border {
+#itmsrapfed .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#iajtywlnkz .gt_col_headings {
+#itmsrapfed .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2994,7 +2660,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#iajtywlnkz .gt_col_heading {
+#itmsrapfed .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3014,7 +2680,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   overflow-x: hidden;
 }
 
-#iajtywlnkz .gt_column_spanner_outer {
+#itmsrapfed .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3026,15 +2692,15 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   padding-right: 4px;
 }
 
-#iajtywlnkz .gt_column_spanner_outer:first-child {
+#itmsrapfed .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#iajtywlnkz .gt_column_spanner_outer:last-child {
+#itmsrapfed .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#iajtywlnkz .gt_column_spanner {
+#itmsrapfed .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3046,7 +2712,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   width: 100%;
 }
 
-#iajtywlnkz .gt_group_heading {
+#itmsrapfed .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3068,7 +2734,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   vertical-align: middle;
 }
 
-#iajtywlnkz .gt_empty_group_heading {
+#itmsrapfed .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3083,15 +2749,15 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   vertical-align: middle;
 }
 
-#iajtywlnkz .gt_from_md > :first-child {
+#itmsrapfed .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#iajtywlnkz .gt_from_md > :last-child {
+#itmsrapfed .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#iajtywlnkz .gt_row {
+#itmsrapfed .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3110,7 +2776,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   overflow-x: hidden;
 }
 
-#iajtywlnkz .gt_stub {
+#itmsrapfed .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3122,7 +2788,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   padding-left: 12px;
 }
 
-#iajtywlnkz .gt_summary_row {
+#itmsrapfed .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3132,7 +2798,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   padding-right: 5px;
 }
 
-#iajtywlnkz .gt_first_summary_row {
+#itmsrapfed .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3142,7 +2808,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#iajtywlnkz .gt_grand_summary_row {
+#itmsrapfed .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3152,7 +2818,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   padding-right: 5px;
 }
 
-#iajtywlnkz .gt_first_grand_summary_row {
+#itmsrapfed .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3162,11 +2828,11 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#iajtywlnkz .gt_striped {
+#itmsrapfed .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#iajtywlnkz .gt_table_body {
+#itmsrapfed .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3175,7 +2841,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#iajtywlnkz .gt_footnotes {
+#itmsrapfed .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3189,13 +2855,13 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#iajtywlnkz .gt_footnote {
+#itmsrapfed .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#iajtywlnkz .gt_sourcenotes {
+#itmsrapfed .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3209,41 +2875,41 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#iajtywlnkz .gt_sourcenote {
+#itmsrapfed .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#iajtywlnkz .gt_left {
+#itmsrapfed .gt_left {
   text-align: left;
 }
 
-#iajtywlnkz .gt_center {
+#itmsrapfed .gt_center {
   text-align: center;
 }
 
-#iajtywlnkz .gt_right {
+#itmsrapfed .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#iajtywlnkz .gt_font_normal {
+#itmsrapfed .gt_font_normal {
   font-weight: normal;
 }
 
-#iajtywlnkz .gt_font_bold {
+#itmsrapfed .gt_font_bold {
   font-weight: bold;
 }
 
-#iajtywlnkz .gt_font_italic {
+#itmsrapfed .gt_font_italic {
   font-style: italic;
 }
 
-#iajtywlnkz .gt_super {
+#itmsrapfed .gt_super {
   font-size: 65%;
 }
 
-#iajtywlnkz .gt_footnote_marks {
+#itmsrapfed .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -3252,10 +2918,10 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
 <table class="gt_table">
   <thead class="gt_header">
     <tr>
-      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>Inflation Rate (CPIAUCSL) regressed against Unemployment Rate (UNRATE)</th>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>AAPL versus S&amp;P_1500: Gross (incl. Rf) monthly log return</th>
     </tr>
     <tr>
-      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>1980 to 2020 Monthly but conditioned on high inflation regimes<sup class="gt_footnote_marks">1</sup></th>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Six years (2014 - 2019), n = 72 months</th>
     </tr>
   </thead>
   <thead class="gt_col_headings">
@@ -3269,49 +2935,1103 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left" style="font-weight: bold;">(Intercept)</td>
-<td class="gt_row gt_right" style="font-weight: bold;">16.393</td>
-<td class="gt_row gt_right" style="font-weight: bold;">0.473</td>
-<td class="gt_row gt_right" style="font-weight: bold;">34.626</td>
-<td class="gt_row gt_right" style="font-weight: bold;">2.38 &times; 10<sup class='gt_super'>&minus;30</sup></td></tr>
-    <tr><td class="gt_row gt_left" style="font-weight: bold;">Unemployment</td>
-<td class="gt_row gt_right" style="font-weight: bold;">&minus;1.106</td>
-<td class="gt_row gt_right" style="font-weight: bold;">0.056</td>
-<td class="gt_row gt_right" style="font-weight: bold;">&minus;19.834</td>
-<td class="gt_row gt_right" style="font-weight: bold;">1.21 &times; 10<sup class='gt_super'>&minus;21</sup></td></tr>
+<td class="gt_row gt_right" style="font-weight: bold;">0.008</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.007</td>
+<td class="gt_row gt_right" style="font-weight: bold;">1.066</td>
+<td class="gt_row gt_right" style="font-weight: bold;">2.90 &times; 10<sup class='gt_super'>&minus;1</sup></td></tr>
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">r_SP_1500</td>
+<td class="gt_row gt_right" style="font-weight: bold;">1.270</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.216</td>
+<td class="gt_row gt_right" style="font-weight: bold;">5.889</td>
+<td class="gt_row gt_right" style="font-weight: bold;">1.23 &times; 10<sup class='gt_super'>&minus;7</sup></td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="5">Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p1_model_72</span>
+</code></pre>
+</div>
+<img src="p1-t2-20-17-univariate-regressions-continued-2nd-set-v2_files/figure-html5/unnamed-chunk-2-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model_72</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = r_m_AAPL ~ r_SP_1500, data = both_72)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.226290 -0.027060  0.002344  0.040667  0.131313 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 0.007969   0.007477   1.066     0.29    
+r_SP_1500   1.269627   0.215600   5.889 1.23e-07 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.06123 on 70 degrees of freedom
+Multiple R-squared:  0.3313,    Adjusted R-squared:  0.3217 
+F-statistic: 34.68 on 1 and 70 DF,  p-value: 1.23e-07</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>beta</span> <span class='op'>&lt;-</span> <span class='va'>model_72_tidy</span><span class='op'>$</span><span class='va'>estimate</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>
+<span class='va'>se_beta</span> <span class='op'>&lt;-</span> <span class='va'>model_72_tidy</span><span class='op'>$</span><span class='va'>std.error</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>
+<span class='va'>ci_confidence</span> <span class='op'>=</span> <span class='fl'>0.90</span>
+<span class='va'>z_2s</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span><span class='op'>(</span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>+</span> <span class='va'>ci_confidence</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>ci_lower</span> <span class='op'>&lt;-</span> <span class='va'>beta</span> <span class='op'>-</span> <span class='va'>se_beta</span><span class='op'>*</span><span class='va'>z_2s</span>
+<span class='va'>ci_upper</span> <span class='op'>&lt;-</span> <span class='va'>beta</span> <span class='op'>+</span> <span class='va'>se_beta</span><span class='op'>*</span><span class='va'>z_2s</span>
+
+<span class='va'>ci_lower</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.9149958</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ci_upper</span>
+</code></pre>
+</div>
+<pre><code>[1] 1.624257</code></pre>
+</div>
+<h3 id="second-question">Second question</h3>
+<p>BT 20.17.2. Peter wants to add a low-beta stock to his portfolio. One candidate is Kroger’s stock (ticker: KR). As a proxy for the market, he uses the S&amp;P 1500. He wrangled gross monthly returns for KR and SP_1500 over ten years such that his sample size is 120 pairwise returns. The regression results are displayed below.</p>
+<p>Peters wants to make two decisions. In both cases, his test is a two-sided hypothesis test with 99.0% confidence. In the first test, the null hypothesis is that KR’s beta is zero. In the second test, the null hypothesis is that KR’s beta is one (1.0). Based on these regression results, which of the following is TRUE as a valid inference?</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>KR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidyquant/man/tq_get.html'>tq_get</a></span><span class='op'>(</span><span class='st'>'KR'</span>,
+               from <span class='op'>=</span> <span class='st'>"2009-01-01"</span>,
+               to <span class='op'>=</span> <span class='st'>"2020-01-01"</span><span class='op'>)</span>
+
+<span class='va'>SP1500</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidyquant/man/tq_get.html'>tq_get</a></span><span class='op'>(</span><span class='st'>'SPTM'</span>,
+               from <span class='op'>=</span> <span class='st'>"2009-01-01"</span>,
+               to <span class='op'>=</span> <span class='st'>"2020-01-01"</span><span class='op'>)</span>
+
+<span class='va'>KR</span> <span class='op'>&lt;-</span> <span class='va'>KR</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>date</span>, <span class='va'>adjusted</span><span class='op'>)</span>
+<span class='va'>SP1500</span> <span class='op'>&lt;-</span> <span class='va'>SP1500</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>date</span>, <span class='va'>adjusted</span><span class='op'>)</span>
+
+<span class='va'>KR_monthly</span> <span class='op'>&lt;-</span> <span class='va'>KR</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidyquant/man/tq_mutate.html'>tq_transmute</a></span><span class='op'>(</span>select <span class='op'>=</span> <span class='va'>adjusted</span>, mutate <span class='op'>=</span> <span class='va'>to.monthly</span>, indexAt <span class='op'>=</span> <span class='st'>"lastof"</span><span class='op'>)</span>
+<span class='va'>SP1500_monthly</span> <span class='op'>&lt;-</span> <span class='va'>SP1500</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidyquant/man/tq_mutate.html'>tq_transmute</a></span><span class='op'>(</span>select <span class='op'>=</span> <span class='va'>adjusted</span>, mutate <span class='op'>=</span> <span class='va'>to.monthly</span>, indexAt <span class='op'>=</span> <span class='st'>"lastof"</span><span class='op'>)</span>
+
+<span class='va'>KR_monthly</span> <span class='op'>&lt;-</span> <span class='va'>KR_monthly</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
+  r_m_KR <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>adjusted</span><span class='op'>/</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/lead-lag.html'>lag</a></span><span class='op'>(</span><span class='va'>adjusted</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>SP1500_monthly</span> <span class='op'>&lt;-</span><span class='va'>SP1500_monthly</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
+  r_m_SP <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>adjusted</span><span class='op'>/</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/lead-lag.html'>lag</a></span><span class='op'>(</span><span class='va'>adjusted</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>KR_monthly</span> <span class='op'>&lt;-</span> <span class='va'>KR_monthly</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>date_KR <span class='op'>=</span> <span class='va'>date</span>,
+         adj_KR <span class='op'>=</span> <span class='va'>adjusted</span><span class='op'>)</span>
+
+<span class='va'>SP1500_monthly</span> <span class='op'>&lt;-</span> <span class='va'>SP1500_monthly</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>date_SP <span class='op'>=</span> <span class='va'>date</span>,
+         adj_SP <span class='op'>=</span> <span class='va'>adjusted</span><span class='op'>)</span>
+
+<span class='va'>both_monthly</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>SP1500_monthly</span>, <span class='va'>KR_monthly</span><span class='op'>)</span>
+
+<span class='co'># testing different relationships really for Q&amp;A properties</span>
+<span class='co'># both_131 &lt;- both_monthly[-1, ]</span>
+<span class='va'>both_120</span> <span class='op'>&lt;-</span> <span class='va'>both_monthly</span><span class='op'>[</span><span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>12</span><span class='op'>)</span>, <span class='op'>]</span>
+<span class='co'># both_108 &lt;- both_monthly[-c(1:24), ]</span>
+<span class='co'># both_96 &lt;- both_monthly[-c(1:36), ]</span>
+<span class='co'># both_84 &lt;- both_monthly[-c(1:48), ]</span>
+<span class='co'># both_72 &lt;- both_monthly[-c(1:60), ]</span>
+
+<span class='va'>both_120</span> <span class='op'>&lt;-</span> <span class='va'>both_120</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>SP_1500 <span class='op'>=</span> <span class='va'>r_m_SP</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>saveRDS</a></span><span class='op'>(</span><span class='va'>both_120</span>, <span class='st'>"t2-20-17-kroger-sp1500.rds"</span><span class='op'>)</span>
+
+<span class='va'>con</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/connections.html'>url</a></span><span class='op'>(</span><span class='st'>"http://frm-bionicturtle.s3.amazonaws.com/david/t2-20-17-kroger-sp1500.rds"</span><span class='op'>)</span>
+<span class='va'>both_120</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>readRDS</a></span><span class='op'>(</span><span class='va'>con</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/connections.html'>close</a></span><span class='op'>(</span><span class='va'>con</span><span class='op'>)</span>
+
+<span class='va'>both_120</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>SP_1500</span>, y <span class='op'>=</span> <span class='va'>r_m_KR</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="p1-t2-20-17-univariate-regressions-continued-2nd-set-v2_files/figure-html5/unnamed-chunk-3-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>model_120</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>r_m_KR</span> <span class='op'>~</span> <span class='va'>SP_1500</span>, data <span class='op'>=</span> <span class='va'>both_120</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model_120</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = r_m_KR ~ SP_1500, data = both_120)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.255113 -0.039050  0.009397  0.043573  0.203206 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 0.003594   0.006433   0.559    0.577    
+SP_1500     0.696484   0.169073   4.119 7.08e-05 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.06775 on 118 degrees of freedom
+Multiple R-squared:  0.1257,    Adjusted R-squared:  0.1183 
+F-statistic: 16.97 on 1 and 118 DF,  p-value: 7.082e-05</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>###</span>
+
+<span class='va'>model_120_tidy</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model_120</span><span class='op'>)</span>
+
+<span class='va'>gt_table_model_120</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://gt.rstudio.com/reference/gt.html'>gt</a></span><span class='op'>(</span><span class='va'>model_120_tidy</span><span class='op'>)</span>
+
+<span class='va'>gt_table_model_120</span> <span class='op'>&lt;-</span> 
+  <span class='va'>gt_table_model_120</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_options.html'>tab_options</a></span><span class='op'>(</span>
+    table.font.size <span class='op'>=</span> <span class='fl'>14</span>
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_style.html'>tab_style</a></span><span class='op'>(</span>
+    style <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/cell_text.html'>cell_text</a></span><span class='op'>(</span>weight <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
+    locations <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/cells_body.html'>cells_body</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_header.html'>tab_header</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"Kroger (KR) versus S&amp;P_1500: Gross (incl. Rf) monthly log return"</span>,
+    subtitle <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"Ten years (2010 - 2019), n = 120 months"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_source_note.html'>tab_source_note</a></span><span class='op'>(</span>
+    source_note <span class='op'>=</span> <span class='st'>"Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/"</span>
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/cols_label.html'>cols_label</a></span><span class='op'>(</span>
+    term <span class='op'>=</span> <span class='st'>"Coefficient"</span>,
+    estimate <span class='op'>=</span> <span class='st'>"Estimate"</span>,
+    std.error <span class='op'>=</span> <span class='st'>"Std Error"</span>,
+    statistic <span class='op'>=</span> <span class='st'>"t-stat"</span>,
+    p.value <span class='op'>=</span> <span class='st'>"p value"</span>
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/fmt_number.html'>fmt_number</a></span><span class='op'>(</span>
+    columns <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>estimate</span>, <span class='va'>std.error</span>, <span class='va'>statistic</span><span class='op'>)</span>,
+    decimals <span class='op'>=</span> <span class='fl'>4</span>
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/fmt_scientific.html'>fmt_scientific</a></span><span class='op'>(</span>
+    columns <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>p.value</span><span class='op'>)</span>,
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_options.html'>tab_options</a></span><span class='op'>(</span>
+    heading.title.font.size <span class='op'>=</span> <span class='fl'>14</span>,
+    heading.subtitle.font.size <span class='op'>=</span> <span class='fl'>12</span>
+  <span class='op'>)</span>
+
+<span class='va'>gt_table_model_120</span>
+</code></pre>
+</div>
+<div id="jkfxqhnswp" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#jkfxqhnswp .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#jkfxqhnswp .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jkfxqhnswp .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#jkfxqhnswp .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#jkfxqhnswp .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jkfxqhnswp .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jkfxqhnswp .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#jkfxqhnswp .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#jkfxqhnswp .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#jkfxqhnswp .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#jkfxqhnswp .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#jkfxqhnswp .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jkfxqhnswp .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jkfxqhnswp .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#jkfxqhnswp .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#jkfxqhnswp .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#jkfxqhnswp .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#jkfxqhnswp .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jkfxqhnswp .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#jkfxqhnswp .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jkfxqhnswp .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#jkfxqhnswp .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#jkfxqhnswp .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jkfxqhnswp .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jkfxqhnswp .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#jkfxqhnswp .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jkfxqhnswp .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#jkfxqhnswp .gt_left {
+  text-align: left;
+}
+
+#jkfxqhnswp .gt_center {
+  text-align: center;
+}
+
+#jkfxqhnswp .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#jkfxqhnswp .gt_font_normal {
+  font-weight: normal;
+}
+
+#jkfxqhnswp .gt_font_bold {
+  font-weight: bold;
+}
+
+#jkfxqhnswp .gt_font_italic {
+  font-style: italic;
+}
+
+#jkfxqhnswp .gt_super {
+  font-size: 65%;
+}
+
+#jkfxqhnswp .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>Kroger (KR) versus S&amp;P_1500: Gross (incl. Rf) monthly log return</th>
+    </tr>
+    <tr>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Ten years (2010 - 2019), n = 120 months</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Coefficient</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Std Error</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">t-stat</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">p value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">(Intercept)</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.0036</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.0064</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.5587</td>
+<td class="gt_row gt_right" style="font-weight: bold;">5.77 &times; 10<sup class='gt_super'>&minus;1</sup></td></tr>
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">SP_1500</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.6965</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.1691</td>
+<td class="gt_row gt_right" style="font-weight: bold;">4.1194</td>
+<td class="gt_row gt_right" style="font-weight: bold;">7.08 &times; 10<sup class='gt_super'>&minus;5</sup></td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="5">Source: tidyquant https://cran.r-project.org/web/packages/tidyquant/</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+</div>
+<h3 id="third-question">Third question</h3>
+<p>BT 20.17.3. Debra is an economist who is interested in the relationship between consumer spending and the gross domestic product (GDP). From the FRED database at the Fed’s Bank of St. Louis (<a href="https://fred.stlouisfed.org/" class="uri">https://fred.stlouisfed.org/</a>) she collects quarterly data from 1980 through the first quarter of 2020; her series includes n = 161 quarters of data. She regresses consumer spending (C_SPEND), as the response (aka, dependent) variable against GDP as the explanatory (aka, independent) variable. Each series is not a level, but rather a seasonally adjusted percent change. The regression results are displayed below.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/onnokleen/alfred/'>alfred</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+
+
+<span class='co'># startdate &lt;- "1980-01-01"</span>
+<span class='co'># enddate &lt;- "2020-01-01"</span>
+<span class='co'># startdate1 &lt;- "1980-01-01"</span>
+<span class='co'># enddate1 &lt;- "2020-01-01"</span>
+
+<span class='co'># gdp &lt;- get_fred_series("A191RP1Q027SBEA", "GDP", observation_start = startdate1, observation_end = enddate1)</span>
+<span class='co'># cspend &lt;- get_fred_series("DPCERL1Q225SBEA", "C_Spend", observation_start = startdate1, observation_end = enddate1)</span>
+<span class='co'># testing</span>
+<span class='co'># cdebt &lt;- get_fred_series("CDSP", "C_Debt", observation_start = startdate1, observation_end = enddate1)</span>
+<span class='co'># df1 &lt;- cbind(gdp, cdebt)</span>
+<span class='co'># df1 &lt;- df1[-3]</span>
+
+<span class='co'># df2 &lt;- cbind(gdp, cspend)</span>
+<span class='co'># df2 &lt;- df2[-3]</span>
+<span class='co'># df2 &lt;- df2 %&gt;% rename(C_SPEND = C_Spend)</span>
+<span class='co'># saving dataframe because series data changed in the meantime!</span>
+<span class='co'># saveRDS(df2, "t2-20-17-spend-versus-gdp.rds")</span>
+
+<span class='va'>con</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/connections.html'>url</a></span><span class='op'>(</span><span class='st'>"http://frm-bionicturtle.s3.amazonaws.com/david/t2-20-17-spend-versus-gdp.rds"</span><span class='op'>)</span>
+<span class='va'>df2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>readRDS</a></span><span class='op'>(</span><span class='va'>con</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/connections.html'>close</a></span><span class='op'>(</span><span class='va'>con</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>df2</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>GDP</span>, <span class='va'>C_SPEND</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="p1-t2-20-17-univariate-regressions-continued-2nd-set-v2_files/figure-html5/unnamed-chunk-4-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>model_spend</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>C_SPEND</span> <span class='op'>~</span> <span class='va'>GDP</span>, data <span class='op'>=</span> <span class='va'>df2</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model_spend</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = C_SPEND ~ GDP, data = df2)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-10.0025  -1.1513   0.2266   1.2048   4.6900 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  0.89995    0.31555   2.852  0.00492 ** 
+GDP          0.36591    0.04993   7.329 1.11e-11 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 2.155 on 159 degrees of freedom
+Multiple R-squared:  0.2525,    Adjusted R-squared:  0.2478 
+F-statistic: 53.71 on 1 and 159 DF,  p-value: 1.107e-11</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df_fit_tidy</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model_spend</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>df2</span><span class='op'>$</span><span class='va'>GDP</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 3.411722</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>df2</span><span class='op'>$</span><span class='va'>C_SPEND</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 2.484429</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>df2</span><span class='op'>$</span><span class='va'>GDP</span>, <span class='va'>df2</span><span class='op'>$</span><span class='va'>C_SPEND</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.5024882</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>beta</span> <span class='op'>&lt;-</span> <span class='va'>df_fit_tidy</span><span class='op'>$</span><span class='va'>estimate</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>
+<span class='va'>beta_r</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>beta</span>,<span class='fl'>4</span><span class='op'>)</span>
+<span class='va'>sd_gdp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>df2</span><span class='op'>$</span><span class='va'>GDP</span><span class='op'>)</span>,<span class='fl'>3</span><span class='op'>)</span>
+<span class='va'>sd_spend</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>df2</span><span class='op'>$</span><span class='va'>C_SPEND</span><span class='op'>)</span>,<span class='fl'>3</span><span class='op'>)</span>
+<span class='va'>correlation_compute</span> <span class='op'>&lt;-</span> <span class='va'>beta_r</span> <span class='op'>*</span> <span class='va'>sd_gdp</span><span class='op'>/</span><span class='va'>sd_spend</span>
+
+<span class='va'>gt_table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://gt.rstudio.com/reference/gt.html'>gt</a></span><span class='op'>(</span><span class='va'>df_fit_tidy</span><span class='op'>)</span>
+
+<span class='va'>gt_table</span> <span class='op'>&lt;-</span> 
+  <span class='va'>gt_table</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_options.html'>tab_options</a></span><span class='op'>(</span>
+    table.font.size <span class='op'>=</span> <span class='fl'>14</span>
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_style.html'>tab_style</a></span><span class='op'>(</span>
+    style <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/cell_text.html'>cell_text</a></span><span class='op'>(</span>weight <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
+    locations <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/cells_body.html'>cells_body</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_header.html'>tab_header</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"Consumer Spending (C_SPEND) regressed against Gross Domestic Product (GDP)"</span>,
+    subtitle <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"Quarterly Growth (Seasonally adjusted), 1980 to 2020:Q1, n = 161"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_source_note.html'>tab_source_note</a></span><span class='op'>(</span>
+    source_note <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"Source: FRED at https://fred.stlouisfed.org/"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/cols_label.html'>cols_label</a></span><span class='op'>(</span>
+    term <span class='op'>=</span> <span class='st'>"Coefficient"</span>,
+    estimate <span class='op'>=</span> <span class='st'>"Estimate"</span>,
+    std.error <span class='op'>=</span> <span class='st'>"Std Error"</span>,
+    statistic <span class='op'>=</span> <span class='st'>"t-stat"</span>,
+    p.value <span class='op'>=</span> <span class='st'>"p value"</span>
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/fmt_number.html'>fmt_number</a></span><span class='op'>(</span>
+    columns <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>estimate</span>, <span class='va'>std.error</span>, <span class='va'>statistic</span><span class='op'>)</span>,
+    decimals <span class='op'>=</span> <span class='fl'>4</span>
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/fmt_scientific.html'>fmt_scientific</a></span><span class='op'>(</span>
+    columns <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>p.value</span><span class='op'>)</span>,
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/tidyquant/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_options.html'>tab_options</a></span><span class='op'>(</span>
+    heading.title.font.size <span class='op'>=</span> <span class='fl'>14</span>,
+    heading.subtitle.font.size <span class='op'>=</span> <span class='fl'>12</span>
+  <span class='op'>)</span>
+
+<span class='va'>gt_table</span>
+</code></pre>
+</div>
+<div id="zflfaysuff" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#zflfaysuff .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zflfaysuff .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zflfaysuff .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zflfaysuff .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zflfaysuff .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zflfaysuff .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zflfaysuff .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zflfaysuff .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zflfaysuff .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zflfaysuff .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zflfaysuff .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zflfaysuff .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zflfaysuff .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zflfaysuff .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#zflfaysuff .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#zflfaysuff .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zflfaysuff .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#zflfaysuff .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zflfaysuff .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#zflfaysuff .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zflfaysuff .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zflfaysuff .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zflfaysuff .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zflfaysuff .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zflfaysuff .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#zflfaysuff .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zflfaysuff .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#zflfaysuff .gt_left {
+  text-align: left;
+}
+
+#zflfaysuff .gt_center {
+  text-align: center;
+}
+
+#zflfaysuff .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zflfaysuff .gt_font_normal {
+  font-weight: normal;
+}
+
+#zflfaysuff .gt_font_bold {
+  font-weight: bold;
+}
+
+#zflfaysuff .gt_font_italic {
+  font-style: italic;
+}
+
+#zflfaysuff .gt_super {
+  font-size: 65%;
+}
+
+#zflfaysuff .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>Consumer Spending (C_SPEND) regressed against Gross Domestic Product (GDP)</th>
+    </tr>
+    <tr>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Quarterly Growth (Seasonally adjusted), 1980 to 2020:Q1, n = 161</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Coefficient</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Std Error</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">t-stat</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">p value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">(Intercept)</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.9000</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.3156</td>
+<td class="gt_row gt_right" style="font-weight: bold;">2.8520</td>
+<td class="gt_row gt_right" style="font-weight: bold;">4.92 &times; 10<sup class='gt_super'>&minus;3</sup></td></tr>
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">GDP</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.3659</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.0499</td>
+<td class="gt_row gt_right" style="font-weight: bold;">7.3285</td>
+<td class="gt_row gt_right" style="font-weight: bold;">1.11 &times; 10<sup class='gt_super'>&minus;11</sup></td></tr>
   </tbody>
   <tfoot class="gt_sourcenotes">
     <tr>
       <td class="gt_sourcenote" colspan="5">Source: FRED at https://fred.stlouisfed.org/</td>
     </tr>
   </tfoot>
-  <tfoot>
-    <tr class="gt_footnotes">
-      <td colspan="5">
-        <p class="gt_footnote">
-          <sup class="gt_footnote_marks">
-            <em>1</em>
-          </sup>
-           
-          Filtered on months with inflation &gt;4.3% deliberately to generate regression results
-          <br />
-        </p>
-      </td>
-    </tr>
-  </tfoot>
+  
 </table>
 </div>
-</div>
-<p>The question does not utilize a scatterplot but here it is anyway</p>
-<div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df2</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>Unemployment</span>, <span class='va'>Inflation_Rate</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df_fit_tidy</span><span class='op'>$</span><span class='va'>p.value</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>
 </code></pre>
 </div>
-<p><img src="bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+<pre><code>[1] 1.106954e-11</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>y_intercept</span> <span class='op'>&lt;-</span> <span class='va'>df_fit_tidy</span><span class='op'>$</span><span class='va'>estimate</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
+<span class='va'>se_y_intercept</span> <span class='op'>&lt;-</span> <span class='va'>df_fit_tidy</span><span class='op'>$</span><span class='va'>std.error</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
+<span class='va'>ci_confidence</span> <span class='op'>=</span> <span class='fl'>0.95</span>
+<span class='va'>z_2s</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span><span class='op'>(</span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>+</span> <span class='va'>ci_confidence</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span><span class='op'>)</span>
+
+<span class='va'>ci_lower</span> <span class='op'>&lt;-</span> <span class='va'>y_intercept</span> <span class='op'>-</span> <span class='va'>se_y_intercept</span><span class='op'>*</span><span class='va'>z_2s</span>
+<span class='va'>ci_upper</span> <span class='op'>&lt;-</span> <span class='va'>y_intercept</span> <span class='op'>+</span> <span class='va'>se_y_intercept</span><span class='op'>*</span><span class='va'>z_2s</span>
+<span class='va'>ci_lower</span>
+</code></pre>
 </div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<pre><code>[1] 0.2814779</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ci_upper</span>
+</code></pre>
+</div>
+<pre><code>[1] 1.518425</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>slope_c</span> <span class='op'>&lt;-</span><span class='va'>df_fit_tidy</span><span class='op'>$</span><span class='va'>estimate</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>
+<span class='va'>se_slope</span> <span class='op'>&lt;-</span> <span class='va'>df_fit_tidy</span><span class='op'>$</span><span class='va'>std.error</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>
+<span class='va'>slope_ci_lower</span> <span class='op'>&lt;-</span> <span class='va'>slope_c</span> <span class='op'>-</span> <span class='va'>se_slope</span> <span class='op'>*</span> <span class='va'>z_2s</span>
+<span class='va'>slope_ci_upper</span> <span class='op'>&lt;-</span> <span class='va'>slope_c</span> <span class='op'>+</span> <span class='va'>se_slope</span> <span class='op'>*</span> <span class='va'>z_2s</span>
+<span class='va'>slope_ci_lower</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.2680529</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>slope_ci_upper</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.463775</code></pre>
+</div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
