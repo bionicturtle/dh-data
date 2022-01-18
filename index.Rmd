@@ -1,5 +1,5 @@
 ---
-title: "DH (BT) blog"
+title: "David's (BT) data blog"
 site: distill::distill_website
 listing: posts
 ---
