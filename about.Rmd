@@ -1,11 +1,21 @@
 ---
-title: "About this blog"
-description: |
-  Using R to analyze/illustrate data and backup some of the FRM questions
+title: "David Harper"
+image: "drh3.jpg"
+links:
+  - label: LinkedIn
+    url: "https://www.linkedin.com/in/bionicturtle/"
+  - label: Twitter
+    url: "https://twitter.com/bionicturtle"
+  - label: GitHub
+    url: "https://github.com/bionicturtle"
+  - label: Email
+    url: "mailto:david.harper@cox.net"
+output:
+  postcards::trestles
 ---
-
+ 
 Hello! I'm David Harper, CFA, FRM. I started [bionicturtle.com](http://www.bionicturtle.com) in 2004 and built it into the #1 exam preparation provider (EPP) for the Financial Risk Manager (FRM). In February of 2021, I sold the business to [CeriFi](http://cerifi.com) where I continue to run it as President, Bionic Turtle, a CeriFi company. And now I'm [part of a great team](https://www.linkedin.com/company/cerifi/) that is building the world's greatest platform for financial education at every stage of your career.
 
 I love teaching (and learning about) risk. I'm also write articles at Seeking Alpha, where I disclose my portfolio/trades and practice risk management. I have a BA, Economics from UC, Berkeley. I earned my CFA in 2003 and my FRM in 2004. I'm also always practicing some data science. 
 
-This is a [distill blog](https://github.com/rstudio/distill) that holds my code snippets. 
+This is a [distill site](https://github.com/rstudio/distill) and this About page is a [postcard](https://github.com/seankross/postcards) (by Sean Kross)

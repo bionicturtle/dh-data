@@ -35,8 +35,11 @@ With the command create_website(), a simple file structure is created:
 
 ![create_website() installs these files](distill-simple-file-structure.png){width=50%}
 
-The _site.yml contains the reference to the theme.css. I borrowed the [tidymodels.css](https://rstudio.github.io/distill/website.html#example-themes) theme with only a color change.
+The _site.yml contains the reference to the theme.css. I borrowed the [tidymodels.css](https://rstudio.github.io/distill/website.html#example-themes) theme with only a color change. 
 
 ![_site.yml controls details](distill-site_tml.png){width=60%}
 
+My About page is courtesy of [Alison Hill's tutorial](https://distillery.rbind.io/posts/2021-03-16-postcards-distill/); in <3 minutes, I installed the postcard package and switched the page's style to trestles with a quick edit to the YAML 
+
+![article's YAML front-matter with built-in trestles theme](postcard-yaml.png)
 
