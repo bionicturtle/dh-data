@@ -1,0 +1,4148 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
+  <!--radix_placeholder_meta_tags-->
+  <title>BT Question Set P1-T2-20-19: Regression diagnostics (set)</title>
+
+  <meta property="description" itemprop="description" content="Diagnostics: omitted variable bias, heteroskedasticity, and multicollinearity"/>
+
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2022-01-09"/>
+  <meta property="article:created" itemprop="dateCreated" content="2022-01-09"/>
+  <meta name="article:author" content="David Harper"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="BT Question Set P1-T2-20-19: Regression diagnostics (set)"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Diagnostics: omitted variable bias, heteroskedasticity, and multicollinearity"/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="BT Question Set P1-T2-20-19: Regression diagnostics (set)"/>
+  <meta property="twitter:description" content="Diagnostics: omitted variable bias, heteroskedasticity, and multicollinearity"/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["BT Question Set P1-T2-20-19: Regression diagnostics (set)"]},{"type":"character","attributes":{},"value":["Diagnostics: omitted variable bias, heteroskedasticity, and multicollinearity\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["David Harper"]},{"type":"character","attributes":{},"value":["https://www.bionicturtle.com/"]}]}]},{"type":"character","attributes":{},"value":["2022-01-09"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/anchor-4.2.2/anchor.min.js","bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/bowser-1.9.3/bowser.min.js","bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/distill-2.2.21/template.v2.js","bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/figure-html5/unnamed-chunk-2-1.png","bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/header-attrs-2.11/header-attrs.js","bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/jquery-3.6.0/jquery-3.6.0.js","bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/jquery-3.6.0/jquery-3.6.0.min.js","bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/jquery-3.6.0/jquery-3.6.0.min.map","bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/popper-2.6.0/popper.min.js","bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/tippy-6.2.7/tippy-bundle.umd.min.js","bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/tippy-6.2.7/tippy-light-border.css","bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/tippy-6.2.7/tippy.css","bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/tippy-6.2.7/tippy.umd.min.js","bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/header-attrs-2.11/header-attrs.js"></script>
+  <script src="bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/popper-2.6.0/popper.min.js"></script>
+  <link href="bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"BT Question Set P1-T2-20-19: Regression diagnostics (set)","description":"Diagnostics: omitted variable bias, heteroskedasticity, and multicollinearity","authors":[{"author":"David Harper","authorURL":"https://www.bionicturtle.com/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-01-09T00:00:00.000-08:00","citationText":"Harper, 2022"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>BT Question Set P1-T2-20-19: Regression diagnostics (set)</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p><p>Diagnostics: omitted variable bias, heteroskedasticity, and multicollinearity</p></p>
+</div>
+
+<div class="d-byline">
+  David Harper <a href="https://www.bionicturtle.com/" class="uri">https://www.bionicturtle.com/</a> 
+  
+<br/>2022-01-09
+</div>
+
+<div class="d-article">
+<h3 id="three-pqs-that-took-me-time-to-develop-but-really-illustrate-some-diagnostics">Three PQs that took me time to develop but really illustrate some diagnostics</h3>
+<ul>
+<li><p><strong>Precision</strong> (reflected by a <em>smaller</em> standard error) refers to dispersion in the sample estimate, while <strong>Accuracy</strong> is proximity (nearness) to the true population parameter.</p></li>
+<li><p>Homoskedasticity–a key assumption in the classic linear regression model (CLRM)–requires the <em>conditional variance</em> of the error to be constant. If we regress against a time-ordered variable, homoskedasticity is a constant variance over time (and a requirement of a stationary process). Heteroskedasticity is the violation of homoskedasticity: it is when the conditional variance is not constant. In the time series context, heteroskedasticity is a time-varying variance; i.e., non-constant over time,</p></li>
+<li><p>We can test for heteroskedasticity with the <strong>White test</strong>. Heteroskedasticity is not fatal: the OLS estimators remain linear and remain unbiased however they do not have the minimum variance, so they are not efficient and not BLUE.</p></li>
+<li><p><strong>Multicollinearity</strong> refers to imperfect (aka, near) multicollinearity and is when two or more of the independent variables (regressors) are highly correlated: one of the regressors is highly correlated with (i.e., can itself be explained by) another regressor. Imperfect multicollinearity is generally not a problem because the estimators remain BLUE.</p></li>
+<li><p>The implication of multicollinearity is a high F-statistic but low individual t-statistics. If we observe insignificant regression coefficients (low t-stats) but a significant joint hypothesis (high F-statistic), we can suspect multicollinearity.</p></li>
+<li><p><strong>Omitted variable bias</strong> has two conditions: the omitted (aka, confounding) variable is correlated with the dependent (aka, explained) variable, and is correlated with another independent (aka, regressor) variable. Please notice that simply omitting an independent variable (despite its correlation with the dependent) is insufficient to create omitted variable bias! Why?</p></li>
+<li><p><strong>Cook’s Distance</strong>, D(j), measures the impact of an outlier; a D(j) value greater than 1.0 signifies a large impact by the outlier.</p></li>
+</ul>
+<h3 id="question-1-fama-french-2-factor---omitted-variable">Question 1: Fama-french 2-factor &lt;- omitted variable</h3>
+<p>20.19.1. Jane manages a market-neutral equity fund for her investment management firm. The fund’s market-neutral style implies (we will assume) that the fund’s beta with respect to the market’s excess return is zero. However, the fund does seek exposure to other factors. The size factor captures the excess return of small-capitalization stocks (SMB = “small minus big”). Jane tests her portfolio’s exposure to the size factor by regressing the portfolio’s excess return against the size factor returns. Her regression takes the form PORTFOLIO(i) = α + β1×SMB(i) + ε(i). The results of this single-variable (aka, simple) regression are displayed below.</p>
+<p><em>(gt table here)</em></p>
+<p>In this simple regression, we can observe that SMB’s coefficient is 0.6771 and significant. Jane is concerned that this simple regression might suffer from omitted variable bias. Specifically, she thinks the value factor has been omitted. The value factor captures the excess returns of value stocks (HML = “high book-to-market minus low book-to-market”)’. She confirms that the omitted variable, HML, is associated with her response variable. Further, the omitted variable, HML, is correlated to SMB. The correlation between HML and SMB is 0.30. Jane runs a multivariate regression with both explanatory variables, SMB and HML; in this regression, HML’s beta coefficient is 0.7240 such that the new term is β2×HML(i) = 0.7240×HML(i). Which of the following is nearest to the revised SMB coefficient; i.e., what is the revised β1?</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://broom.tidymodels.org/'>broom</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://gt.rstudio.com/'>gt</a></span><span class='op'>)</span>
+
+<span class='va'>intercept</span> <span class='op'>&lt;-</span> <span class='fl'>.03</span>
+<span class='va'>intercept_sig</span> <span class='op'>&lt;-</span> <span class='fl'>.01</span>
+
+<span class='co'># x1 is market factor</span>
+<span class='va'>x1_mu</span> <span class='op'>&lt;-</span> <span class='fl'>.05</span>
+<span class='va'>x1_sig</span> <span class='op'>&lt;-</span> <span class='fl'>.01</span>
+<span class='va'>x1_beta</span> <span class='op'>&lt;-</span> <span class='fl'>0.5</span>
+
+<span class='co'># x2 is size factor</span>
+<span class='va'>x2_mu</span> <span class='op'>&lt;-</span> <span class='fl'>.04</span>
+<span class='va'>x2_sig</span> <span class='op'>&lt;-</span> <span class='fl'>.01</span>
+<span class='va'>x2_beta</span> <span class='op'>&lt;-</span> <span class='fl'>0.7</span>
+
+<span class='co'>#x3 is value factor</span>
+<span class='va'>x3_mu</span> <span class='op'>&lt;-</span> <span class='fl'>.03</span>
+<span class='va'>x3_sig</span> <span class='op'>&lt;-</span> <span class='fl'>.01</span>
+<span class='va'>x3_beta</span> <span class='op'>&lt;-</span> <span class='op'>-</span><span class='fl'>0.5</span>
+
+<span class='va'>noise_mu</span> <span class='op'>&lt;-</span> <span class='fl'>0</span>
+<span class='va'>noise_sig</span> <span class='op'>&lt;-</span> <span class='fl'>0</span> <span class='co'># low value gets low p-value b/c low noise</span>
+
+<span class='va'>size</span> <span class='op'>&lt;-</span> <span class='fl'>120</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>52</span><span class='op'>)</span>
+
+<span class='va'>results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>
+  x0 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>size</span>, <span class='va'>intercept</span>, <span class='va'>intercept_sig</span><span class='op'>)</span>,
+  x1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>size</span>, <span class='va'>x1_mu</span>, <span class='va'>x1_sig</span><span class='op'>)</span>,
+  x2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>size</span>, <span class='va'>x2_mu</span>, <span class='va'>x2_sig</span><span class='op'>)</span>,
+  x2_r <span class='op'>=</span> <span class='fl'>0.3</span> <span class='op'>*</span> <span class='va'>x1</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>-</span> <span class='fl'>0.3</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>*</span> <span class='va'>x2</span>,
+  x3 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>size</span>, <span class='va'>x3_mu</span>, <span class='va'>x3_sig</span><span class='op'>)</span>,
+  x1_b <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='va'>x1_beta</span>, <span class='va'>size</span><span class='op'>)</span>,
+  x2_b <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='va'>x2_beta</span>, <span class='va'>size</span><span class='op'>)</span>,
+  x3_b <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='va'>x3_beta</span>, <span class='va'>size</span><span class='op'>)</span>,
+  noise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>size</span>, <span class='fl'>0</span>, <span class='va'>noise_sig</span><span class='op'>)</span>
+<span class='op'>)</span>
+
+<span class='va'>results1</span> <span class='op'>&lt;-</span> <span class='va'>results</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
+  y1 <span class='op'>=</span> <span class='va'>x0</span> <span class='op'>+</span> <span class='va'>x1_b</span> <span class='op'>*</span> <span class='va'>x1</span> <span class='op'>+</span> <span class='va'>noise</span>, <span class='co'># market factor only</span>
+  y2 <span class='op'>=</span> <span class='va'>x0</span> <span class='op'>+</span> <span class='va'>x1_b</span> <span class='op'>*</span> <span class='va'>x1</span> <span class='op'>+</span> <span class='va'>x2_b</span> <span class='op'>*</span> <span class='va'>x2_r</span> <span class='op'>+</span> <span class='va'>noise</span>, <span class='co'># market and size</span>
+  y3 <span class='op'>=</span> <span class='va'>x0</span> <span class='op'>+</span> <span class='va'>x1_b</span> <span class='op'>*</span> <span class='va'>x1</span> <span class='op'>+</span> <span class='va'>x2_b</span> <span class='op'>*</span> <span class='va'>x2</span> <span class='op'>+</span> <span class='va'>x3_b</span> <span class='op'>*</span> <span class='va'>x3</span> <span class='op'>+</span> <span class='va'>noise</span> <span class='co'># all three</span>
+<span class='op'>)</span>
+
+<span class='va'>model_y1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>y2</span> <span class='op'>~</span> <span class='va'>x1</span>, data <span class='op'>=</span> <span class='va'>results1</span><span class='op'>)</span> <span class='co'># market only</span>
+<span class='va'>model_y2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>y2</span> <span class='op'>~</span> <span class='va'>x1</span> <span class='op'>+</span> <span class='va'>x2_r</span>, data <span class='op'>=</span> <span class='va'>results1</span><span class='op'>)</span> <span class='co'># market and size</span>
+<span class='va'>model_y3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>y3</span> <span class='op'>~</span> <span class='va'>x1</span> <span class='op'>+</span> <span class='va'>x2</span> <span class='op'>+</span> <span class='va'>x3</span>, data <span class='op'>=</span> <span class='va'>results1</span><span class='op'>)</span>
+
+<span class='va'>cor_x1_x2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>results1</span><span class='op'>$</span><span class='va'>x1</span>, <span class='va'>results1</span><span class='op'>$</span><span class='va'>x2_r</span><span class='op'>)</span>
+<span class='va'>cov_x1_x2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cov</a></span><span class='op'>(</span><span class='va'>results1</span><span class='op'>$</span><span class='va'>x1</span>, <span class='va'>results1</span><span class='op'>$</span><span class='va'>x2_r</span><span class='op'>)</span>
+<span class='va'>var_x1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>var</a></span><span class='op'>(</span><span class='va'>results1</span><span class='op'>$</span><span class='va'>x1</span><span class='op'>)</span>
+<span class='va'>var_x2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>var</a></span><span class='op'>(</span><span class='va'>results1</span><span class='op'>$</span><span class='va'>x2_r</span><span class='op'>)</span>
+<span class='va'>beta_x1</span> <span class='op'>&lt;-</span> <span class='va'>cov_x1_x2</span><span class='op'>/</span><span class='va'>var_x1</span>
+
+<span class='va'>model_omit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>x2_r</span> <span class='op'>~</span> <span class='va'>x1</span>, data <span class='op'>=</span> <span class='va'>results1</span><span class='op'>)</span>
+
+<span class='co'># model_y1 suffers omitted variable bias: x1 = 0.6771 as given in problem</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model_y1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = y2 ~ x1, data = results1)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.038216 -0.008610 -0.001528  0.008894  0.033695 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 0.058839   0.005298  11.105  &lt; 2e-16 ***
+x1          0.677063   0.106361   6.366 3.86e-09 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.01155 on 118 degrees of freedom
+Multiple R-squared:  0.2556,    Adjusted R-squared:  0.2493 
+F-statistic: 40.52 on 1 and 118 DF,  p-value: 3.864e-09</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># And note that "true" X1 = 0.463 per the solution's 0.460</span>
+<span class='co'># Problem provides rounded 0.7240 as HML coefficient</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model_y2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = y2 ~ x1 + x2_r, data = results1)
+
+Residuals:
+       Min         1Q     Median         3Q        Max 
+-0.0221522 -0.0069359  0.0000787  0.0066889  0.0227758 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 0.030915   0.005373   5.754 7.12e-08 ***
+x1          0.463067   0.088293   5.245 7.05e-07 ***
+x2_r        0.724203   0.086597   8.363 1.48e-13 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.009173 on 117 degrees of freedom
+Multiple R-squared:  0.5341,    Adjusted R-squared:  0.5262 
+F-statistic: 67.07 on 2 and 117 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>model_tidy</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model_y1</span><span class='op'>)</span>
+<span class='va'>model_tidy</span><span class='op'>[</span><span class='fl'>2</span>,<span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"SMB"</span>
+
+<span class='va'>gt_table_model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://gt.rstudio.com/reference/gt.html'>gt</a></span><span class='op'>(</span><span class='va'>model_tidy</span><span class='op'>)</span>
+
+<span class='va'>gt_table_model</span> <span class='op'>&lt;-</span> 
+  <span class='va'>gt_table_model</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_options.html'>tab_options</a></span><span class='op'>(</span>
+    table.font.size <span class='op'>=</span> <span class='fl'>14</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_style.html'>tab_style</a></span><span class='op'>(</span>
+    style <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/cell_text.html'>cell_text</a></span><span class='op'>(</span>weight <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
+    locations <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/cells_body.html'>cells_body</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_header.html'>tab_header</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"Market-neutral portfolio excess returns regressed against SMB"</span>,
+    subtitle <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"(but HML is an ***omitted variable***)"</span><span class='op'>)</span>
+  <span class='co'>#) %&gt;% tab_source_note(</span>
+  <span class='co'>#   source_note = md("the source is ... FRED")</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/cols_label.html'>cols_label</a></span><span class='op'>(</span>
+    term <span class='op'>=</span> <span class='st'>"Coefficient"</span>,
+    estimate <span class='op'>=</span> <span class='st'>"Estimate"</span>,
+    std.error <span class='op'>=</span> <span class='st'>"Std Error"</span>,
+    statistic <span class='op'>=</span> <span class='st'>"t-stat"</span>,
+    p.value <span class='op'>=</span> <span class='st'>"p value"</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/fmt_number.html'>fmt_number</a></span><span class='op'>(</span>
+    columns <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>estimate</span>, <span class='va'>std.error</span>, <span class='va'>statistic</span>, <span class='va'>p.value</span><span class='op'>)</span>,
+    decimals <span class='op'>=</span> <span class='fl'>4</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/fmt_scientific.html'>fmt_scientific</a></span><span class='op'>(</span>
+    columns <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>statistic</span>, <span class='va'>p.value</span><span class='op'>)</span>,
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/tab_options.html'>tab_options</a></span><span class='op'>(</span>
+    heading.title.font.size <span class='op'>=</span> <span class='fl'>14</span>,
+    heading.subtitle.font.size <span class='op'>=</span> <span class='fl'>14</span>
+  <span class='op'>)</span>
+
+<span class='va'>gt_table_model</span>
+</code></pre>
+</div>
+<div id="ecyprinlxi" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#ecyprinlxi .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ecyprinlxi .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ecyprinlxi .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ecyprinlxi .gt_subtitle {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ecyprinlxi .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ecyprinlxi .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ecyprinlxi .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ecyprinlxi .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ecyprinlxi .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ecyprinlxi .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ecyprinlxi .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ecyprinlxi .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ecyprinlxi .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ecyprinlxi .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ecyprinlxi .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ecyprinlxi .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ecyprinlxi .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#ecyprinlxi .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ecyprinlxi .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#ecyprinlxi .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ecyprinlxi .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ecyprinlxi .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ecyprinlxi .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ecyprinlxi .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ecyprinlxi .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#ecyprinlxi .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ecyprinlxi .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#ecyprinlxi .gt_left {
+  text-align: left;
+}
+
+#ecyprinlxi .gt_center {
+  text-align: center;
+}
+
+#ecyprinlxi .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ecyprinlxi .gt_font_normal {
+  font-weight: normal;
+}
+
+#ecyprinlxi .gt_font_bold {
+  font-weight: bold;
+}
+
+#ecyprinlxi .gt_font_italic {
+  font-style: italic;
+}
+
+#ecyprinlxi .gt_super {
+  font-size: 65%;
+}
+
+#ecyprinlxi .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>Market-neutral portfolio excess returns regressed against SMB</th>
+    </tr>
+    <tr>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>(but HML is an <em><strong>omitted variable</strong></em>)</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Coefficient</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Std Error</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">t-stat</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">p value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">(Intercept)</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.0588</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.0053</td>
+<td class="gt_row gt_right" style="font-weight: bold;">1.11 &times; 10<sup class='gt_super'>1</sup></td>
+<td class="gt_row gt_right" style="font-weight: bold;">4.74 &times; 10<sup class='gt_super'>&minus;20</sup></td></tr>
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">SMB</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.6771</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.1064</td>
+<td class="gt_row gt_right" style="font-weight: bold;">6.37</td>
+<td class="gt_row gt_right" style="font-weight: bold;">3.86 &times; 10<sup class='gt_super'>&minus;9</sup></td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+<h2 id="question-2-house-prices---heteroskedasticity">Question 2: House Prices - Heteroskedasticity</h2>
+<p>20.19.2. Josh regressed house prices (as the response or dependent variable) against two explanatory variables: square footage (SQFEET) and the number of rooms in the house (ROOMS). The dependent variable, PRICE, is expressed in thousands of dollars ($000); e.g., the average PRICE is $XXX.000 because the average house price in the sample of 150 houses is $XXX.000. The units of SQFEET are unadjusted units; e.g., the average SQFEET in the sample is X,XXX ft^2. The variable ROOMS is equal to the sum of the number of bedrooms and bathrooms; because much of the sample is 2- and 3-bedroom houses with 2 baths, the average of ROOM is X.XX. Josh’s regression results are displayed below.</p>
+<p>Josh is concerned that the data might not be homoscedastic. He decides to conduct a White test for heteroskedasticity. In this test, he regresses the squared residuals against each of the explanatory variables and the cross-product of the explanatory variables (including the product of each variable with itself). The results of this regression are displayed below.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># library(tidyverse)</span>
+<span class='co'># library(broom)</span>
+<span class='co'># library(gt)</span>
+
+<span class='va'>intercept</span> <span class='op'>&lt;-</span> <span class='fl'>40</span>
+<span class='va'>intercept_sig</span> <span class='op'>&lt;-</span> <span class='fl'>.01</span>
+
+<span class='va'>x1_mu</span> <span class='op'>&lt;-</span> <span class='fl'>1000</span>
+<span class='va'>x1_sig</span> <span class='op'>&lt;-</span> <span class='fl'>400</span>
+<span class='va'>x1_beta</span> <span class='op'>&lt;-</span> <span class='fl'>0.3</span>
+
+<span class='va'>x2_mu</span> <span class='op'>&lt;-</span> <span class='fl'>4.5</span>
+<span class='va'>x2_sig</span> <span class='op'>&lt;-</span> <span class='fl'>2</span>
+<span class='va'>x2_beta</span> <span class='op'>&lt;-</span> <span class='fl'>20.0</span>
+
+<span class='va'>noise_mu</span> <span class='op'>&lt;-</span> <span class='fl'>0</span>
+<span class='va'>noise_sig</span> <span class='op'>&lt;-</span> <span class='fl'>500</span> <span class='co'># low value gets low p-value b/c low noise</span>
+
+<span class='va'>size</span> <span class='op'>&lt;-</span> <span class='fl'>150</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>65</span><span class='op'>)</span>
+
+<span class='va'>rho_noise_x1</span> <span class='op'>&lt;-</span> <span class='fl'>0.7</span>
+
+<span class='va'>ft2_start</span> <span class='op'>=</span> <span class='fl'>800</span>
+<span class='va'>ft2_end</span> <span class='op'>=</span> <span class='fl'>3000</span>
+
+<span class='va'>results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>
+  x0_sn <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>size</span><span class='op'>)</span>,
+  x1_sn <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>size</span><span class='op'>)</span>,
+  x2_sn <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>size</span><span class='op'>)</span>,
+  e <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>size</span><span class='op'>)</span>,
+  <span class='co'># e_corr = rho_noise_x1 * x1_sn + sqrt(1 - rho_noise_x1^2) * noise_sn,</span>
+  <span class='co'># </span>
+  x0 <span class='op'>=</span> <span class='va'>intercept</span> <span class='op'>+</span> <span class='va'>x0_sn</span> <span class='op'>*</span> <span class='va'>intercept_sig</span>,
+  <span class='co'># x1 = x1_mu + x1_sn * x1_sig, </span>
+  x1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='va'>ft2_start</span>, <span class='va'>ft2_end</span> <span class='op'>-</span> <span class='fl'>1</span>, by <span class='op'>=</span> <span class='op'>(</span><span class='va'>ft2_end</span> <span class='op'>-</span> <span class='va'>ft2_start</span><span class='op'>)</span><span class='op'>/</span><span class='va'>size</span><span class='op'>)</span>,
+  x2 <span class='op'>=</span> <span class='va'>x2_mu</span> <span class='op'>+</span> <span class='va'>x2_sn</span> <span class='op'>*</span> <span class='va'>x2_sig</span>,
+  <span class='co'># </span>
+  <span class='co'># here the heteroskadisticity is deliberately introduced:</span>
+  <span class='co'># the error term's sigma is increasing with SQFEET, x1</span>
+  e_sigma <span class='op'>=</span> <span class='op'>(</span><span class='op'>(</span><span class='va'>x1</span> <span class='op'>-</span> <span class='va'>ft2_start</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>100</span><span class='op'>)</span><span class='op'>^</span><span class='fl'>2</span>, 
+  <span class='co'># noise = noise_sn_corr * noise_sig, </span>
+  <span class='co'>#  </span>
+  x1_b <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='va'>x1_beta</span>, <span class='va'>size</span><span class='op'>)</span>,
+  x2_b <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='va'>x2_beta</span>, <span class='va'>size</span><span class='op'>)</span>
+<span class='op'>)</span>
+
+<span class='va'>results1</span> <span class='op'>&lt;-</span> <span class='va'>results</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
+  y <span class='op'>=</span> <span class='va'>x0</span> <span class='op'>+</span> <span class='op'>(</span><span class='va'>x1_b</span> <span class='op'>*</span> <span class='va'>x1</span><span class='op'>)</span> <span class='op'>+</span> <span class='op'>(</span><span class='va'>x2_b</span> <span class='op'>*</span> <span class='va'>x2</span><span class='op'>)</span> <span class='op'>+</span> <span class='op'>(</span><span class='va'>e</span> <span class='op'>*</span> <span class='va'>e_sigma</span><span class='op'>)</span>
+<span class='op'>)</span>
+
+<span class='co'># cor(results1$e * results1$e_sigma, results1$x1)</span>
+
+<span class='va'>model_house</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>y</span> <span class='op'>~</span> <span class='va'>x1</span> <span class='op'>+</span> <span class='va'>x2</span>, data <span class='op'>=</span> <span class='va'>results1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model_house</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = y ~ x1 + x2, data = results1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-710.33  -79.41    8.68   61.16  731.16 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -9.45712   69.59813  -0.136    0.892    
+x1           0.36961    0.02734  13.522   &lt;2e-16 ***
+x2           8.78355    8.61236   1.020    0.309    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 211.1 on 147 degrees of freedom
+Multiple R-squared:  0.5548,    Adjusted R-squared:  0.5488 
+F-statistic: 91.61 on 2 and 147 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>model_tidy_house</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model_house</span><span class='op'>)</span>
+<span class='va'>model_tidy_house</span><span class='op'>[</span><span class='fl'>2</span>,<span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"SQFEET"</span>
+<span class='va'>model_tidy_house</span><span class='op'>[</span><span class='fl'>3</span>,<span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"ROOMS"</span>
+
+<span class='va'>gt_table_model_house</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://gt.rstudio.com/reference/gt.html'>gt</a></span><span class='op'>(</span><span class='va'>model_tidy_house</span><span class='op'>)</span>
+
+<span class='va'>gt_table_model_house</span> <span class='op'>&lt;-</span> 
+  <span class='va'>gt_table_model_house</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_options.html'>tab_options</a></span><span class='op'>(</span>
+    table.font.size <span class='op'>=</span> <span class='fl'>12</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_style.html'>tab_style</a></span><span class='op'>(</span>
+    style <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/cell_text.html'>cell_text</a></span><span class='op'>(</span>weight <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
+    locations <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/cells_body.html'>cells_body</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_header.html'>tab_header</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"House Price regressed against ft^2 (SQFEET) + ROOMS(#)"</span>,
+    subtitle <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"House Price in Thousands **($000)** of dollars"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/tab_source_note.html'>tab_source_note</a></span><span class='op'>(</span>
+    source_note <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"Residual standard error: 211.1 on 147 degrees of freedom"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/tab_source_note.html'>tab_source_note</a></span><span class='op'>(</span>
+    source_note <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"Multiple R-squared:  0.5548,  Adjusted R-squared:  0.5488"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/tab_source_note.html'>tab_source_note</a></span><span class='op'>(</span>
+    source_note <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"F-statistic: 91.61 on 2 and 147 DF,  p-value: &lt; 2.2e-16"</span><span class='op'>)</span>  
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/cols_label.html'>cols_label</a></span><span class='op'>(</span>
+    term <span class='op'>=</span> <span class='st'>"Coefficient"</span>,
+    estimate <span class='op'>=</span> <span class='st'>"Estimate"</span>,
+    std.error <span class='op'>=</span> <span class='st'>"Std Error"</span>,
+    statistic <span class='op'>=</span> <span class='st'>"t-stat"</span>,
+    p.value <span class='op'>=</span> <span class='st'>"p value"</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/fmt_number.html'>fmt_number</a></span><span class='op'>(</span>
+    columns <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>estimate</span>, <span class='va'>std.error</span>, <span class='va'>statistic</span>, <span class='va'>p.value</span><span class='op'>)</span>,
+    decimals <span class='op'>=</span> <span class='fl'>3</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/fmt_scientific.html'>fmt_scientific</a></span><span class='op'>(</span>
+    columns <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>p.value</span><span class='op'>)</span>,
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/tab_options.html'>tab_options</a></span><span class='op'>(</span>
+    heading.title.font.size <span class='op'>=</span> <span class='fl'>14</span>,
+    heading.subtitle.font.size <span class='op'>=</span> <span class='fl'>12</span>,
+    source_notes.font.size <span class='op'>=</span> <span class='fl'>12</span>
+  <span class='op'>)</span>
+
+<span class='va'>gt_table_model_house</span>
+</code></pre>
+</div>
+<div id="ptzwsyqmjm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#ptzwsyqmjm .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ptzwsyqmjm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ptzwsyqmjm .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ptzwsyqmjm .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ptzwsyqmjm .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ptzwsyqmjm .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ptzwsyqmjm .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ptzwsyqmjm .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ptzwsyqmjm .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ptzwsyqmjm .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ptzwsyqmjm .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ptzwsyqmjm .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ptzwsyqmjm .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ptzwsyqmjm .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ptzwsyqmjm .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ptzwsyqmjm .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ptzwsyqmjm .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#ptzwsyqmjm .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ptzwsyqmjm .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#ptzwsyqmjm .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ptzwsyqmjm .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ptzwsyqmjm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ptzwsyqmjm .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ptzwsyqmjm .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ptzwsyqmjm .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#ptzwsyqmjm .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ptzwsyqmjm .gt_sourcenote {
+  font-size: 12px;
+  padding: 4px;
+}
+
+#ptzwsyqmjm .gt_left {
+  text-align: left;
+}
+
+#ptzwsyqmjm .gt_center {
+  text-align: center;
+}
+
+#ptzwsyqmjm .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ptzwsyqmjm .gt_font_normal {
+  font-weight: normal;
+}
+
+#ptzwsyqmjm .gt_font_bold {
+  font-weight: bold;
+}
+
+#ptzwsyqmjm .gt_font_italic {
+  font-style: italic;
+}
+
+#ptzwsyqmjm .gt_super {
+  font-size: 65%;
+}
+
+#ptzwsyqmjm .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>House Price regressed against ft^2 (SQFEET) + ROOMS(#)</th>
+    </tr>
+    <tr>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>House Price in Thousands <strong>($000)</strong> of dollars</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Coefficient</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Std Error</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">t-stat</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">p value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">(Intercept)</td>
+<td class="gt_row gt_right" style="font-weight: bold;">&minus;9.457</td>
+<td class="gt_row gt_right" style="font-weight: bold;">69.598</td>
+<td class="gt_row gt_right" style="font-weight: bold;">&minus;0.136</td>
+<td class="gt_row gt_right" style="font-weight: bold;">8.92 &times; 10<sup class='gt_super'>&minus;1</sup></td></tr>
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">SQFEET</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.370</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.027</td>
+<td class="gt_row gt_right" style="font-weight: bold;">13.522</td>
+<td class="gt_row gt_right" style="font-weight: bold;">1.40 &times; 10<sup class='gt_super'>&minus;27</sup></td></tr>
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">ROOMS</td>
+<td class="gt_row gt_right" style="font-weight: bold;">8.784</td>
+<td class="gt_row gt_right" style="font-weight: bold;">8.612</td>
+<td class="gt_row gt_right" style="font-weight: bold;">1.020</td>
+<td class="gt_row gt_right" style="font-weight: bold;">3.09 &times; 10<sup class='gt_super'>&minus;1</sup></td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="5">Residual standard error: 211.1 on 147 degrees of freedom</td>
+    </tr>
+    <tr>
+      <td class="gt_sourcenote" colspan="5">Multiple R-squared:  0.5548,    Adjusted R-squared:  0.5488</td>
+    </tr>
+    <tr>
+      <td class="gt_sourcenote" colspan="5">F-statistic: 91.61 on 2 and 147 DF,  p-value: &lt; 2.2e-16</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>results1</span><span class='op'>$</span><span class='va'>y</span><span class='op'>)</span> <span class='co'># price</span>
+</code></pre>
+</div>
+<pre><code>[1] 728.2827</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>results1</span><span class='op'>$</span><span class='va'>x0</span><span class='op'>)</span> <span class='co'># intercept</span>
+</code></pre>
+</div>
+<pre><code>[1] 39.99987</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>results1</span><span class='op'>$</span><span class='va'>x1</span><span class='op'>)</span> <span class='co'># sqfeet</span>
+</code></pre>
+</div>
+<pre><code>[1] 1892.667</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>results1</span><span class='op'>$</span><span class='va'>x2</span><span class='op'>)</span> <span class='co'># rooms</span>
+</code></pre>
+</div>
+<pre><code>[1] 4.347188</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ressq</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/residuals.html'>resid</a></span><span class='op'>(</span><span class='va'>model_house</span><span class='op'>)</span><span class='op'>^</span><span class='fl'>2</span>
+<span class='va'>results_v2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>results1</span>, <span class='va'>ressq</span><span class='op'>)</span>
+<span class='va'>white_test</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>ressq</span> <span class='op'>~</span> <span class='va'>x1</span> <span class='op'>*</span> <span class='va'>x2</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span><span class='op'>(</span><span class='va'>x1</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/AsIs.html'>I</a></span><span class='op'>(</span><span class='va'>x2</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>, data <span class='op'>=</span> <span class='va'>results_v2</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>white_test</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = ressq ~ x1 * x2 + I(x1^2) + I(x2^2), data = results_v2)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-163838  -26649   -2683    6834  385087 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  1.594e+05  7.490e+04   2.128 0.035015 *  
+x1          -1.962e+02  6.936e+01  -2.828 0.005346 ** 
+x2          -1.578e+04  1.490e+04  -1.059 0.291521    
+I(x1^2)      6.017e-02  1.742e-02   3.454 0.000727 ***
+I(x2^2)      1.494e+02  1.265e+03   0.118 0.906193    
+x1:x2        1.002e+01  4.936e+00   2.030 0.044183 *  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 76920 on 144 degrees of freedom
+Multiple R-squared:  0.3381,    Adjusted R-squared:  0.3152 
+F-statistic: 14.71 on 5 and 144 DF,  p-value: 1.201e-11</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>white_tidy</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>white_test</span><span class='op'>)</span>
+<span class='va'>white_tidy</span><span class='op'>[</span><span class='fl'>2</span>,<span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"SQFEET"</span>
+<span class='va'>white_tidy</span><span class='op'>[</span><span class='fl'>3</span>,<span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"ROOMS"</span>
+<span class='va'>white_tidy</span><span class='op'>[</span><span class='fl'>4</span>,<span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"SQFEET^2"</span>
+<span class='va'>white_tidy</span><span class='op'>[</span><span class='fl'>5</span>,<span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"ROOMS^2"</span>
+<span class='va'>white_tidy</span><span class='op'>[</span><span class='fl'>6</span>,<span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"SQFEET*ROOMS"</span>
+
+<span class='va'>gt_table_white</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://gt.rstudio.com/reference/gt.html'>gt</a></span><span class='op'>(</span><span class='va'>white_tidy</span><span class='op'>)</span>
+
+<span class='va'>gt_table_white</span> <span class='op'>&lt;-</span> 
+  <span class='va'>gt_table_white</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_options.html'>tab_options</a></span><span class='op'>(</span>
+    table.font.size <span class='op'>=</span> <span class='fl'>12</span>,
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_style.html'>tab_style</a></span><span class='op'>(</span>
+    style <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/cell_text.html'>cell_text</a></span><span class='op'>(</span>weight <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
+    locations <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/cells_body.html'>cells_body</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_header.html'>tab_header</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"RESIDUAL^2 regressed against SQFEET + ROOMS + SQFEET^2 + ROOMS^2 + ROOMS*SQFEET"</span>,
+    subtitle <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"White's Test for Heteroskedasticity"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/tab_source_note.html'>tab_source_note</a></span><span class='op'>(</span>
+    source_note <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"Residual standard error: 76920 on 144 degrees of freedom"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/tab_source_note.html'>tab_source_note</a></span><span class='op'>(</span>
+    source_note <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"Multiple R-squared: 0.3381,  Adjusted R-squared: 0.3152, F-statistic: 14.71 on 5 and 144 DF, p-value: 1.201e-11"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/cols_label.html'>cols_label</a></span><span class='op'>(</span>
+    term <span class='op'>=</span> <span class='st'>"Coefficient"</span>,
+    estimate <span class='op'>=</span> <span class='st'>"Estimate"</span>,
+    std.error <span class='op'>=</span> <span class='st'>"Std Error"</span>,
+    statistic <span class='op'>=</span> <span class='st'>"t-stat"</span>,
+    p.value <span class='op'>=</span> <span class='st'>"p value"</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/fmt_number.html'>fmt_number</a></span><span class='op'>(</span>
+    columns <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>estimate</span>, <span class='va'>std.error</span>, <span class='va'>statistic</span>, <span class='va'>p.value</span><span class='op'>)</span>,
+    decimals <span class='op'>=</span> <span class='fl'>3</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/fmt_scientific.html'>fmt_scientific</a></span><span class='op'>(</span>
+     columns <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>estimate</span>, <span class='va'>std.error</span><span class='op'>)</span>,
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/tab_options.html'>tab_options</a></span><span class='op'>(</span>
+    heading.title.font.size <span class='op'>=</span> <span class='fl'>14</span>,
+    heading.subtitle.font.size <span class='op'>=</span> <span class='fl'>12</span>,
+    source_notes.font.size <span class='op'>=</span> <span class='fl'>12</span>
+  <span class='op'>)</span>
+
+<span class='va'>gt_table_white</span>
+</code></pre>
+</div>
+<div id="budlbtjeqa" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#budlbtjeqa .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#budlbtjeqa .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#budlbtjeqa .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#budlbtjeqa .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#budlbtjeqa .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#budlbtjeqa .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#budlbtjeqa .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#budlbtjeqa .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#budlbtjeqa .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#budlbtjeqa .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#budlbtjeqa .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#budlbtjeqa .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#budlbtjeqa .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#budlbtjeqa .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#budlbtjeqa .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#budlbtjeqa .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#budlbtjeqa .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#budlbtjeqa .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#budlbtjeqa .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#budlbtjeqa .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#budlbtjeqa .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#budlbtjeqa .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#budlbtjeqa .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#budlbtjeqa .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#budlbtjeqa .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#budlbtjeqa .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#budlbtjeqa .gt_sourcenote {
+  font-size: 12px;
+  padding: 4px;
+}
+
+#budlbtjeqa .gt_left {
+  text-align: left;
+}
+
+#budlbtjeqa .gt_center {
+  text-align: center;
+}
+
+#budlbtjeqa .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#budlbtjeqa .gt_font_normal {
+  font-weight: normal;
+}
+
+#budlbtjeqa .gt_font_bold {
+  font-weight: bold;
+}
+
+#budlbtjeqa .gt_font_italic {
+  font-style: italic;
+}
+
+#budlbtjeqa .gt_super {
+  font-size: 65%;
+}
+
+#budlbtjeqa .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>RESIDUAL^2 regressed against SQFEET + ROOMS + SQFEET^2 + ROOMS^2 + ROOMS*SQFEET</th>
+    </tr>
+    <tr>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>White's Test for Heteroskedasticity</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Coefficient</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Std Error</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">t-stat</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">p value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">(Intercept)</td>
+<td class="gt_row gt_right" style="font-weight: bold;">1.59 &times; 10<sup class='gt_super'>5</sup></td>
+<td class="gt_row gt_right" style="font-weight: bold;">7.49 &times; 10<sup class='gt_super'>4</sup></td>
+<td class="gt_row gt_right" style="font-weight: bold;">2.128</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.035</td></tr>
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">SQFEET</td>
+<td class="gt_row gt_right" style="font-weight: bold;">&minus;1.96 &times; 10<sup class='gt_super'>2</sup></td>
+<td class="gt_row gt_right" style="font-weight: bold;">6.94 &times; 10<sup class='gt_super'>1</sup></td>
+<td class="gt_row gt_right" style="font-weight: bold;">&minus;2.828</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.005</td></tr>
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">ROOMS</td>
+<td class="gt_row gt_right" style="font-weight: bold;">&minus;1.58 &times; 10<sup class='gt_super'>4</sup></td>
+<td class="gt_row gt_right" style="font-weight: bold;">1.49 &times; 10<sup class='gt_super'>4</sup></td>
+<td class="gt_row gt_right" style="font-weight: bold;">&minus;1.059</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.292</td></tr>
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">SQFEET^2</td>
+<td class="gt_row gt_right" style="font-weight: bold;">6.02 &times; 10<sup class='gt_super'>&minus;2</sup></td>
+<td class="gt_row gt_right" style="font-weight: bold;">1.74 &times; 10<sup class='gt_super'>&minus;2</sup></td>
+<td class="gt_row gt_right" style="font-weight: bold;">3.454</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.001</td></tr>
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">ROOMS^2</td>
+<td class="gt_row gt_right" style="font-weight: bold;">1.49 &times; 10<sup class='gt_super'>2</sup></td>
+<td class="gt_row gt_right" style="font-weight: bold;">1.27 &times; 10<sup class='gt_super'>3</sup></td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.118</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.906</td></tr>
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">SQFEET*ROOMS</td>
+<td class="gt_row gt_right" style="font-weight: bold;">1.00 &times; 10<sup class='gt_super'>1</sup></td>
+<td class="gt_row gt_right" style="font-weight: bold;">4.94</td>
+<td class="gt_row gt_right" style="font-weight: bold;">2.030</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.044</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="5">Residual standard error: 76920 on 144 degrees of freedom</td>
+    </tr>
+    <tr>
+      <td class="gt_sourcenote" colspan="5">Multiple R-squared: 0.3381, Adjusted R-squared: 0.3152, F-statistic: 14.71 on 5 and 144 DF, p-value: 1.201e-11</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># and the heteroskadisticity is visually VERY obvious!</span>
+<span class='va'>results_v2</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x1</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="bt-question-set-p1-t2-20-19-regression-diagnostics-set_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+</div>
+<h2 id="question-3-multicollinearity">Question 3: Multicollinearity</h2>
+<p>20.19.3. Emily works for an insurance company and she has regressed medical costs (aka, the response or dependent variable) for a sample of patients against three independent variables: AGE, BMI, and CHARITY. The sample’s average age is X.X years. Body mass index (BMI) is mass divided by height squared and the sample’s average BMI is X.Y. CHARITY is the dollar amount of charitable spending in the last year; the sample average is $X.Y donated to charity in the last year. Emily’s regression results are displayed below.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://broom.tidymodels.org/'>broom</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://gt.rstudio.com/'>gt</a></span><span class='op'>)</span>
+
+<span class='va'>intercept</span> <span class='op'>&lt;-</span> <span class='fl'>150</span>
+<span class='va'>intercept_sig</span> <span class='op'>&lt;-</span> <span class='fl'>40</span>
+
+<span class='co'># age</span>
+<span class='va'>x1_mu</span> <span class='op'>&lt;-</span> <span class='fl'>38</span>
+<span class='va'>x1_sig</span> <span class='op'>&lt;-</span> <span class='fl'>7</span>
+<span class='va'>x1_beta</span> <span class='op'>&lt;-</span> <span class='fl'>50</span>
+
+<span class='co'># bmi</span>
+<span class='va'>x2_mu</span> <span class='op'>&lt;-</span> <span class='fl'>22</span>
+<span class='va'>x2_sig</span> <span class='op'>&lt;-</span> <span class='fl'>4</span>
+<span class='va'>x2_beta</span> <span class='op'>&lt;-</span> <span class='fl'>100</span>
+
+<span class='co'># spend</span>
+<span class='va'>x3_mu</span> <span class='op'>&lt;-</span> <span class='fl'>500</span>
+<span class='va'>x3_sig</span> <span class='op'>&lt;-</span> <span class='fl'>250</span>
+<span class='va'>x3_beta</span> <span class='op'>&lt;-</span> <span class='op'>-</span><span class='fl'>0.4</span>
+
+<span class='va'>rho_x1_x2</span> <span class='op'>=</span> <span class='fl'>0.3</span>
+<span class='va'>rho_x1_x3</span> <span class='op'>=</span> <span class='fl'>0.97</span>
+
+<span class='va'>noise_mu</span> <span class='op'>&lt;-</span> <span class='fl'>0</span>
+<span class='va'>noise_sig</span> <span class='op'>&lt;-</span> <span class='fl'>300</span> <span class='co'># low value gets low p-value b/c low noise</span>
+
+<span class='va'>size</span> <span class='op'>&lt;-</span> <span class='fl'>43</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>12</span><span class='op'>)</span>
+
+<span class='va'>results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>
+  <span class='va'>x0_sn</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>size</span><span class='op'>)</span>,
+  <span class='va'>x1_sn</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>size</span><span class='op'>)</span>,
+  <span class='va'>x2_sn</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>size</span><span class='op'>)</span>,
+  <span class='va'>x3_sn</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>size</span><span class='op'>)</span>,
+  <span class='co'>#</span>
+  x0 <span class='op'>=</span> <span class='va'>intercept</span> <span class='op'>+</span> <span class='va'>intercept_sig</span> <span class='op'>*</span> <span class='va'>x0_sn</span>,
+  <span class='co'>#</span>
+  x1 <span class='op'>=</span> <span class='va'>x1_mu</span> <span class='op'>+</span> <span class='va'>x1_sig</span> <span class='op'>*</span> <span class='va'>x1_sn</span>,
+  x2_sn_corr <span class='op'>=</span> <span class='va'>rho_x1_x2</span><span class='op'>*</span><span class='va'>x1_sn</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>-</span> <span class='va'>rho_x1_x2</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>*</span><span class='va'>x2_sn</span>,
+  x2 <span class='op'>=</span> <span class='va'>x2_mu</span> <span class='op'>+</span> <span class='va'>x2_sig</span> <span class='op'>*</span> <span class='va'>x2_sn_corr</span>,
+  x3_sn_corr <span class='op'>=</span> <span class='va'>rho_x1_x3</span><span class='op'>*</span><span class='va'>x1_sn</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>-</span> <span class='va'>rho_x1_x3</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>*</span><span class='va'>x3_sn</span>,
+  x3 <span class='op'>=</span> <span class='va'>x3_mu</span> <span class='op'>+</span> <span class='va'>x3_sig</span> <span class='op'>*</span> <span class='va'>x3_sn_corr</span>,
+  <span class='co'>#</span>
+  x1_b <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='va'>x1_beta</span>, <span class='va'>size</span><span class='op'>)</span>,
+  x2_b <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='va'>x2_beta</span>, <span class='va'>size</span><span class='op'>)</span>,
+  x3_b <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='va'>x3_beta</span>, <span class='va'>size</span><span class='op'>)</span>,
+  noise <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>size</span>, <span class='fl'>0</span>, <span class='va'>noise_sig</span><span class='op'>)</span>
+<span class='op'>)</span>
+
+
+<span class='va'>results1</span> <span class='op'>&lt;-</span> <span class='va'>results</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
+  y <span class='op'>=</span> <span class='va'>x0</span> <span class='op'>+</span> <span class='op'>(</span><span class='va'>x1_b</span> <span class='op'>*</span> <span class='va'>x1</span><span class='op'>)</span> <span class='op'>+</span> <span class='op'>(</span><span class='va'>x2_b</span> <span class='op'>*</span> <span class='va'>x2</span><span class='op'>)</span> <span class='op'>+</span> <span class='op'>(</span><span class='va'>x3_b</span> <span class='op'>*</span> <span class='va'>x3</span><span class='op'>)</span> <span class='op'>+</span> <span class='va'>noise</span>
+<span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>results1</span><span class='op'>$</span><span class='va'>x1</span>, <span class='va'>results1</span><span class='op'>$</span><span class='va'>x3</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.962464</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>y</span> <span class='op'>~</span> <span class='va'>x1</span> <span class='op'>+</span> <span class='va'>x2</span> <span class='op'>+</span> <span class='va'>x3</span>, data <span class='op'>=</span> <span class='va'>results1</span><span class='op'>)</span>
+
+<span class='va'>model_x1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>x1</span> <span class='op'>~</span> <span class='va'>x2</span> <span class='op'>+</span> <span class='va'>x3</span>, data <span class='op'>=</span> <span class='va'>results1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model_x1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = x1 ~ x2 + x3, data = results1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.2878 -0.9601 -0.2345  1.1477  3.4376 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 24.022184   1.622772  14.803   &lt;2e-16 ***
+x2           0.029178   0.072426   0.403    0.689    
+x3           0.026997   0.001234  21.883   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 1.733 on 40 degrees of freedom
+Multiple R-squared:  0.9266,    Adjusted R-squared:  0.923 
+F-statistic: 252.6 on 2 and 40 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>rsq_x1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model_x1</span><span class='op'>)</span><span class='op'>$</span><span class='va'>r.squared</span>
+
+<span class='va'>model_x2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>x2</span> <span class='op'>~</span> <span class='va'>x1</span> <span class='op'>+</span> <span class='va'>x3</span>, data <span class='op'>=</span> <span class='va'>results1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model_x2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = x2 ~ x1 + x3, data = results1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.9298 -2.1503 -0.5579  2.5672  7.9527 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)  
+(Intercept) 16.9897894  8.5885276   1.978   0.0548 .
+x1           0.1384986  0.3437854   0.403   0.6892  
+x3          -0.0001614  0.0096805  -0.017   0.9868  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 3.776 on 40 degrees of freedom
+Multiple R-squared:  0.04833,   Adjusted R-squared:  0.0007499 
+F-statistic: 1.016 on 2 and 40 DF,  p-value: 0.3713</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>rsq_x2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model_x2</span><span class='op'>)</span><span class='op'>$</span><span class='va'>r.squared</span>
+
+<span class='va'>model_x3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>x3</span> <span class='op'>~</span> <span class='va'>x1</span> <span class='op'>+</span> <span class='va'>x2</span>, data <span class='op'>=</span> <span class='va'>results1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model_x3</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = x3 ~ x1 + x2, data = results1)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-119.098  -39.213    9.803   48.540   99.936 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -802.99922   74.04616 -10.845 1.77e-13 ***
+x1            34.18590    1.56221  21.883  &lt; 2e-16 ***
+x2            -0.04306    2.58249  -0.017    0.987    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 61.67 on 40 degrees of freedom
+Multiple R-squared:  0.9263,    Adjusted R-squared:  0.9227 
+F-statistic: 251.5 on 2 and 40 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>rsq_x3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model_x3</span><span class='op'>)</span><span class='op'>$</span><span class='va'>r.squared</span>
+
+<span class='va'>var_if_x1</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>/</span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>-</span> <span class='va'>rsq_x1</span> <span class='op'>)</span>
+<span class='va'>var_if_x2</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>/</span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>-</span> <span class='va'>rsq_x2</span><span class='op'>)</span>
+<span class='va'>var_if_x3</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>/</span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>-</span> <span class='va'>rsq_x3</span><span class='op'>)</span>
+
+<span class='va'>multi_table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>
+  regression <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>3</span><span class='op'>)</span>,
+  response <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AGE"</span>, <span class='st'>"BMI"</span>, <span class='st'>"CHARITY"</span><span class='op'>)</span>,
+  explanatory <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"BMI + CHARITY"</span>, <span class='st'>"AGE + CHARITY"</span>, <span class='st'>"AGE + BMI"</span><span class='op'>)</span>,
+  Rsquared <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>rsq_x1</span>, <span class='va'>rsq_x2</span>, <span class='va'>rsq_x3</span><span class='op'>)</span>
+<span class='op'>)</span>
+
+
+<span class='va'>model_tidy</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
+<span class='va'>model_tidy</span><span class='op'>[</span><span class='fl'>2</span>,<span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"AGE"</span>
+<span class='va'>model_tidy</span><span class='op'>[</span><span class='fl'>3</span>,<span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"BMI"</span>
+<span class='va'>model_tidy</span><span class='op'>[</span><span class='fl'>4</span>,<span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"CHARITY"</span>
+
+<span class='va'>gt_table_model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://gt.rstudio.com/reference/gt.html'>gt</a></span><span class='op'>(</span><span class='va'>model_tidy</span><span class='op'>)</span>
+
+<span class='va'>gt_table_model</span> <span class='op'>&lt;-</span> 
+  <span class='va'>gt_table_model</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_options.html'>tab_options</a></span><span class='op'>(</span>
+    table.font.size <span class='op'>=</span> <span class='fl'>12</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_style.html'>tab_style</a></span><span class='op'>(</span>
+    style <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/cell_text.html'>cell_text</a></span><span class='op'>(</span>weight <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
+    locations <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/cells_body.html'>cells_body</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_header.html'>tab_header</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"Medical COST regressed against AGE + BMI + CHARITY($)"</span>,
+    subtitle <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"Simulated data"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/tab_source_note.html'>tab_source_note</a></span><span class='op'>(</span>
+    source_note <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"Residual standard error: 325.1 on 39 degrees of freedom"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/tab_source_note.html'>tab_source_note</a></span><span class='op'>(</span>
+    source_note <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"Multiple R-squared: 0.6961,  Adjusted R-squared: 0.6727, F-statistic: 29.77 on 3 and 39 DF, p-value: 3.514e-10"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/cols_label.html'>cols_label</a></span><span class='op'>(</span>
+    term <span class='op'>=</span> <span class='st'>"Coefficient"</span>,
+    estimate <span class='op'>=</span> <span class='st'>"Estimate"</span>,
+    std.error <span class='op'>=</span> <span class='st'>"Std Error"</span>,
+    statistic <span class='op'>=</span> <span class='st'>"t-stat"</span>,
+    p.value <span class='op'>=</span> <span class='st'>"p value"</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/fmt_number.html'>fmt_number</a></span><span class='op'>(</span>
+    columns <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>estimate</span>, <span class='va'>std.error</span>, <span class='va'>statistic</span>, <span class='va'>p.value</span><span class='op'>)</span>,
+    decimals <span class='op'>=</span> <span class='fl'>2</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/fmt_scientific.html'>fmt_scientific</a></span><span class='op'>(</span>
+    columns <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>p.value</span><span class='op'>)</span>,
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/tab_options.html'>tab_options</a></span><span class='op'>(</span>
+    heading.title.font.size <span class='op'>=</span> <span class='fl'>14</span>,
+    heading.subtitle.font.size <span class='op'>=</span> <span class='fl'>12</span>,
+     source_notes.font.size <span class='op'>=</span> <span class='fl'>12</span>
+  <span class='op'>)</span>
+
+<span class='co'>##</span>
+
+<span class='va'>gt_multi_table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://gt.rstudio.com/reference/gt.html'>gt</a></span><span class='op'>(</span><span class='va'>multi_table</span><span class='op'>)</span>
+
+<span class='va'>gt_multi_table</span> <span class='op'>&lt;-</span> 
+  <span class='va'>gt_multi_table</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_options.html'>tab_options</a></span><span class='op'>(</span>
+    table.font.size <span class='op'>=</span> <span class='fl'>12</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_style.html'>tab_style</a></span><span class='op'>(</span>
+    style <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/cell_text.html'>cell_text</a></span><span class='op'>(</span>weight <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
+    locations <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/cells_body.html'>cells_body</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://gt.rstudio.com/reference/tab_header.html'>tab_header</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"Each response variable regressed against the others"</span>,
+    subtitle <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"Testing for multicollinearity"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/tab_source_note.html'>tab_source_note</a></span><span class='op'>(</span>
+    source_note <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"Note: According to GARP, the standard test of"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/tab_source_note.html'>tab_source_note</a></span><span class='op'>(</span>
+    source_note <span class='op'>=</span> <span class='fu'><a href='https://gt.rstudio.com/reference/md.html'>md</a></span><span class='op'>(</span><span class='st'>"multicollinearity is the variance inflation factor (VIF)"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/cols_label.html'>cols_label</a></span><span class='op'>(</span>
+    regression <span class='op'>=</span> <span class='st'>"Regression"</span>,
+    response <span class='op'>=</span> <span class='st'>"Response"</span>,
+    explanatory <span class='op'>=</span> <span class='st'>"Explanatory"</span>,
+    Rsquared <span class='op'>=</span> <span class='st'>"R-squared"</span>,
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/cols_align.html'>cols_align</a></span><span class='op'>(</span>
+    align <span class='op'>=</span> <span class='st'>"center"</span>,
+    columns <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>regression</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/fmt_number.html'>fmt_number</a></span><span class='op'>(</span>
+    columns <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/vars.html'>vars</a></span><span class='op'>(</span><span class='va'>Rsquared</span><span class='op'>)</span>,
+    decimals <span class='op'>=</span> <span class='fl'>3</span>
+  <span class='co'># ) %&gt;% fmt_scientific(</span>
+    <span class='co'># columns = vars(p.value),</span>
+  <span class='op'>)</span> <span class='op'><a href='https://gt.rstudio.com/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://gt.rstudio.com/reference/tab_options.html'>tab_options</a></span><span class='op'>(</span>
+    heading.title.font.size <span class='op'>=</span> <span class='fl'>14</span>,
+    heading.subtitle.font.size <span class='op'>=</span> <span class='fl'>12</span>,
+     source_notes.font.size <span class='op'>=</span> <span class='fl'>12</span>
+  <span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = y ~ x1 + x2 + x3, data = results1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-923.93 -243.27   21.75  192.64  554.97 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -165.2505   774.7267  -0.213   0.8322    
+x1            63.6695    29.6571   2.147   0.0381 *  
+x2           102.4645    13.6123   7.527 4.09e-09 ***
+x3            -0.9461     0.8334  -1.135   0.2632    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 325.1 on 39 degrees of freedom
+Multiple R-squared:  0.6961,    Adjusted R-squared:  0.6727 
+F-statistic: 29.77 on 3 and 39 DF,  p-value: 3.514e-10</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>multi_table</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   regression    response         explanatory       
+ Min.   :1.0   Length:3           Length:3          
+ 1st Qu.:1.5   Class :character   Class :character  
+ Median :2.0   Mode  :character   Mode  :character  
+ Mean   :2.0                                        
+ 3rd Qu.:2.5                                        
+ Max.   :3.0                                        
+    Rsquared      
+ Min.   :0.04833  
+ 1st Qu.:0.48734  
+ Median :0.92634  
+ Mean   :0.63377  
+ 3rd Qu.:0.92649  
+ Max.   :0.92663  </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>gt_table_model</span>
+</code></pre>
+</div>
+<div id="lqqjmyauaw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#lqqjmyauaw .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#lqqjmyauaw .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lqqjmyauaw .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#lqqjmyauaw .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#lqqjmyauaw .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lqqjmyauaw .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lqqjmyauaw .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#lqqjmyauaw .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#lqqjmyauaw .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#lqqjmyauaw .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#lqqjmyauaw .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#lqqjmyauaw .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#lqqjmyauaw .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#lqqjmyauaw .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#lqqjmyauaw .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#lqqjmyauaw .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#lqqjmyauaw .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#lqqjmyauaw .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lqqjmyauaw .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#lqqjmyauaw .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lqqjmyauaw .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#lqqjmyauaw .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#lqqjmyauaw .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lqqjmyauaw .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lqqjmyauaw .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#lqqjmyauaw .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lqqjmyauaw .gt_sourcenote {
+  font-size: 12px;
+  padding: 4px;
+}
+
+#lqqjmyauaw .gt_left {
+  text-align: left;
+}
+
+#lqqjmyauaw .gt_center {
+  text-align: center;
+}
+
+#lqqjmyauaw .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#lqqjmyauaw .gt_font_normal {
+  font-weight: normal;
+}
+
+#lqqjmyauaw .gt_font_bold {
+  font-weight: bold;
+}
+
+#lqqjmyauaw .gt_font_italic {
+  font-style: italic;
+}
+
+#lqqjmyauaw .gt_super {
+  font-size: 65%;
+}
+
+#lqqjmyauaw .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="5" class="gt_heading gt_title gt_font_normal" style>Medical COST regressed against AGE + BMI + CHARITY($)</th>
+    </tr>
+    <tr>
+      <th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Simulated data</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Coefficient</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Std Error</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">t-stat</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">p value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">(Intercept)</td>
+<td class="gt_row gt_right" style="font-weight: bold;">&minus;165.25</td>
+<td class="gt_row gt_right" style="font-weight: bold;">774.73</td>
+<td class="gt_row gt_right" style="font-weight: bold;">&minus;0.21</td>
+<td class="gt_row gt_right" style="font-weight: bold;">8.32 &times; 10<sup class='gt_super'>&minus;1</sup></td></tr>
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">AGE</td>
+<td class="gt_row gt_right" style="font-weight: bold;">63.67</td>
+<td class="gt_row gt_right" style="font-weight: bold;">29.66</td>
+<td class="gt_row gt_right" style="font-weight: bold;">2.15</td>
+<td class="gt_row gt_right" style="font-weight: bold;">3.81 &times; 10<sup class='gt_super'>&minus;2</sup></td></tr>
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">BMI</td>
+<td class="gt_row gt_right" style="font-weight: bold;">102.46</td>
+<td class="gt_row gt_right" style="font-weight: bold;">13.61</td>
+<td class="gt_row gt_right" style="font-weight: bold;">7.53</td>
+<td class="gt_row gt_right" style="font-weight: bold;">4.09 &times; 10<sup class='gt_super'>&minus;9</sup></td></tr>
+    <tr><td class="gt_row gt_left" style="font-weight: bold;">CHARITY</td>
+<td class="gt_row gt_right" style="font-weight: bold;">&minus;0.95</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.83</td>
+<td class="gt_row gt_right" style="font-weight: bold;">&minus;1.14</td>
+<td class="gt_row gt_right" style="font-weight: bold;">2.63 &times; 10<sup class='gt_super'>&minus;1</sup></td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="5">Residual standard error: 325.1 on 39 degrees of freedom</td>
+    </tr>
+    <tr>
+      <td class="gt_sourcenote" colspan="5">Multiple R-squared: 0.6961, Adjusted R-squared: 0.6727, F-statistic: 29.77 on 3 and 39 DF, p-value: 3.514e-10</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>gt_multi_table</span>
+</code></pre>
+</div>
+<div id="gphnlsqzwo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#gphnlsqzwo .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#gphnlsqzwo .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gphnlsqzwo .gt_title {
+  color: #333333;
+  font-size: 14px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#gphnlsqzwo .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#gphnlsqzwo .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gphnlsqzwo .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gphnlsqzwo .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#gphnlsqzwo .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#gphnlsqzwo .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#gphnlsqzwo .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#gphnlsqzwo .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#gphnlsqzwo .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gphnlsqzwo .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gphnlsqzwo .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#gphnlsqzwo .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#gphnlsqzwo .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#gphnlsqzwo .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#gphnlsqzwo .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gphnlsqzwo .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#gphnlsqzwo .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gphnlsqzwo .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#gphnlsqzwo .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#gphnlsqzwo .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gphnlsqzwo .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gphnlsqzwo .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#gphnlsqzwo .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gphnlsqzwo .gt_sourcenote {
+  font-size: 12px;
+  padding: 4px;
+}
+
+#gphnlsqzwo .gt_left {
+  text-align: left;
+}
+
+#gphnlsqzwo .gt_center {
+  text-align: center;
+}
+
+#gphnlsqzwo .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#gphnlsqzwo .gt_font_normal {
+  font-weight: normal;
+}
+
+#gphnlsqzwo .gt_font_bold {
+  font-weight: bold;
+}
+
+#gphnlsqzwo .gt_font_italic {
+  font-style: italic;
+}
+
+#gphnlsqzwo .gt_super {
+  font-size: 65%;
+}
+
+#gphnlsqzwo .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="4" class="gt_heading gt_title gt_font_normal" style>Each response variable regressed against the others</th>
+    </tr>
+    <tr>
+      <th colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Testing for multicollinearity</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Regression</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Response</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Explanatory</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">R-squared</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_center" style="font-weight: bold;">1</td>
+<td class="gt_row gt_left" style="font-weight: bold;">AGE</td>
+<td class="gt_row gt_left" style="font-weight: bold;">BMI + CHARITY</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.927</td></tr>
+    <tr><td class="gt_row gt_center" style="font-weight: bold;">2</td>
+<td class="gt_row gt_left" style="font-weight: bold;">BMI</td>
+<td class="gt_row gt_left" style="font-weight: bold;">AGE + CHARITY</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.048</td></tr>
+    <tr><td class="gt_row gt_center" style="font-weight: bold;">3</td>
+<td class="gt_row gt_left" style="font-weight: bold;">CHARITY</td>
+<td class="gt_row gt_left" style="font-weight: bold;">AGE + BMI</td>
+<td class="gt_row gt_right" style="font-weight: bold;">0.926</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="4">Note: According to GARP, the standard test of</td>
+    </tr>
+    <tr>
+      <td class="gt_sourcenote" colspan="4">multicollinearity is the variance inflation factor (VIF)</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>results1</span><span class='op'>$</span><span class='va'>y</span><span class='op'>)</span> <span class='co'># cost</span>
+</code></pre>
+</div>
+<pre><code>[1] 4079.452</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>results1</span><span class='op'>$</span><span class='va'>x0</span><span class='op'>)</span> <span class='co'># intercept</span>
+</code></pre>
+</div>
+<pre><code>[1] 145.2152</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>results1</span><span class='op'>$</span><span class='va'>x1</span><span class='op'>)</span> <span class='co'># age</span>
+</code></pre>
+</div>
+<pre><code>[1] 38.48411</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>results1</span><span class='op'>$</span><span class='va'>x2</span><span class='op'>)</span> <span class='co'># bmi</span>
+</code></pre>
+</div>
+<pre><code>[1] 22.2372</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>results1</span><span class='op'>$</span><span class='va'>x3</span><span class='op'>)</span> <span class='co'># spend</span>
+</code></pre>
+</div>
+<pre><code>[1] 511.6571</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># let's see the VIFs</span>
+<span class='va'>var_if_x1</span>
+</code></pre>
+</div>
+<pre><code>[1] 13.63041</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>var_if_x2</span>
+</code></pre>
+</div>
+<pre><code>[1] 1.050788</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>var_if_x3</span>
+</code></pre>
+</div>
+<pre><code>[1] 13.57542</code></pre>
+</div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
