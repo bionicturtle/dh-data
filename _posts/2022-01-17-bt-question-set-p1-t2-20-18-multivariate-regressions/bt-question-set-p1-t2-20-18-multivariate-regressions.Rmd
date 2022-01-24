@@ -2,6 +2,7 @@
 title: "BT Question Set P1-T2-20-18: Multivariate regressions"
 description: |
   Fama-French three-factor model; House prices; and Medical costs
+preview: P1-T2-20-18-3b.png
 author:
   - name: David Harper
     url: https://www.bionicturtle.com/
