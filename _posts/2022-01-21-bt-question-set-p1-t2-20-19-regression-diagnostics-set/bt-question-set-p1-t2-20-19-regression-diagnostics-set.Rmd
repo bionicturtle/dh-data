@@ -11,7 +11,7 @@ output:
     self_contained: false
 ---
 
-### Three PQs that took me time to develop but really illustrate some diagnostics
+### Three deep FRM PQs that llustrate regression diagnostics
 
 * **Precision** (reflected by a *smaller* standard error) refers to dispersion in the sample estimate, while **Accuracy** is proximity (nearness) to the true population parameter. 
 
@@ -21,7 +21,7 @@ output:
 
 * **Multicollinearity** refers to imperfect (aka, near) multicollinearity and is when two or more of the independent variables (regressors) are highly correlated: one of the regressors is highly correlated with (i.e., can itself be explained by) another regressor. Imperfect multicollinearity is generally not a problem because the estimators remain BLUE. 
 
-*	The implication of multicollinearity is a high F-statistic but low individual t-statistics. If we observe insignificant regression coefficients (low t-stats) but a significant joint hypothesis (high F-statistic), we can suspect multicollinearity. 
+*	A typical *consequence* (and telltale indication) of multicollinearity is a high F-statistic but low individual t-statistics. If we observe insignificant regression coefficients (low t-stats) but a significant joint hypothesis (high F-statistic), we can suspect multicollinearity. 
 
 *	**Omitted variable bias** has two conditions: the omitted (aka, confounding) variable is correlated with the dependent (aka, explained) variable, and is correlated with another independent (aka, regressor) variable. Please notice that simply omitting an independent variable (despite its correlation with the dependent) is insufficient to create omitted variable bias! Why?
 

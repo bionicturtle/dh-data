@@ -1482,13 +1482,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<h3 id="three-pqs-that-took-me-time-to-develop-but-really-illustrate-some-diagnostics">Three PQs that took me time to develop but really illustrate some diagnostics</h3>
+<h3 id="three-deep-frm-pqs-that-llustrate-regression-diagnostics">Three deep FRM PQs that llustrate regression diagnostics</h3>
 <ul>
 <li><p><strong>Precision</strong> (reflected by a <em>smaller</em> standard error) refers to dispersion in the sample estimate, while <strong>Accuracy</strong> is proximity (nearness) to the true population parameter.</p></li>
 <li><p>Homoskedasticity–a key assumption in the classic linear regression model (CLRM)–requires the <em>conditional variance</em> of the error to be constant. If we regress against a time-ordered variable, homoskedasticity is a constant variance over time (and a requirement of a stationary process). Heteroskedasticity is the violation of homoskedasticity: it is when the conditional variance is not constant. In the time series context, heteroskedasticity is a time-varying variance; i.e., non-constant over time,</p></li>
 <li><p>We can test for heteroskedasticity with the <strong>White test</strong>. Heteroskedasticity is not fatal: the OLS estimators remain linear and remain unbiased however they do not have the minimum variance, so they are not efficient and not BLUE.</p></li>
 <li><p><strong>Multicollinearity</strong> refers to imperfect (aka, near) multicollinearity and is when two or more of the independent variables (regressors) are highly correlated: one of the regressors is highly correlated with (i.e., can itself be explained by) another regressor. Imperfect multicollinearity is generally not a problem because the estimators remain BLUE.</p></li>
-<li><p>The implication of multicollinearity is a high F-statistic but low individual t-statistics. If we observe insignificant regression coefficients (low t-stats) but a significant joint hypothesis (high F-statistic), we can suspect multicollinearity.</p></li>
+<li><p>A typical <em>consequence</em> (and telltale indication) of multicollinearity is a high F-statistic but low individual t-statistics. If we observe insignificant regression coefficients (low t-stats) but a significant joint hypothesis (high F-statistic), we can suspect multicollinearity.</p></li>
 <li><p><strong>Omitted variable bias</strong> has two conditions: the omitted (aka, confounding) variable is correlated with the dependent (aka, explained) variable, and is correlated with another independent (aka, regressor) variable. Please notice that simply omitting an independent variable (despite its correlation with the dependent) is insufficient to create omitted variable bias! Why?</p></li>
 <li><p><strong>Cook’s Distance</strong>, D(j), measures the impact of an outlier; a D(j) value greater than 1.0 signifies a large impact by the outlier.</p></li>
 </ul>
