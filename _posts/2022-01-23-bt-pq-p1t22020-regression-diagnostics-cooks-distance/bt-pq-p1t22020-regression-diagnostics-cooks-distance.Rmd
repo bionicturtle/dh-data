@@ -1,5 +1,5 @@
 ---
-title: "BT PQ P1.T2.20.20 Regression diagnostics: Cook's distance"
+title: "BT PQ P1.T2.20.20.1 Regression diagnostics: Cook's distance"
 description: >
   Cook's distance evaluates an outlier
 preview: P1-2-20-20-1-v2.jpg
