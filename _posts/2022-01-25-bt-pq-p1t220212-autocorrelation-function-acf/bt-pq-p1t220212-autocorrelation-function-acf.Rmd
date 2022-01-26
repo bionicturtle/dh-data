@@ -47,3 +47,5 @@ About this ACF and its implications, each of the following statements is true EX
 b. This time series is a white noise process
 c. This ACF is compatible with a seasonal time series
 d. If this time series exhibits stochastic seasonality, it might be possible to fit a seasonal ARMA model
+
+### End of post

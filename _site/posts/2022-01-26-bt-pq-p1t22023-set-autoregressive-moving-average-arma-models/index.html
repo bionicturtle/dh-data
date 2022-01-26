@@ -87,38 +87,38 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-<title>David's (BT) data blog: BT PQ P1.T2.20.21.2 Autocorrelation function (ACF)</title>
+<title>David's (BT) data blog: BT PQ P1.T2.20.23 (SET) autoregressive moving average (ARMA) models</title>
 
-<meta property="description" itemprop="description" content="The autocorrelation function (ACF; aka, correlogram) plots autocorrelation coefficients"/>
+<meta property="description" itemprop="description" content="ARMA(p,q) combines an AR(p) and MA(q)"/>
 
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2022-01-13"/>
-<meta property="article:created" itemprop="dateCreated" content="2022-01-13"/>
+<meta property="article:published" itemprop="datePublished" content="2022-01-16"/>
+<meta property="article:created" itemprop="dateCreated" content="2022-01-16"/>
 <meta name="article:author" content="David Harper"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="David&#39;s (BT) data blog: BT PQ P1.T2.20.21.2 Autocorrelation function (ACF)"/>
+<meta property="og:title" content="David&#39;s (BT) data blog: BT PQ P1.T2.20.23 (SET) autoregressive moving average (ARMA) models"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="The autocorrelation function (ACF; aka, correlogram) plots autocorrelation coefficients"/>
+<meta property="og:description" content="ARMA(p,q) combines an AR(p) and MA(q)"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="David&#39;s (BT) data blog"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary"/>
-<meta property="twitter:title" content="David&#39;s (BT) data blog: BT PQ P1.T2.20.21.2 Autocorrelation function (ACF)"/>
-<meta property="twitter:description" content="The autocorrelation function (ACF; aka, correlogram) plots autocorrelation coefficients"/>
+<meta property="twitter:title" content="David&#39;s (BT) data blog: BT PQ P1.T2.20.23 (SET) autoregressive moving average (ARMA) models"/>
+<meta property="twitter:description" content="ARMA(p,q) combines an AR(p) and MA(q)"/>
 
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["BT PQ P1.T2.20.21.2 Autocorrelation function (ACF)"]},{"type":"character","attributes":{},"value":["The autocorrelation function (ACF; aka, correlogram) plots autocorrelation coefficients"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["David Harper"]},{"type":"character","attributes":{},"value":["https://www.bionicturtle.com/"]}]}]},{"type":"character","attributes":{},"value":["2022-01-13"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["BT PQ P1.T2.20.23 (SET) autoregressive moving average (ARMA) models"]},{"type":"character","attributes":{},"value":["ARMA(p,q) combines an AR(p) and MA(q)"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["David Harper"]},{"type":"character","attributes":{},"value":["https://www.bionicturtle.com/"]}]}]},{"type":"character","attributes":{},"value":["2022-01-16"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["bt-pq-p1t220212-autocorrelation-function-acf_files/anchor-4.2.2/anchor.min.js","bt-pq-p1t220212-autocorrelation-function-acf_files/bowser-1.9.3/bowser.min.js","bt-pq-p1t220212-autocorrelation-function-acf_files/distill-2.2.21/template.v2.js","bt-pq-p1t220212-autocorrelation-function-acf_files/figure-html5/unnamed-chunk-1-1.png","bt-pq-p1t220212-autocorrelation-function-acf_files/header-attrs-2.11/header-attrs.js","bt-pq-p1t220212-autocorrelation-function-acf_files/jquery-3.6.0/jquery-3.6.0.js","bt-pq-p1t220212-autocorrelation-function-acf_files/jquery-3.6.0/jquery-3.6.0.min.js","bt-pq-p1t220212-autocorrelation-function-acf_files/jquery-3.6.0/jquery-3.6.0.min.map","bt-pq-p1t220212-autocorrelation-function-acf_files/popper-2.6.0/popper.min.js","bt-pq-p1t220212-autocorrelation-function-acf_files/tippy-6.2.7/tippy-bundle.umd.min.js","bt-pq-p1t220212-autocorrelation-function-acf_files/tippy-6.2.7/tippy-light-border.css","bt-pq-p1t220212-autocorrelation-function-acf_files/tippy-6.2.7/tippy.css","bt-pq-p1t220212-autocorrelation-function-acf_files/tippy-6.2.7/tippy.umd.min.js","bt-pq-p1t220212-autocorrelation-function-acf_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/anchor-4.2.2/anchor.min.js","bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/bowser-1.9.3/bowser.min.js","bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/distill-2.2.21/template.v2.js","bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/figure-html5/unnamed-chunk-2-1.png","bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/figure-html5/unnamed-chunk-3-1.png","bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/figure-html5/unnamed-chunk-4-1.png","bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/figure-html5/unnamed-chunk-4-2.png","bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/figure-html5/unnamed-chunk-4-3.png","bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/header-attrs-2.11/header-attrs.js","bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/jquery-3.6.0/jquery-3.6.0.js","bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/jquery-3.6.0/jquery-3.6.0.min.js","bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/jquery-3.6.0/jquery-3.6.0.min.map","bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/popper-2.6.0/popper.min.js","bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/tippy-6.2.7/tippy-bundle.umd.min.js","bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/tippy-6.2.7/tippy-light-border.css","bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/tippy-6.2.7/tippy.css","bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/tippy-6.2.7/tippy.umd.min.js","bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2408,7 +2408,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"BT PQ P1.T2.20.21.2 Autocorrelation function (ACF)","description":"The autocorrelation function (ACF; aka, correlogram) plots autocorrelation coefficients","authors":[{"author":"David Harper","authorURL":"https://www.bionicturtle.com/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-01-13T00:00:00.000-08:00","citationText":"Harper, 2022"}
+{"title":"BT PQ P1.T2.20.23 (SET) autoregressive moving average (ARMA) models","description":"ARMA(p,q) combines an AR(p) and MA(q)","authors":[{"author":"David Harper","authorURL":"https://www.bionicturtle.com/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-01-16T00:00:00.000-08:00","citationText":"Harper, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2431,60 +2431,215 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>BT PQ P1.T2.20.21.2 Autocorrelation function (ACF)</h1>
+<h1>BT PQ P1.T2.20.23 (SET) autoregressive moving average (ARMA) models</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>The autocorrelation function (ACF; aka, correlogram) plots autocorrelation coefficients</p></p>
+<p><p>ARMA(p,q) combines an AR(p) and MA(q)</p></p>
 </div>
 
 <div class="d-byline">
   David Harper <a href="https://www.bionicturtle.com/" class="uri">https://www.bionicturtle.com/</a> 
   
-<br/>2022-01-13
+<br/>2022-01-16
 </div>
 
 <div class="d-article">
-<p>BT 20.21.2. Shown below is the autocorrelation function (ACF) for a time series object that contains the total quarterly beer production in Australia (in megalitres) from 1956:Q1 to 2010:Q2 (source: <a href="https://cran.r-project.org/web/packages/fpp2/index.html" class="uri">https://cran.r-project.org/web/packages/fpp2/index.html</a>).</p>
+<p>Learning objectives</p>
+<ul>
+<li>Explain mean reversion and calculate a mean-reverting level.</li>
+<li>Define and describe the properties of autoregressive moving average (ARMA) processes.</li>
+<li>Describe the application of AR, MA and ARMA processes.</li>
+</ul>
+<p>Let’s load some packages</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://pkg.robjhyndman.com/forecast/'>forecast</a></span><span class='op'>)</span>
-<span class='co'># install.packages("fpp2")</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://pkg.robjhyndman.com/fpp2-package/'>fpp2</a></span><span class='op'>)</span>
-<span class='va'>beer2</span> <span class='op'>&lt;-</span> <span class='va'>ausbeer</span>
-<span class='va'>beer2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/window.html'>window</a></span><span class='op'>(</span><span class='va'>ausbeer</span>, start<span class='op'>=</span><span class='fl'>1992</span><span class='op'>)</span>
-
-<span class='va'>acf_beer2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://pkg.robjhyndman.com/forecast/reference/autoplot.acf.html'>ggAcf</a></span><span class='op'>(</span><span class='va'>beer2</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>xlab</span><span class='op'>(</span><span class='st'>"Lags"</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>theme_bw</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_segment</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>theme</span><span class='op'>(</span>
-    text <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>family <span class='op'>=</span> <span class='st'>"Calibri"</span><span class='op'>)</span>,
-    plot.title <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
-    axis.title.x <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>14</span>, face <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
-    axis.title.y <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>14</span>, face <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
-    axis.text.x <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>14</span>, face <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
-    axis.text.y <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>14</span>, face<span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
-    panel.grid.major.x <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
-    panel.grid.major.y <span class='op'>=</span> <span class='fu'>element_line</span><span class='op'>(</span>color<span class='op'>=</span><span class='st'>"grey"</span><span class='op'>)</span>,
-    panel.border <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>
-  <span class='op'>)</span>
-
-<span class='va'>acf_beer2</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://pkg.robjhyndman.com/forecast/'>forecast</a></span><span class='op'>)</span> <span class='co'># incl ggACF()</span>
+<span class='co'># library(cowplot)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://patchwork.data-imaginist.com'>patchwork</a></span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="bt-pq-p1t220212-autocorrelation-function-acf_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
 </div>
-<p>About this ACF and its implications, each of the following statements is true EXCEPT which statement is false?</p>
-<blockquote>
+<p>20.23.1. Below are plotted the autocorrelation function (ACF) and partial autocorrelation function (PACF) for a simulated time-series process. Please note that the horizontal dashed blue lines represent the 95.0% confidence interval … Which of the following time-series models is most likely described by these ACF and PACF plots?</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>66</span><span class='op'>)</span>
+
+<span class='va'>AR_param_1</span> <span class='op'>=</span> <span class='fl'>1.4</span>
+<span class='va'>AR_param_2</span> <span class='op'>=</span> <span class='op'>-</span><span class='fl'>0.7</span>
+<span class='va'>AR_intercept</span> <span class='op'>=</span> <span class='fl'>0</span>
+<span class='va'>AR_n</span> <span class='op'>&lt;-</span> <span class='fl'>1000</span>
+
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme_get.html'>theme_set</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='co'># arima.sim model c(p, d, q)</span>
+<span class='co'># p = AR order</span>
+<span class='co'># d = difference</span>
+<span class='co'># q = MA order</span>
+<span class='co'># Generate an AR(2) with parameters, AR_param_1 and AR_param_2</span>
+<span class='va'>AR</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/arima.sim.html'>arima.sim</a></span><span class='op'>(</span>model<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>order<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>0</span>,<span class='fl'>0</span><span class='op'>)</span>, ar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>AR_param_1</span>, <span class='va'>AR_param_2</span><span class='op'>)</span><span class='op'>)</span>, n <span class='op'>=</span> <span class='va'>AR_n</span>, mean <span class='op'>=</span> <span class='va'>AR_intercept</span><span class='op'>)</span>
+
+<span class='va'>p3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://pkg.robjhyndman.com/forecast/reference/autoplot.acf.html'>ggAcf</a></span><span class='op'>(</span><span class='va'>AR</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_segment.html'>geom_segment</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"autocorrelation function (ACF)"</span>
+  <span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>
+    plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span>,
+    axis.title.x <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,
+    panel.grid <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>)</span>
+<span class='va'>p4</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://pkg.robjhyndman.com/forecast/reference/autoplot.acf.html'>ggPacf</a></span><span class='op'>(</span><span class='va'>AR</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_segment.html'>geom_segment</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"partial autocorrelation function (PACF)"</span>
+  <span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>
+    plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span>,
+    panel.grid <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>)</span>
+
+<span class='co'># Please note plot is shrunk to 86% on copy/paste</span>
+<span class='va'>p3</span> <span class='op'>/</span> <span class='va'>p4</span>
+</code></pre>
+</div>
+<p><img src="bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+</div>
+<p>20.23.2. Below are plotted the autocorrelation function (ACF) and partial autocorrelation function (PACF) for a simulated time-series process. Please note that the horizontal dashed blue lines represent the 95.0% confidence interval … Which of the following time-series models is most likely described by these ACF and PACF plots?</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>19</span><span class='op'>)</span>
+
+<span class='va'>MA_n</span> <span class='op'>=</span> <span class='fl'>1000</span>
+<span class='va'>MA_mean</span> <span class='op'>=</span> <span class='fl'>0</span>
+<span class='va'>MA_weight_1</span> <span class='op'>=</span> <span class='fl'>0.4</span>
+<span class='va'>MA_weight_2</span> <span class='op'>=</span> <span class='fl'>0.6</span>
+<span class='va'>MA_weight_3</span> <span class='op'>=</span> <span class='fl'>0.8</span>
+
+<span class='co'># # Generate an MA(3) with weights MA_weight_1, MA_weight_2, and MA_weight_3</span>
+<span class='va'>MA</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/arima.sim.html'>arima.sim</a></span><span class='op'>(</span>model<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>3</span><span class='op'>)</span>, ma <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>MA_weight_1</span>, <span class='va'>MA_weight_2</span>, <span class='va'>MA_weight_3</span><span class='op'>)</span><span class='op'>)</span>, n <span class='op'>=</span> <span class='va'>MA_n</span>, mean <span class='op'>=</span> <span class='va'>MA_mean</span><span class='op'>)</span>
+
+<span class='va'>p5</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://pkg.robjhyndman.com/forecast/reference/autoplot.acf.html'>ggAcf</a></span><span class='op'>(</span><span class='va'>MA</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_segment.html'>geom_segment</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='co'># geom_hline(yintercept = c(ci2, -ci2), color = "darkblue", linetype = "dashed", size = 2 ) +</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"autocorrelation function (ACF)"</span>
+  <span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>
+    plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span>,
+    axis.title.x <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,
+    panel.grid <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>)</span>
+<span class='va'>p6</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://pkg.robjhyndman.com/forecast/reference/autoplot.acf.html'>ggPacf</a></span><span class='op'>(</span><span class='va'>MA</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_segment.html'>geom_segment</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"partial autocorrelation function (PACF)"</span>
+  <span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>
+    plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span>,
+    panel.grid <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>)</span>
+
+<span class='co'># Please note plot is shrunk to 86% on copy/paste</span>
+<span class='va'>p5</span> <span class='op'>/</span> <span class='va'>p6</span>
+</code></pre>
+</div>
+<p><img src="bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+</div>
+<p>20.23.3. An ARMA(1,1) process evolves according to Y(t) = ẟ + ϕ*Y(t-1) + θ*ε(t-1) + ε(t). The plot below contains two 300-step ARMA(1,1) processes that differ only in their coefficients …</p>
+<p>Which of the following statements is TRUE about the two ARMA(1,1) simulations above?</p>
 <ol type="a">
-<li>ρ(1) and ρ(3) are insignificant</li>
-<li>This time series is a white noise process</li>
-<li>This ACF is compatible with a seasonal time series</li>
-<li>If this time series exhibits stochastic seasonality, it might be possible to fit a seasonal ARMA model</li>
+<li>Both of the ARMA(1,1) processes are likely to exhibit slow decay in both the ACF and PACF</li>
+<li>Both of the ARMA(1,1) processes are likely to cut off sharply at lag 1 in both the ACF and PACF</li>
+<li>The first ARMA(1,1) process (i.e., plotted with a red dashed line) cannot be covariance-stationary</li>
+<li>The unconditional mean of both ARMA(1,1) processes must be zero because all ARMA(1,1) have a long-run mean of zero</li>
 </ol>
-</blockquote>
-<h3 id="end-of-post">End of post</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/nickpoison/astsa/'>astsa</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>9</span><span class='op'>)</span>
+
+<span class='va'>ar_11_1</span> <span class='op'>=</span> <span class='fl'>0.8</span>
+<span class='va'>ma_11_1</span> <span class='op'>=</span> <span class='fl'>0.6</span>
+<span class='va'>arma_11_1_mu</span> <span class='op'>=</span> <span class='fl'>2</span>
+<span class='va'>sim_n</span> <span class='op'>=</span> <span class='fl'>300</span>
+
+<span class='va'>ar_11_2</span> <span class='op'>=</span> <span class='fl'>0.9</span>
+<span class='va'>ma_11_2</span> <span class='op'>=</span> <span class='op'>-</span><span class='fl'>0.5</span>
+<span class='va'>arma_11_2_mu</span> <span class='op'>=</span> <span class='op'>-</span><span class='fl'>3</span>
+
+<span class='co'># ar_22 = c(1.4, -0.6)</span>
+<span class='co'># ma_22 = c(0.9, 0.6)</span>
+
+<span class='va'>ARMA_11_1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/arima.sim.html'>arima.sim</a></span><span class='op'>(</span>model<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span>, ar <span class='op'>=</span> <span class='va'>ar_11_1</span>, ma <span class='op'>=</span> <span class='va'>ma_11_1</span><span class='op'>)</span>, n <span class='op'>=</span> <span class='va'>sim_n</span><span class='op'>)</span> <span class='op'>+</span> <span class='va'>arma_11_1_mu</span>
+<span class='va'>ARMA_11_2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/arima.sim.html'>arima.sim</a></span><span class='op'>(</span>model<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span>, ar <span class='op'>=</span> <span class='va'>ar_11_2</span>, ma <span class='op'>=</span> <span class='va'>ma_11_2</span><span class='op'>)</span>, n <span class='op'>=</span> <span class='va'>sim_n</span><span class='op'>)</span> <span class='op'>+</span> <span class='va'>arma_11_2_mu</span>
+<span class='co'># ARMA_22 &lt;- arima.sim(model=list(order = c(2, 0, 2), ar = ar_22, ma = ma_22), n = 200)</span>
+
+<span class='co'># ts.plot(ARMA_11, ARMA_22)</span>
+
+<span class='va'>time_arma</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_cols</a></span><span class='op'>(</span><span class='va'>ARMA_11_1</span>, <span class='va'>ARMA_11_2</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/rownames.html'>rowid_to_column</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>y_ARMA_11_1 <span class='op'>=</span> <span class='va'>...1</span>, y_ARMA_11_2 <span class='op'>=</span> <span class='va'>...2</span><span class='op'>)</span>
+
+
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme_get.html'>theme_set</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>colors</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"First ARMA(1,1)"</span> <span class='op'>=</span> <span class='st'>"darkred"</span>, <span class='st'>"Second ARMA(1,1)"</span> <span class='op'>=</span> <span class='st'>"steelblue"</span><span class='op'>)</span>
+
+<span class='va'>time_arma</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>rowid</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>y_ARMA_11_1</span>, color <span class='op'>=</span> <span class='st'>"First ARMA(1,1)"</span><span class='op'>)</span>, size <span class='op'>=</span> <span class='fl'>1</span>, linetype <span class='op'>=</span> <span class='st'>"longdash"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>y_ARMA_11_2</span>, color <span class='op'>=</span> <span class='st'>"Second ARMA(1,1)"</span><span class='op'>)</span>, size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/label_number.html'>number_format</a></span><span class='op'>(</span>accuracy <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>
+    axis.title.y <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,
+    axis.title.x <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,
+    axis.text.x <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>12</span>, face <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
+    axis.text.y <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>12</span>, face <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
+    legend.position <span class='op'>=</span> <span class='st'>"right"</span>,
+    legend.text <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"Two different ARMA(1,1) time-series simulations"</span>,
+    color <span class='op'>=</span> <span class='st'>"Legend"</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_color_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='va'>colors</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/figure-html5/unnamed-chunk-4-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>arma_11_1_mulr</span> <span class='op'>=</span> <span class='va'>arma_11_1_mu</span><span class='op'>/</span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>-</span> <span class='va'>ar_11_1</span><span class='op'>)</span>
+<span class='va'>arma_11_2_mulr</span> <span class='op'>=</span> <span class='va'>arma_11_2_mu</span><span class='op'>/</span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>-</span> <span class='va'>ar_11_2</span><span class='op'>)</span>
+
+<span class='co'># mu_arma_22 = 10</span>
+<span class='co'>#ARMA_22 &lt;- arima.sim(model=list(order = c(2, 0, 2), ar = c(0.4, 0.2), ma = c(0.5,0.6)), n = 200, mean = mu_arma_22)</span>
+<span class='co'># ts.plot(ARMA_22)</span>
+<span class='co'># acf2(ARMA_22)</span>
+<span class='co'># mean_arma_22 = mu_arma_22/(1 - 0.4 - 0.2)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/astsa/man/acf2.html'>acf2</a></span><span class='op'>(</span><span class='va'>ARMA_11_1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/figure-html5/unnamed-chunk-4-2.png" width="624" /></p>
+<pre><code>     [,1]  [,2] [,3]  [,4] [,5] [,6]  [,7]  [,8]  [,9] [,10] [,11]
+ACF  0.86  0.65 0.50  0.40 0.33 0.29  0.24  0.18  0.11  0.03 -0.05
+PACF 0.86 -0.39 0.28 -0.11 0.07 0.05 -0.07 -0.06 -0.01 -0.13 -0.06
+     [,12] [,13] [,14] [,15] [,16] [,17] [,18] [,19] [,20] [,21]
+ACF  -0.12 -0.16 -0.17 -0.17 -0.15 -0.12 -0.10 -0.11 -0.13 -0.15
+PACF -0.01 -0.03  0.01  0.03  0.06  0.00  0.01 -0.08 -0.03 -0.05
+     [,22] [,23] [,24] [,25] [,26] [,27] [,28]
+ACF  -0.14 -0.08 -0.02  0.03  0.05  0.07  0.11
+PACF  0.10  0.06  0.00  0.04 -0.05  0.13  0.07</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/astsa/man/acf2.html'>acf2</a></span><span class='op'>(</span><span class='va'>ARMA_11_2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="bt-pq-p1t22023-set-autoregressive-moving-average-arma-models_files/figure-html5/unnamed-chunk-4-3.png" width="624" /></p>
+<pre><code>     [,1] [,2] [,3] [,4] [,5] [,6]  [,7]  [,8]  [,9] [,10] [,11]
+ACF  0.52 0.45 0.46 0.43 0.37 0.35  0.30  0.25  0.20  0.22  0.16
+PACF 0.52 0.24 0.24 0.12 0.05 0.04 -0.02 -0.04 -0.05  0.05 -0.04
+     [,12] [,13] [,14] [,15] [,16] [,17] [,18] [,19] [,20] [,21]
+ACF   0.09  0.09  0.10  0.13  0.08  0.09  0.08  0.07  0.05  0.00
+PACF -0.08  0.00  0.03  0.10 -0.01  0.04 -0.01  0.01 -0.04 -0.09
+     [,22] [,23] [,24] [,25] [,26] [,27] [,28]
+ACF  -0.04 -0.04 -0.04 -0.08 -0.09 -0.11 -0.14
+PACF -0.09 -0.04 -0.01 -0.06  0.00 -0.01 -0.03</code></pre>
+</div>
+<h3 id="end-of-post">end of post</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
