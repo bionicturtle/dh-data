@@ -1,5 +1,5 @@
 ---
-title: "P1-T2-20-17. Univariate regressions continued (2nd set v2)"
+title: "BT PQ P1-T2-20-17. Univariate regressions cont (2nd set v2)"
 description: |
   Coefficient confidence interval (CI); hypothesis test; interpretation of SE, t-stat and p-value
 author:

@@ -1,5 +1,5 @@
 ---
-title: "BT Question P1-T2-20-16-2: Univariate regression: Portfolio versus benchmark returns"
+title: "BT PQ P1-T2-20-16-2: Univariate regression: Portfolio versus benchmark returns"
 description: |
   Simulated portfolio & benchmark for purposes of testing basic features of univariate regression
 author:

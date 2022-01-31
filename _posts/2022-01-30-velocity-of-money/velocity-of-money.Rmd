@@ -1,7 +1,7 @@
 ---
 title: "velocity of money"
 description: |
-  A short description of the post.
+  MV = PY illustrates the problem but is tautological
 author:
   - name: David Harper
     url: https://www.bionicturtle.com/

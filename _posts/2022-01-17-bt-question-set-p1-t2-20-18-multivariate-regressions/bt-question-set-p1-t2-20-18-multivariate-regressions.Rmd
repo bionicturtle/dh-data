@@ -1,5 +1,5 @@
 ---
-title: "BT Question Set P1-T2-20-18: Multivariate regressions"
+title: "BT PQ P1-T2-20-18 (SET) Multivariate regressions"
 description: |
   Fama-French three-factor model; House prices; and Medical costs
 preview: P1-T2-20-18-3b.png

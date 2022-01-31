@@ -1,5 +1,5 @@
 ---
-title: "BT Question Set P1-T2-20-19: Regression diagnostics (set)"
+title: "BT PQ P1-T2-20-19: Regression diagnostics (SET)"
 description: |
   Diagnostics: omitted variable bias, heteroskedasticity, and multicollinearity
 preview: P1-T2-20-19-2Q2-v2.jpg
