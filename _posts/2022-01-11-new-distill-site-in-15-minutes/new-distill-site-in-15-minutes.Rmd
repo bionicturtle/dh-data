@@ -2,10 +2,11 @@
 title: "New distill site in 15 minutes"
 description: |
   Distill is so much easier than blogdown
+preview: distill_hex_symbol_5percent.png
 author:
   - name: David Harper
     url: https://example.com/norajones
-date: 2022-01-03
+date: 2022-01-02
 output:
   distill::distill_article:
     self_contained: false
