@@ -118,7 +118,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["example-of-embedded-excel-snippet_files/anchor-4.2.2/anchor.min.js","example-of-embedded-excel-snippet_files/bowser-1.9.3/bowser.min.js","example-of-embedded-excel-snippet_files/distill-2.2.21/template.v2.js","example-of-embedded-excel-snippet_files/header-attrs-2.14/header-attrs.js","example-of-embedded-excel-snippet_files/jquery-3.6.0/jquery-3.6.0.js","example-of-embedded-excel-snippet_files/jquery-3.6.0/jquery-3.6.0.min.js","example-of-embedded-excel-snippet_files/jquery-3.6.0/jquery-3.6.0.min.map","example-of-embedded-excel-snippet_files/popper-2.6.0/popper.min.js","example-of-embedded-excel-snippet_files/tippy-6.2.7/tippy-bundle.umd.min.js","example-of-embedded-excel-snippet_files/tippy-6.2.7/tippy-light-border.css","example-of-embedded-excel-snippet_files/tippy-6.2.7/tippy.css","example-of-embedded-excel-snippet_files/tippy-6.2.7/tippy.umd.min.js","example-of-embedded-excel-snippet_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["example-of-embedded-excel-snippet_files/anchor-4.2.2/anchor.min.js","example-of-embedded-excel-snippet_files/bowser-1.9.3/bowser.min.js","example-of-embedded-excel-snippet_files/distill-2.2.21/template.v2.js","example-of-embedded-excel-snippet_files/header-attrs-2.14/header-attrs.js","example-of-embedded-excel-snippet_files/jquery-3.6.0/jquery-3.6.0.js","example-of-embedded-excel-snippet_files/jquery-3.6.0/jquery-3.6.0.min.js","example-of-embedded-excel-snippet_files/jquery-3.6.0/jquery-3.6.0.min.map","example-of-embedded-excel-snippet_files/popper-2.6.0/popper.min.js","example-of-embedded-excel-snippet_files/tippy-6.2.7/tippy-bundle.umd.min.js","example-of-embedded-excel-snippet_files/tippy-6.2.7/tippy-light-border.css","example-of-embedded-excel-snippet_files/tippy-6.2.7/tippy.css","example-of-embedded-excel-snippet_files/tippy-6.2.7/tippy.umd.min.js","example-of-embedded-excel-snippet_files/webcomponents-2.0.0/webcomponents.js","sharepoint-share.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2446,10 +2446,26 @@ class="uri">https://www.bionicturtle.com/</a>
 </div>
 
 <div class="d-article">
-<p>This is a distill blog etc</p>
+<p>This is a distill blog per my <a
+href="https://dh-data.org/posts/2022-01-11-new-distill-site-in-15-minutes/">brief
+introduction</a>. Each post (like this) is an RMarkdown file (.Rmd)
+which is ideal (designed for) for embedding code chunks in notebooks.
+The Rmd is knitted/rendered to HTML. I’m sure what I did here is NOT the
+most efficient: I inserted the iframe into the post-rendered HTML file,
+rather than the pre-processed RMD, then built/pushed the page.</p>
+<h3 id="illustration-of-default-probability-pd-concepts">Illustration of
+default probability (PD) concepts</h3>
+<p>I built this simple sheet to reconcile the many PD concepts that
+swirl around the FRM candidate in the credit (T6) topic. The ONLY
+input(s) is the hazard rate (aka, default intensity): the cell should
+default to this input at E8. The rest of the PDs are calculated. Also,
+notice how the NOTES are dynamically updated. It’s easy in Excel to
+create such fields by concatenating with TEXT(G10,“0.0%”).</p>
 
 <iframe width="400" height="560" frameborder="0" scrolling="no" src="https://cerifi-my.sharepoint.com/personal/davidh_bionicturtle_com/_layouts/15/Doc.aspx?sourcedoc={7450d96f-ea85-435c-847a-5332d8159f42}&action=embedview&wdAllowInteractivity=False&AllowTyping=True&ActiveCell='PD_concepts_dynamic'!E8&Item='PD_concepts_dynamic'!C4%3AG28&wdHideGridlines=True&wdDownloadButton=True&wdInConfigurator=True&wdInConfigurator=True"></iframe>
 
+<p>Here are the generic options: <img src="sharepoint-share.png"
+alt="embed options in sharepoint &gt; Excel" /></p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
