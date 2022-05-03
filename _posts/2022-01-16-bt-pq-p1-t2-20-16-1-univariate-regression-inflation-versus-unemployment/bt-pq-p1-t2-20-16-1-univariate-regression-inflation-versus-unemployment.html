@@ -1438,7 +1438,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/header-attrs-2.11/header-attrs.js"></script>
+  <script src="bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/header-attrs-2.14/header-attrs.js"></script>
   <script src="bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/popper-2.6.0/popper.min.js"></script>
   <link href="bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1476,19 +1476,58 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-byline">
-  David Harper <a href="https://www.bionicturtle.com/" class="uri">https://www.bionicturtle.com/</a> 
+  David Harper <a href="https://www.bionicturtle.com/"
+class="uri">https://www.bionicturtle.com/</a> 
   
 <br/>2022-01-04
 </div>
 
 <div class="d-article">
 <h2 id="background">Background</h2>
-<p>BT is known for our tough training-style practice questions, but I wanted to take it further and add more realism. I’ve been writing a fresh question sets on the regression topics; I’m always writing new questions! It takes more time, but in these regression sets I’ve been pulling actual datasets. For this question, I pulled inflation and unemployment rates from the FRED database (see below). In combination with actual <em>code-based applications</em>, these new question sets are much more <strong>realistic</strong> than typical exam-prep fare. Let’s face it: in the real world, quantitative tasks (e.g., regression) are performed in software, not with calculators. In a way, it’s our responsibility to help candidates get exposure to tools that are actually useful. We’ve always been the only FRM exam prep provider (EPP) who develops virtually the entire, broad array of quantitative risk (FRM) topics in spreadsheet workbooks (this is a massive construction of hundreds of spreadsheets that has taken me the better part of a decade to build). Now I’ve started to develop associated code-based applications for the ultimate in <em>realistic</em> study material.</p>
-<h2 id="using-the-gt-package-to-render-the-regression-output-table">Using the gt package to render the regression output table</h2>
-<p>I thought I’d try the <a href="https://github.com/rstudio/gt">gt package</a> to see if I could improve the presentation of the regression output table. It’s fairly intuitive but a little unexpected because you pipe (“%&gt;%”) additional format features.</p>
-<p>This question (my first in the new regression set) reads as follows:</p>
+<p>BT is known for our tough training-style practice questions, and we
+love it, but I wanted to take it further and add more realism. I’ve been
+writing a fresh question sets on the regression topics; I’m always
+writing new questions! It takes more time, but in these regression sets
+I’ve been pulling actual datasets. For this question, I pulled inflation
+and unemployment rates from the FRED database (see below). In
+combination with actual <em>code-based applications</em>, these new
+question sets are much more <strong>realistic</strong> than typical
+exam-prep fare. Let’s face it: in the real world, quantitative tasks
+(e.g., regression) are performed in software, not with calculators. In a
+way, it’s our responsibility to help candidates get exposure to tools
+that are actually useful. We’ve always been the only FRM exam prep
+provider (EPP) who develops virtually the entire, broad array of
+quantitative risk (FRM) topics in spreadsheet workbooks (this is a
+massive construction of hundreds of spreadsheets that has taken me the
+better part of a decade to build). Now I’ve started to develop
+associated code-based applications for the ultimate in
+<em>realistic</em> study material.</p>
+<h2
+id="using-the-gt-package-to-render-the-regression-output-table">Using
+the gt package to render the regression output table</h2>
+<p>I thought I’d try the <a href="https://github.com/rstudio/gt">gt
+package</a> to see if I could improve the presentation of the regression
+output table. It’s fairly intuitive but a little unexpected because you
+pipe (“%&gt;%”) additional format features.</p>
+<p>This question (my first in the new regression set) reads as
+follows:</p>
 <blockquote>
-<p>“20.16.1. Debra is an analyst at a governmental agency. Her boss asked her to investigate whether the Phillips curve applies during high-inflation regimes. To answer the question, Debra collected data from the FRED database at the St. Louis Fed (<a href="https://fred.stlouisfed.org/" class="uri">https://fred.stlouisfed.org/</a>). The Phillips curve describes an inverse relationship between unemployment rates and inflation rates; <a href="https://en.wikipedia.org/wiki/Phillips_curve" class="uri">https://en.wikipedia.org/wiki/Phillips_curve</a>. Debra collected monthly data and she regressed the inflation rate against the unemployment rate (conditional on high-inflation regimes). Her independent variable is unemployment rate (FRED code: UNRATE) and here dependent variable is the Inflation rate (CPIAUCSL). The units are percentages not decimals; e.g., the dataset includes the month of January in 1982 when the unemployment rate was 8.9 and the inflation rate was 6.38. Her regression results are presented below.”</p>
+<p>“20.16.1. Debra is an analyst at a governmental agency. Her boss
+asked her to investigate whether the Phillips curve applies during
+high-inflation regimes. To answer the question, Debra collected data
+from the FRED database at the St. Louis Fed (<a
+href="https://fred.stlouisfed.org/"
+class="uri">https://fred.stlouisfed.org/</a>). The Phillips curve
+describes an inverse relationship between unemployment rates and
+inflation rates; <a href="https://en.wikipedia.org/wiki/Phillips_curve"
+class="uri">https://en.wikipedia.org/wiki/Phillips_curve</a>. Debra
+collected monthly data and she regressed the inflation rate against the
+unemployment rate (conditional on high-inflation regimes). Her
+independent variable is unemployment rate (FRED code: UNRATE) and here
+dependent variable is the Inflation rate (CPIAUCSL). The units are
+percentages not decimals; e.g., the dataset includes the month of
+January in 1982 when the unemployment rate was 8.9 and the inflation
+rate was 6.38. Her regression results are presented below.”</p>
 </blockquote>
 <p>We load the packages</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1500,7 +1539,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<p>And then see if we might find a super-simple (ie, linear) Phillips curve (BT Question P1.T2.20.16.1)</p>
+<p>And then see if we might find a super-simple (ie, linear) Phillips
+curve (BT Question P1.T2.20.16.1)</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>startdate</span> <span class='op'>&lt;-</span> <span class='st'>"1980-01-01"</span>
@@ -1543,12 +1583,12 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span class='va'>gt_table</span>
 </code></pre>
 </div>
-<div id="ozugixkafs" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="gywujfkkzh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ozugixkafs .gt_table {
+#gywujfkkzh .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1573,7 +1613,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#ozugixkafs .gt_heading {
+#gywujfkkzh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1585,33 +1625,37 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#ozugixkafs .gt_title {
+#gywujfkkzh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
 
-#ozugixkafs .gt_subtitle {
+#gywujfkkzh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-#ozugixkafs .gt_bottom_border {
+#gywujfkkzh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ozugixkafs .gt_col_headings {
+#gywujfkkzh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1626,7 +1670,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#ozugixkafs .gt_col_heading {
+#gywujfkkzh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1646,7 +1690,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   overflow-x: hidden;
 }
 
-#ozugixkafs .gt_column_spanner_outer {
+#gywujfkkzh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1658,28 +1702,31 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   padding-right: 4px;
 }
 
-#ozugixkafs .gt_column_spanner_outer:first-child {
+#gywujfkkzh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ozugixkafs .gt_column_spanner_outer:last-child {
+#gywujfkkzh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ozugixkafs .gt_column_spanner {
+#gywujfkkzh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
   padding-top: 5px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
 
-#ozugixkafs .gt_group_heading {
-  padding: 8px;
+#gywujfkkzh .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1700,7 +1747,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   vertical-align: middle;
 }
 
-#ozugixkafs .gt_empty_group_heading {
+#gywujfkkzh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1715,15 +1762,15 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   vertical-align: middle;
 }
 
-#ozugixkafs .gt_from_md > :first-child {
+#gywujfkkzh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ozugixkafs .gt_from_md > :last-child {
+#gywujfkkzh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ozugixkafs .gt_row {
+#gywujfkkzh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1742,7 +1789,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   overflow-x: hidden;
 }
 
-#ozugixkafs .gt_stub {
+#gywujfkkzh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1751,10 +1798,29 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #D3D3D3;
-  padding-left: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
-#ozugixkafs .gt_summary_row {
+#gywujfkkzh .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#gywujfkkzh .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#gywujfkkzh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1764,17 +1830,26 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   padding-right: 5px;
 }
 
-#ozugixkafs .gt_first_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
+#gywujfkkzh .gt_first_summary_row {
   border-top-style: solid;
-  border-top-width: 2px;
   border-top-color: #D3D3D3;
 }
 
-#ozugixkafs .gt_grand_summary_row {
+#gywujfkkzh .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#gywujfkkzh .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gywujfkkzh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1784,7 +1859,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   padding-right: 5px;
 }
 
-#ozugixkafs .gt_first_grand_summary_row {
+#gywujfkkzh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1794,11 +1869,11 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#ozugixkafs .gt_striped {
+#gywujfkkzh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ozugixkafs .gt_table_body {
+#gywujfkkzh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1807,7 +1882,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#ozugixkafs .gt_footnotes {
+#gywujfkkzh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1821,13 +1896,16 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#ozugixkafs .gt_footnote {
+#gywujfkkzh .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
-#ozugixkafs .gt_sourcenotes {
+#gywujfkkzh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1841,44 +1919,80 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#ozugixkafs .gt_sourcenote {
+#gywujfkkzh .gt_sourcenote {
   font-size: 90%;
-  padding: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
-#ozugixkafs .gt_left {
+#gywujfkkzh .gt_left {
   text-align: left;
 }
 
-#ozugixkafs .gt_center {
+#gywujfkkzh .gt_center {
   text-align: center;
 }
 
-#ozugixkafs .gt_right {
+#gywujfkkzh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ozugixkafs .gt_font_normal {
+#gywujfkkzh .gt_font_normal {
   font-weight: normal;
 }
 
-#ozugixkafs .gt_font_bold {
+#gywujfkkzh .gt_font_bold {
   font-weight: bold;
 }
 
-#ozugixkafs .gt_font_italic {
+#gywujfkkzh .gt_font_italic {
   font-style: italic;
 }
 
-#ozugixkafs .gt_super {
+#gywujfkkzh .gt_super {
   font-size: 65%;
 }
 
-#ozugixkafs .gt_footnote_marks {
+#gywujfkkzh .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#gywujfkkzh .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
-  font-size: 65%;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#gywujfkkzh .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#gywujfkkzh .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#gywujfkkzh .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#gywujfkkzh .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
 }
 </style>
 <table class="gt_table">
@@ -1949,12 +2063,12 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span class='va'>gt_table</span>
 </code></pre>
 </div>
-<div id="iajtywlnkz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="hvmqdaiulk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#iajtywlnkz .gt_table {
+#hvmqdaiulk .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1979,7 +2093,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#iajtywlnkz .gt_heading {
+#hvmqdaiulk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1991,33 +2105,37 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#iajtywlnkz .gt_title {
+#hvmqdaiulk .gt_title {
   color: #333333;
   font-size: 14px;
   font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
 
-#iajtywlnkz .gt_subtitle {
+#hvmqdaiulk .gt_subtitle {
   color: #333333;
   font-size: 12px;
   font-weight: initial;
   padding-top: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-#iajtywlnkz .gt_bottom_border {
+#hvmqdaiulk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#iajtywlnkz .gt_col_headings {
+#hvmqdaiulk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2032,7 +2150,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#iajtywlnkz .gt_col_heading {
+#hvmqdaiulk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2052,7 +2170,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   overflow-x: hidden;
 }
 
-#iajtywlnkz .gt_column_spanner_outer {
+#hvmqdaiulk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2064,28 +2182,31 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   padding-right: 4px;
 }
 
-#iajtywlnkz .gt_column_spanner_outer:first-child {
+#hvmqdaiulk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#iajtywlnkz .gt_column_spanner_outer:last-child {
+#hvmqdaiulk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#iajtywlnkz .gt_column_spanner {
+#hvmqdaiulk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
   padding-top: 5px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
 
-#iajtywlnkz .gt_group_heading {
-  padding: 8px;
+#hvmqdaiulk .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2106,7 +2227,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   vertical-align: middle;
 }
 
-#iajtywlnkz .gt_empty_group_heading {
+#hvmqdaiulk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2121,15 +2242,15 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   vertical-align: middle;
 }
 
-#iajtywlnkz .gt_from_md > :first-child {
+#hvmqdaiulk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#iajtywlnkz .gt_from_md > :last-child {
+#hvmqdaiulk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#iajtywlnkz .gt_row {
+#hvmqdaiulk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2148,7 +2269,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   overflow-x: hidden;
 }
 
-#iajtywlnkz .gt_stub {
+#hvmqdaiulk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2157,10 +2278,29 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #D3D3D3;
-  padding-left: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
-#iajtywlnkz .gt_summary_row {
+#hvmqdaiulk .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hvmqdaiulk .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hvmqdaiulk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2170,17 +2310,26 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   padding-right: 5px;
 }
 
-#iajtywlnkz .gt_first_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
+#hvmqdaiulk .gt_first_summary_row {
   border-top-style: solid;
-  border-top-width: 2px;
   border-top-color: #D3D3D3;
 }
 
-#iajtywlnkz .gt_grand_summary_row {
+#hvmqdaiulk .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hvmqdaiulk .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hvmqdaiulk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2190,7 +2339,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   padding-right: 5px;
 }
 
-#iajtywlnkz .gt_first_grand_summary_row {
+#hvmqdaiulk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2200,11 +2349,11 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#iajtywlnkz .gt_striped {
+#hvmqdaiulk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#iajtywlnkz .gt_table_body {
+#hvmqdaiulk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2213,7 +2362,7 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#iajtywlnkz .gt_footnotes {
+#hvmqdaiulk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2227,13 +2376,16 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#iajtywlnkz .gt_footnote {
+#hvmqdaiulk .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
-#iajtywlnkz .gt_sourcenotes {
+#hvmqdaiulk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2247,44 +2399,80 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#iajtywlnkz .gt_sourcenote {
+#hvmqdaiulk .gt_sourcenote {
   font-size: 90%;
-  padding: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
-#iajtywlnkz .gt_left {
+#hvmqdaiulk .gt_left {
   text-align: left;
 }
 
-#iajtywlnkz .gt_center {
+#hvmqdaiulk .gt_center {
   text-align: center;
 }
 
-#iajtywlnkz .gt_right {
+#hvmqdaiulk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#iajtywlnkz .gt_font_normal {
+#hvmqdaiulk .gt_font_normal {
   font-weight: normal;
 }
 
-#iajtywlnkz .gt_font_bold {
+#hvmqdaiulk .gt_font_bold {
   font-weight: bold;
 }
 
-#iajtywlnkz .gt_font_italic {
+#hvmqdaiulk .gt_font_italic {
   font-style: italic;
 }
 
-#iajtywlnkz .gt_super {
+#hvmqdaiulk .gt_super {
   font-size: 65%;
 }
 
-#iajtywlnkz .gt_footnote_marks {
+#hvmqdaiulk .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#hvmqdaiulk .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
-  font-size: 65%;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#hvmqdaiulk .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hvmqdaiulk .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#hvmqdaiulk .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#hvmqdaiulk .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
 }
 </style>
 <table class="gt_table">
@@ -2322,18 +2510,9 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
       <td class="gt_sourcenote" colspan="5">Source: FRED at https://fred.stlouisfed.org/</td>
     </tr>
   </tfoot>
-  <tfoot>
-    <tr class="gt_footnotes">
-      <td colspan="5">
-        <p class="gt_footnote">
-          <sup class="gt_footnote_marks">
-            <em>1</em>
-          </sup>
-           
-          Filtered on months with inflation &gt;4.3% deliberately to generate regression results
-          <br />
-        </p>
-      </td>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="5"><sup class="gt_footnote_marks">1</sup> Filtered on months with inflation &gt;4.3% deliberately to generate regression results</td>
     </tr>
   </tfoot>
 </table>
@@ -2349,7 +2528,8 @@ F-statistic: 393.4 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p><img src="bt-pq-p1-t2-20-16-1-univariate-regression-inflation-versus-unemployment_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
 </div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
