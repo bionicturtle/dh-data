@@ -1,0 +1,19 @@
+---
+title: "Example of embedded Excel snippet"
+description: |
+  Excel workbook (or ranges) can be embedded in the classic iframe
+author:
+  - name: David Harper
+    url: https://www.bionicturtle.com/
+date: 2022-05-02
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+This is a distill blog etc
+
+
+
+
+
