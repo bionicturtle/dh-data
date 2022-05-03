@@ -20,7 +20,7 @@ I built this simple sheet to reconcile the many PD concepts that swirl around th
 
 Here are the generic options:
 
-![embed options in sharepoint > Excel](sharepoint-share.png)
+![embed options in sharepoint > Excel](sharepoint-share.png){width=60%}
 
 
 
