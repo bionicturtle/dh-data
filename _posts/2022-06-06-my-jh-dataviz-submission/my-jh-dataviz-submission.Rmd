@@ -61,13 +61,15 @@ cces_sum$left <- cces_sum$right - cces_sum$believers
 # Plot
 cces_sum %>% ggplot(aes(ymin = 0)) + 
     geom_rect(aes(xmin = left, xmax = right, ymax = belief, colour = marital, fill = marital)) +
+    scale_color_manual(values = c("#41634a", "#5a7e64", "#7f8563", "#db7f50", "#e9a37f", "#f6c8ae")) +  
+    scale_fill_manual(values = c("#41634a", "#5a7e64", "#7f8563", "#db7f50", "#e9a37f", "#f6c8ae")) +
     ggtitle("Religiosity grouped by Marital Status") + 
     xlab("Number of respondents") + 
-    ylab("Importance of Religion (1 = Not at all Important, ..., 4 = Very important)") +
+    ylab("Religiosity (1 = Not at all, ..., 4 = Very important)") +
     coord_flip() +
     theme_few() +
     theme(legend.title = element_blank()) + 
-    annotate(geom = "rect", xmin = 640, ymin = 0.7, xmax = 710, ymax = 2.3, fill = "#bfffd0") +
+    annotate(geom = "rect", xmin = 640, ymin = 0.7, xmax = 710, ymax = 2.3, fill = "#d8debd") +
     annotate(geom = "text", x = 680, y = 1.5, label = "Bar height is sample size")
 
 ```
@@ -119,7 +121,7 @@ cel <- cel %>% group_by(st_name) %>%
 
 cel$state_full <- state.name[match(cel$st_name, state.abb)]
 
-cel %>% filter(seniority_les > .40) %>% 
+cel %>% filter(seniority_les > .42) %>% 
     ggplot(aes(x = seniority, y = les)) + 
     geom_jitter(color = rgb(.5, .5, .2), alpha = 0.3) + 
     geom_smooth(method = "lm", se = FALSE, color = rgb(1, .6, 0), size = 1) + 
