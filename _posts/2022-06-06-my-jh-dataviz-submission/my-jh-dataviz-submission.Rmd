@@ -1,7 +1,7 @@
 ---
 title: "My JH dataviz submission"
 description: |
-  A short description of the post.
+  Product of JH's DataViz in R with ggplot2.
 author:
   - name: David Harper
     url: https://www.bionicturtle.com/
@@ -11,34 +11,17 @@ output:
     self_contained: false
 ---
 
-### Instructions 
+Before taking his [Advanced Data Visualization with R](https://www.coursera.org/learn/jhu-advanced-data-visualization-r) course, I wanted to refresh my ggplot skills by taking the prior course in the specialization, [Data Visualization in R with ggplot2](https://www.coursera.org/learn/jhu-data-visualization-r). Both are taught by [Collin Paschall](https://www.coursera.org/instructor/collinpaschall) of John Hopkins University. This is my final (third) week's peer-reviewed submission (slightly altered). If you are looking to sharpen your ggplot skills, I highly recommend this course; it can be completed in several hours over three weeks. It does presume familiarity with R (the prior course is "Getting Started with Data Visualization in R"), but this course is not difficult. It incorporates many of the excellent tidyverse references. You'll never get stuck. It delegates much of the _grammar of graphics_ theory to the textbook. 
 
-Your submission should include the following:
+Notes:
 
-* Using ggplot, create a scatter plot, a distribution figure (box plot, histogram, or density plot), bar plot, and line plot.
-* Use colors and facetting in at least one of your figures.
-* Add a text annotation to at least one of the your figures.
-* Use a ggtheme for one of your figures.
-* Make sure your figures have titles and appropriately labeled axes.
+* My submission includes a bar plot (#1), line plot (#2), scatterplot (#3), and distribution (#4)
+* There is a facet (#3) and annotation ("Bar height is sample size") 
+* Colors are often customized; I tend to prefer the fine control of color = rbg()
 
+### Exercise 1
 
-My Notes:
-
-1. Scatterplot (Exercise #3), distribution (Exercise #4), Bar plot (Exercise #1), and Line plot (Exercise #2)
-2. Exercise #3 includes facet and colors; i.e., I used rgb() to achieve desired color effect
-3. The first chart contains an annotation ("Bar height is sample size") suppported by a colored rectangle
-4. ggtheme is used in Exercise #1, specifically theme_few()
-5. All plots have titles and x/y labels
-
-Following the directions on the Coursera assignment page, you will make four original visualizations. Note that the data for the CCES and CEL data are imported in code in the R Markdown file.
-
-### Put your name here: David R Harper
-
-## Exercise 1
-
-I'm proud of this because it's a bar chart but the (rotated) bar widths represent sample size. The cces data is grouped by Marital Status (i.e., marital). I inverted the pew_region with mutate(pew_religion = 5 - pew_religimp) so that 4 = Very Important. I was curious which groups are the most religious. The highest average is Separated but per the "skinny" bar it's a small sample. It took some work to get it right; e.g., I had to reorder the factors.
-
-Put your figure here:
+This is a rotated bar chart but the bar widths (which are their vertical height when rotated) represent sample size. The cces data is grouped by Marital Status (i.e., marital). I inverted the pew_region with mutate(pew_religion = 5 - pew_religimp) so that 4 = Very Important. I was curious which groups are the most religious. The highest average is Separated but per the "skinny" bar it's a small sample. It took some work to get it right; e.g., I had to reorder the factors.
 
 ```{r exercise1}
 
@@ -84,16 +67,14 @@ cces_sum %>% ggplot(aes(ymin = 0)) +
     coord_flip() +
     theme_few() +
     theme(legend.title = element_blank()) + 
-    annotate(geom = "rect", xmin = 640, ymin = 0.9, xmax = 710, ymax = 2.1, fill = "#bfffd0") +
+    annotate(geom = "rect", xmin = 640, ymin = 0.7, xmax = 710, ymax = 2.3, fill = "#bfffd0") +
     annotate(geom = "text", x = 680, y = 1.5, label = "Bar height is sample size")
 
 ```
 
-## Exercise 2
+### Exercise 2
 
 This is a relatively simple geom_line() with ggtheme theme_tufte. I did color Latinos purple to attempt to _respectfully_ match the purple in the Flag of the Hispanic People. As expected, the number of Congresspersons among these two groups grew over the period.
-
-Put your figure here:
 
 ```{r exercise2}
 
@@ -125,11 +106,9 @@ yearly_tbl %>%
   
 ```
 
-## Exercise 3
+### Exercise 3
 
 This plot explores whether more tenured congresspersons are more effective. However, I filtered on correlations above 0.40. The colors are custom selected.
-
-Put your figure here:
 
 ```{r exercise3}
 
@@ -160,11 +139,9 @@ cel %>% filter(seniority_les > .40) %>%
 
 ```
 
-## Exercise 4
+### Exercise 4
 
 I was curious if the distribution (percent of vote won) appears to be different by party. So these are overlapping histogram. My colors are carefully chosen (via hex) to match each party's colors and achieve a reddish PURPLE where they overlap. 
-
-Put your figure here:
 
 ```{r exercise4}
 
