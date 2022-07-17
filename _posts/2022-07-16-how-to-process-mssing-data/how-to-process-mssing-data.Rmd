@@ -1,7 +1,7 @@
 ---
-title: "How to Process Mssing Data"
+title: "How to Process Missing Data"
 description: |
-  A short description of the post.
+  How do we visualize what's missing? And the art of imputation
 author:
   - name: David Harper
     url: https://dh-data.org/
@@ -11,130 +11,69 @@ output:
     self_contained: false
 ---
 
-I just finished the first course in datacamp's *Intermediate Tidyverse Toolbox* skills track. The course is [Dealing with Missing Data in R](https://app.datacamp.com/learn/courses/dealing-with-missing-data-in-r) by Nicholas Tierney. He is the author of the [naniar pacakage](https://cran.r-project.org/web/packages/naniar/index.html). Most of the course applies naniar's functions.
+I just finished the first course, [Dealing with Missing Data in R](https://www.datacamp.com/courses/dealing-with-missing-data-in-r) by Nicholas Tierney, in datacamp's *Intermediate Tidyverse Toolbox* skills track. Mr. Tierney is the author of the [naniar pacakage](https://naniar.njtierney.com/). Most of the course applies naniar's functions.
 
-Okay, so missing data is not sexy, but it's an essential issue data wrangling. The issue is: 
+Okay, missing data is not a glamorous topic. Still, as you know, wrangling is the data scientist's predominant task. To work with real-world data is to encounter missing data. This course was about:
 
-* How to best explore (EDA, visualize) missing data, and 
-* What do to about missing data; aka, imputation
+* Finding and visualizing missing values
+* A method for tidy missing data
+* How to impute (aka, imputation) missing values
 
-Here are my highlights. 
+R stores missing values as 'NA'. Of course, many functions contain a default argument: na.rm = FALSE. Conceptual gotchas include:
 
-NA = Not Available # should have been recorded
+* **NaN**: Not a number; eg, sqrt(-1)
+* **NULL**: "an empty bucket isn't missing water"
+* **Inf**: infinite; e.g., 10/0
 
-NaN: not a number
-Null: empty not missing; e.g., empty bucket is not missing
+While the 'NA' reflects an *explicitly* missing value (typically as an absent feature), data can be *implicitly* missing (typically as an absent observation or row). I learned of an interesting typology with respecct to missing data dependence:
 
+* MCAR: Missing Completely at Random. NAs have no association with any observed/unobserved data. Imputation is advisable, and deleting observations is okay (will not bias)
+* MAR: Missing at Random: NAs depend on data observed but not data unobserved. Carefully impute, but deleting observations may lead to bias
+* MNAR: Missing Not at Random: NAs related to other NAs. Imputation and deletion will bias. 
 
-```{r}
-# install.packages("naniar")
-library(tidyverse)
-library(naniar)
-library(rlang)
-x <- c(1, NA, 3, NA, NA, 5)
-x %>% any_na()
-x %>% are_na()
+### Naniar is the go-to package for missing value workflow 
 
-
-# Create x, a vector, with values NA, NaN, Inf, ".", and "missing"
-x <- c(NA, NaN, Inf, ".", "missing")
-
-# Use any_na() and are_na() on to explore the missings
-any_na(x)
-are_na(x)
-
-1 + NA
-NA + NA
-NA | FALSE
-
-```
-
-Why care about missing data
-
-n_miss
-n_complete
-
-miss_ family
-miss_var_summary
-miss_case_summary # these work with group_by
-
-```{r}
-
-miss_var_summary(airquality)
-miss_var_table(airquality)
-
-miss_case_summary(airquality)
-miss_case_table(airquality)
-
-ped <- pedestrian
-miss_var_span(ped, var = hourly_counts, span_every = 4000)
-miss_var_run(ped, var = hourly_counts)
-
-# Return the summary of missingness in each variable, 
-# grouped by Month, in the `airquality` dataset
-airquality %>% group_by(Month) %>% miss_var_summary()
-
-# Return the summary of missingness in each case, 
-# grouped by Month, in the `airquality` dataset
-airquality %>% group_by(Month) %>% miss_case_summary()
-
-```
-
-naniar visualizations
-```{r}
-vis_miss(airquality)
-
-gg_miss_var(airquality)
-gg_miss_case(airquality)
-
-gg_miss_upset(airquality)
-
-gg_miss_fct(x = airquality, fct = Month)
-gg_miss_span(pedestrian, hourly_counts, span_every = 3000)
-
-rf <- riskfactors
-vis_miss(rf)
-
-
-```
-
-Searching for and replacing missing values
-How to look for hidden missing values
-
-implicit missing values
-tidyr:: complete()
-tidyr:: fill()
-
-
-```{r}
-library(tidyr)
-library(naniar)
-
-```
-performing imputations
-
+naniar provides at least four numerical summary functions: miss_var_summary(), miss_var_table(), miss_case_summary(), miss_case_table(). But the visualization functions are more fun:
 
 ```{r}
 # install.packages("simputation")
-library(simputation)
 library(tidyverse)
-library(dplyr)
 library(naniar)
+library(simputation)
+
+# vis_miss(airquality) # visdat package
+gg_miss_var(airquality) # missing variables
+gg_miss_case(airquality) # missing cases
+
+gg_miss_upset(airquality) # an upset plot for missingness patterns
+
+gg_miss_fct(x = airquality, fct = Month) # broken down by facctor
+gg_miss_span(pedestrian, hourly_counts, span_every = 3000) #spans of missingness, useful for time series
 
 ```
 
-```{r}
+But my favorite visual function is geom_miss_point(). It creatively solves an interesting question, *how do you visualize missing values?* The standard ggplot() removes missing values and helpfully gives a warning, but you can't see what's removed! What geom_miss_point() does is impute a value that is X% below the variable's minimum value (the default is 10% per the argument **prop_below = 0.1**). Notice below that there are three cases where both humidity and air_temp_c are missing; i.e., these three points are in the lower-left and we can see them due to argument (default) jitter = 0.05.
 
+```{r}
 oceanbuoys %>% 
     ggplot(aes(x = humidity, y = air_temp_c)) + 
     geom_miss_point()
 
+```
+
+### Shadow matrix and linear regression imputation
+
+To assist in missing data workflow, bind_shadow() creates a "shadow matrix". Below the original oceanbuoys dataset contains 8 features. the function bind_shadow() doubles the tibble by adding 8 more variables by appending "_NA": year_NA, latitude_NA, ..., wind_ns_NA. The new cells contain only binary indicators: NA or !NA. In this way, "nabular data" is simply the result of the bind_shadow() operation. 
+
+Imputation is a vital, deep topic but impute_lm() in the **simputation package** conveniently performs lm() to impute. 
+
+```{r}
 # Impute humidity and air temperature using wind_ew and wind_ns, and track missing values
 ocean_imp_lm_wind <- oceanbuoys %>% 
     bind_shadow() %>%
-    impute_lm(humidity ~ wind_ew + wind_ns) %>% 
+    impute_lm(humidity ~ wind_ew + wind_ns) %>% # from simputation package
     impute_lm(air_temp_c ~ wind_ew + wind_ns) %>%
-    add_label_shadow()
+    add_label_shadow() # adds any_missing colum
     
 # Plot the imputed values for air_temp_c and humidity, colored by missingness
 ggplot(ocean_imp_lm_wind, 
@@ -143,6 +82,26 @@ ggplot(ocean_imp_lm_wind,
 
 ```
 
+And we can compare the lm() imputations to the naive mean imputations:
 
+```{r}
+ocean_imp_mean <- oceanbuoys %>% # imput means is a bad practice
+  bind_shadow() %>% 
+  impute_mean_all() %>% 
+  add_label_shadow()
 
+# Bind the models together 
+bound_models <- bind_rows(mean = ocean_imp_mean,
+                          lm_wind = ocean_imp_lm_wind,
+                          .id = "imp_model")
 
+# Inspect the values of air_temp and humidity as a scatter plot
+ggplot(bound_models, 
+       aes(x = air_temp_c, 
+           y = humidity, 
+           color = any_missing)) +
+  geom_point() + 
+  facet_wrap(~imp_model)
+```
+
+Thank you Mr. Tierney, I learned a lot! For a deeper exploration, go to the [source himself](https://naniar.njtierney.com/index.html). 
