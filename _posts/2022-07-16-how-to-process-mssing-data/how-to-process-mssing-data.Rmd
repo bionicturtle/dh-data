@@ -1,0 +1,148 @@
+---
+title: "How to Process Mssing Data"
+description: |
+  A short description of the post.
+author:
+  - name: David Harper
+    url: https://dh-data.org/
+date: 2022-07-16
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+I just finished the first course in datacamp's *Intermediate Tidyverse Toolbox* skills track. The course is [Dealing with Missing Data in R](https://app.datacamp.com/learn/courses/dealing-with-missing-data-in-r) by Nicholas Tierney. He is the author of the [naniar pacakage](https://cran.r-project.org/web/packages/naniar/index.html). Most of the course applies naniar's functions.
+
+Okay, so missing data is not sexy, but it's an essential issue data wrangling. The issue is: 
+
+* How to best explore (EDA, visualize) missing data, and 
+* What do to about missing data; aka, imputation
+
+Here are my highlights. 
+
+NA = Not Available # should have been recorded
+
+NaN: not a number
+Null: empty not missing; e.g., empty bucket is not missing
+
+
+```{r}
+# install.packages("naniar")
+library(tidyverse)
+library(naniar)
+library(rlang)
+x <- c(1, NA, 3, NA, NA, 5)
+x %>% any_na()
+x %>% are_na()
+
+
+# Create x, a vector, with values NA, NaN, Inf, ".", and "missing"
+x <- c(NA, NaN, Inf, ".", "missing")
+
+# Use any_na() and are_na() on to explore the missings
+any_na(x)
+are_na(x)
+
+1 + NA
+NA + NA
+NA | FALSE
+
+```
+
+Why care about missing data
+
+n_miss
+n_complete
+
+miss_ family
+miss_var_summary
+miss_case_summary # these work with group_by
+
+```{r}
+
+miss_var_summary(airquality)
+miss_var_table(airquality)
+
+miss_case_summary(airquality)
+miss_case_table(airquality)
+
+ped <- pedestrian
+miss_var_span(ped, var = hourly_counts, span_every = 4000)
+miss_var_run(ped, var = hourly_counts)
+
+# Return the summary of missingness in each variable, 
+# grouped by Month, in the `airquality` dataset
+airquality %>% group_by(Month) %>% miss_var_summary()
+
+# Return the summary of missingness in each case, 
+# grouped by Month, in the `airquality` dataset
+airquality %>% group_by(Month) %>% miss_case_summary()
+
+```
+
+naniar visualizations
+```{r}
+vis_miss(airquality)
+
+gg_miss_var(airquality)
+gg_miss_case(airquality)
+
+gg_miss_upset(airquality)
+
+gg_miss_fct(x = airquality, fct = Month)
+gg_miss_span(pedestrian, hourly_counts, span_every = 3000)
+
+rf <- riskfactors
+vis_miss(rf)
+
+
+```
+
+Searching for and replacing missing values
+How to look for hidden missing values
+
+implicit missing values
+tidyr:: complete()
+tidyr:: fill()
+
+
+```{r}
+library(tidyr)
+library(naniar)
+
+```
+performing imputations
+
+
+```{r}
+# install.packages("simputation")
+library(simputation)
+library(tidyverse)
+library(dplyr)
+library(naniar)
+
+```
+
+```{r}
+
+oceanbuoys %>% 
+    ggplot(aes(x = humidity, y = air_temp_c)) + 
+    geom_miss_point()
+
+# Impute humidity and air temperature using wind_ew and wind_ns, and track missing values
+ocean_imp_lm_wind <- oceanbuoys %>% 
+    bind_shadow() %>%
+    impute_lm(humidity ~ wind_ew + wind_ns) %>% 
+    impute_lm(air_temp_c ~ wind_ew + wind_ns) %>%
+    add_label_shadow()
+    
+# Plot the imputed values for air_temp_c and humidity, colored by missingness
+ggplot(ocean_imp_lm_wind, 
+       aes(x = air_temp_c, y = humidity, color = any_missing)) + 
+  geom_point()
+
+```
+
+
+
+
