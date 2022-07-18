@@ -17,6 +17,11 @@ This is a distill blog per my [brief introduction](https://dh-data.org/posts/202
 
 I built this simple sheet to reconcile the many PD concepts that swirl around the FRM candidate in the credit (T6) topic. The ONLY input(s) is the hazard rate (aka, default intensity): the cell should default to this input at E8. The rest of the PDs are calculated. Also, notice how the NOTES are dynamically updated. It's easy in Excel to create such fields by concatenating with TEXT(G10,"0.0%"). 
 
+For durability, I switched from the embed to [this shareable link](https://1drv.ms/x/s!AhXomBH06svFuwOoBKJt_hCqVqt9?e=ntqoeL)
+
+See PD_concepts_dynamic tab (first sheet after the TOC)
+
+![PD Concepts](PD_concepts_dynamic.png){width=60%}
 
 Here are the generic options:
 
