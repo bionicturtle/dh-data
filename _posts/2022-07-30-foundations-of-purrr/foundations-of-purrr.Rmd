@@ -1,0 +1,168 @@
+---
+title: "Foundations of purrr"
+description: |
+  Map over list elements with elegance and power
+author:
+  - name: David Harper
+    url: https://dh-data.org/
+date: 2022-07-30
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+```
+
+I recently completed datacamp's *Intermediate Tidyverse Toolbox* skills track. My intention was to get handy with the [purrr package](https://purrr.tidyverse.org/), which has a helpful [cheat sheet](https://www.rstudio.com/resources/cheatsheets/). Purrr requires practice with R's most versatile data type, the list. In the case of a single list, the essential purrr function is:
+
+**map(.x, .f, ...)**; i.e., map(object, function). For example:
+
+**d <- map(files, read_csv)**
+
+The object can be vector, dataframe or list; recall a dataframe is a list of equal-length vectors. 
+
+Here is a traditional loop ...
+
+```{r results='hide'}
+
+library(tidyverse)
+bird_counts <- list(
+    c(3,1),
+    c(3,8,1,2),
+    c(8,3,9,9,5,5),
+    c(8,9,7,9,5,4,1,5)
+)
+class(bird_counts[1]) # returns list
+class(bird_counts[[1]]) # returns a numeric vector length 2
+
+# This is a traditional loop ...
+bird_sum <- list()
+for (i in seq_along(bird_counts)) {
+    bird_sum[[i]] <- sum(bird_counts[[i]])
+}
+
+```
+
+... and here is map() replacing the clunky for-loop. Map is a much superior replacement for apply(). Notice how map() returns a list, but map_dbl() returns a numeric vector (of length 1, in this case).
+
+```{r}
+
+# ... and this is the same result with a single map command:
+bird_sum <- map(bird_counts, sum)
+str(bird_sum[2]) # = 3 + 8 + 1 + 2
+str(bird_sum[[2]])
+
+bird_sum_dbl <- map_dbl(bird_counts, sum)
+str(bird_sum_dbl[2])
+
+```
+
+Since map often operates on a LIST, it is necessary to know how to **subset** a list and how to **set_names()** for a list. Better than **map(list, function)** is the elaborate form:
+
+**map(list, ~function(.x))**
+
+This gives the same result as map(list, function). The tilde (~) creates a **formula** that is not evaluated immediately. The .x argument denotes where the (first, and in this case, the only) list element goes inside the function. When we use .x to show where the element goes in the function, we need to put a ~ in front of the function in the second argument of map(). 
+
+Below is my own pedantic example (not from the course) where I define the poission_pdf() function, then map this function to the integer sequence (aka, support). You can see the whole point of my code is to use **map_dbl(support, poisson_pdf)**
+
+```{r}
+
+# function
+lam <- 4
+poisson_pdf <- function(k){
+    lam^k * exp(-lam) / factorial(k)
+}
+
+support <- 0:15
+
+poisson_pdf_tbl <- support %>% map_dbl(poisson_pdf) %>% as_tibble(.) %>%
+    add_column(support)
+poisson_pdf_tbl %>% ggplot(aes(x = support, y = value)) + 
+    geom_bar(stat = "identity") +
+    theme_classic()
+
+```
+
+Of course above I defined my function, poisson_pdf(), but we can use an anonymous function. Each of the three pipes **below** gives the same result as above. The first is an anonymous function. The second (and third) is also anonymous but relies on the rlang package for a shortcut with the tilde. 
+
+```{r results='hold'}
+library(scales)
+# all three below are effectively identical
+1:30 %>% map_dbl(function(k) lam^k * exp(-lam) / factorial(k)) %>% percent(.01) %>% head()
+1:30 %>% map_dbl(~lam^. * exp(-lam) / factorial(.)) %>% percent(.01) %>% head()
+# When there is only one argument, we can use "." to refer to ".x"
+1:30 %>% map_dbl(~lam^.x * exp(-lam) / factorial(.x)) %>% percent(.01) %>% head()
+
+```
+
+### Simulating data and then running a linear model
+
+Map is especially potent because a list's elements can be lists (e.g., dataframes). Below we use map to create list_of_df which is a list of 3 elements where each element is a 200 × 3 dataframe. Each dataframe contains three columns. The first dataframe has a column, where = "north"; The second dataframe has a column, where = "east." Then **map(~lm(a ~ b, data = .x))** regresses a against b, but it maps the regression formula, lm(), over each of the three dataframes (i.e., they are the list's elements).
+
+```{r results='hide'}
+# List of sites north, east, and west
+sites <- list("north", "east", "west")
+
+# Create a list of 3 dataframes, each with where, a, and b column 
+list_of_df <-  map(sites,  
+  ~data.frame(where = .x,
+       a = rnorm(mean = 5, n = 200, sd = 5/2),
+       b = rnorm(mean = 200, n = 200, sd = 15)))
+
+lm_results <- list_of_df %>%
+    map(~lm(a ~ b, data = .x)) %>% # could also be "data = ."
+    map(summary)
+
+```
+
+So lm_result is a list of 3 (where each of these elements is itself a list of 11 elements that characterizes the regression). For example:
+
+```{r}
+lm_results[[2]]$coefficients
+```
+
+
+### Other stuff
+
+The course includes an introduction to troubleshooting with safely() and possibly(). Also walk() *returns the input object invisibly*, so it is useful in a pipe that wants to perform an action (e.g., print), but then continues to pipe-operate on the same data.
+
+```{r}
+
+# b = list of 4 where b[[1]] = NaN
+b <- list(-10, 1, 10, 0) %>% 
+      map(log)
+
+# Map safely where list of 4 but a[[1]] is list of 2
+# a[[1]]$result = NA and a[[1]]$error is the error
+a <- list("-10", 1, 10, 0) %>% 
+      map(safely(log, otherwise = NA_real_)) %>%
+      transpose() # Transpose the result
+
+# possibly returns the resuls only
+a <- list("-10", 1, 10, 0) %>% 
+      map(possibly(log, otherwise = NA_real_))
+
+```
+
+
+In the code below (from the course), it wasn't immediately obvious to me how `[` is used. In regard to this subsetting operator, `[`, see https://stackoverflow.com/questions/57528110/what-does-the-argument-mean-inside-map-df 
+
+```{r}
+library(repurrrsive)
+names(sw_films) # list of 7 but no names
+sw_films[[1]]$director # "George Lucas"
+sw_films %>% map_chr("director") # chr vector with 7 elements; e.g., "George Lucas"
+sw_films %>% map_df(`[`, c("title", "director")) # tibble 7 * 2
+
+map_chr(sw_films,"title") # chr vector with 7 elements
+
+map_chr(sw_films, ~.x[["episode_id"]]) %>%  # gets a 7-length chr vector c("4", "2", ... "7"_
+    set_names(map_chr(sw_films, "title")) %>% # names the chr vector
+    sort()
+```
+Those are my highlights. As I finished the skills track, I've already done the subsequent course in the track, *Intermediate Functional Programming with purrr*. That's even more purrr, and I'll collect those notes soon!
+
+
+
