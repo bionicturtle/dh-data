@@ -1657,59 +1657,122 @@ list of 11 elements that characterizes the regression). For example:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>lm_results</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span><span class='op'>$</span><span class='va'>coefficients</span>
 </code></pre>
 </div>
-<pre><code>                Estimate Std. Error    t value   Pr(&gt;|t|)
-(Intercept)  5.280414274  2.5224428  2.0933732 0.03758933
-b           -0.002635797  0.0125601 -0.2098547 0.83399686</code></pre>
+<pre><code>               Estimate Std. Error   t value  Pr(&gt;|t|)
+(Intercept) 3.017444966 2.36044904 1.2783351 0.2026277
+b           0.008701541 0.01194953 0.7281913 0.4673568</code></pre>
 </div>
-<h3 id="other-stuff">Other stuff</h3>
+<h3 id="adverbs-and-other-stuff">Adverbs and other stuff</h3>
 <p>The course includes an introduction to troubleshooting with safely()
-and possibly(). Also walk() <em>returns the input object invisibly</em>,
-so it is useful in a pipe that wants to perform an action (e.g., print),
-but then continues to pipe-operate on the same data.</p>
+and possibly(). Along with quietly(), these are <em>wrapper</em>
+functions. Wrapper functions rely on the dot-dot-dot (Some might call
+this an ellipsis, but apparently it’s a dot-dot-dot). In the chunk
+below, I define a funciton, var_bhs(), that wraps the base quantile()
+function:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># b = list of 4 where b[[1]] = NaN</span>
-<span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>10</span>, <span class='fl'>1</span>, <span class='fl'>10</span>, <span class='fl'>0</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
-      <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>log</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Here is artificial L/P data, n = 100. In your opinion, what is the 95.0% HS VaR?</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='va'>LP_sim</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>94</span><span class='op'>)</span>, <span class='fl'>96</span>, <span class='fl'>99</span>, <span class='fl'>103</span>, <span class='fl'>108</span>, <span class='fl'>114</span>, <span class='fl'>121</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>LP_sim</span>, probs <span class='op'>=</span> <span class='fl'>0.95</span><span class='op'>)</span> <span class='co'># returns 961.5</span>
+</code></pre>
+</div>
+<pre><code>  95% 
+96.15 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># But if we want to follow Dowd's approach (which is the FRM's), we want:</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>LP_sim</span>, probs <span class='op'>=</span> <span class='fl'>0.95</span>, type <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> 
+</code></pre>
+</div>
+<pre><code>95% 
+ 96 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Here is my wrapper function; bhs refers to Basic Historical Simulation</span>
+<span class='va'>var_bhs</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>...</span>, type <span class='op'>=</span> <span class='fl'>1</span>, names <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> 
+  <span class='co'># %&gt;% format(nsmall = 2)</span>
+<span class='op'>}</span>
 
-<span class='co'># Map safely where list of 4 but a[[1]] is list of 2</span>
-<span class='co'># a[[1]]$result = NA and a[[1]]$error is the error</span>
-<span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"-10"</span>, <span class='fl'>1</span>, <span class='fl'>10</span>, <span class='fl'>0</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
-      <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/safely.html'>safely</a></span><span class='op'>(</span><span class='va'>log</span>, otherwise <span class='op'>=</span> <span class='cn'>NA_real_</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-      <span class='fu'><a href='https://purrr.tidyverse.org/reference/transpose.html'>transpose</a></span><span class='op'>(</span><span class='op'>)</span> <span class='co'># Transpose the result</span>
+<span class='fu'>var_bhs</span><span class='op'>(</span><span class='va'>LP_sim</span>, <span class='fl'>0.95</span><span class='op'>)</span> <span class='co'># returns 96 which is correct</span>
+</code></pre>
+</div>
+<pre><code>[1] 96</code></pre>
+</div>
+<p>In regard to purrr’s troubleshooting wrappers, walk() <em>returns the
+input object invisibly</em>, so it is useful in a pipe that wants to
+perform an action (e.g., print), but then continues to pipe-operate on
+the same data. The chunk below illustrates the difference between
+safely() and possibly():</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tiny_list</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>5</span>, <span class='st'>"zero"</span>, <span class='fl'>0</span>, <span class='fl'>3</span>, <span class='fl'>12</span><span class='op'>)</span> <span class='co'># contains a negative and a chr</span>
 
-<span class='co'># possibly returns the resuls only</span>
-<span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"-10"</span>, <span class='fl'>1</span>, <span class='fl'>10</span>, <span class='fl'>0</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
-      <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/safely.html'>possibly</a></span><span class='op'>(</span><span class='va'>log</span>, otherwise <span class='op'>=</span> <span class='cn'>NA_real_</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'># The won't work at all, object a is not even created. So I won't run it!</span>
+<span class='co'># a &lt;- tiny_list %&gt;% map(log)</span>
+
+<span class='co'># Map safely()</span>
+<span class='co'># b1 is a list of 5 where each element is a list of 2: result and error</span>
+<span class='va'>b1</span> <span class='op'>&lt;-</span> <span class='va'>tiny_list</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/safely.html'>safely</a></span><span class='op'>(</span><span class='va'>log</span>, otherwise <span class='op'>=</span> <span class='cn'>NA_real_</span><span class='op'>)</span><span class='op'>)</span> 
+<span class='va'>b1</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span><span class='op'>$</span><span class='va'>result</span>; <span class='va'>b1</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span><span class='op'>$</span><span class='va'>error</span>
+</code></pre>
+</div>
+<pre><code>[1] NA</code></pre>
+<pre><code>&lt;simpleError in .Primitive(&quot;log&quot;)(x, base): non-numeric argument to mathematical function&gt;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Map safely then transpose()</span>
+<span class='co'># b2 is list of 2. The first element is a list of 5 results; </span>
+<span class='co'># and the second element is a list of 5 errors</span>
+<span class='va'>b2</span> <span class='op'>&lt;-</span> <span class='va'>tiny_list</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/safely.html'>safely</a></span><span class='op'>(</span><span class='va'>log</span>, otherwise <span class='op'>=</span> <span class='cn'>NA_real_</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/transpose.html'>transpose</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>b2</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>; <span class='va'>b2</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[1] NA</code></pre>
+<pre><code>&lt;simpleError in .Primitive(&quot;log&quot;)(x, base): non-numeric argument to mathematical function&gt;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Map possibly()</span>
+<span class='co'># c is a list of 5 which is a simpler structure, </span>
+<span class='co'># but we can't flatten() into a vector b/c c[[1]] = NaN per otherwise</span>
+<span class='va'>c</span> <span class='op'>&lt;-</span> <span class='va'>tiny_list</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/safely.html'>possibly</a></span><span class='op'>(</span><span class='va'>log</span>, otherwise <span class='op'>=</span> <span class='cn'>NA_real_</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>In the code below (from the course), it wasn’t immediately obvious to
-me how <code>[</code> is used. In regard to this subsetting operator,
-<code>[</code>, see <a
+<p>Finally, the code below (most of which is from the course, but the
+annotations are mine) did impress me. I am still vexed by how
+<code>[</code> is used, but I found the more intuitive equivalent. About
+this subsetting operator, <code>[</code>, see <a
 href="https://stackoverflow.com/questions/57528110/what-does-the-argument-mean-inside-map-df"
 class="uri">https://stackoverflow.com/questions/57528110/what-does-the-argument-mean-inside-map-df</a></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/jennybc/repurrrsive'>repurrrsive</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>sw_films</span><span class='op'>)</span> <span class='co'># list of 7 but no names</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>sw_films</span><span class='op'>)</span> <span class='co'># list of 7 SW films (not sure why not 9), but names() are NULL</span>
 </code></pre>
 </div>
 <pre><code>NULL</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sw_films</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>$</span><span class='va'>director</span> <span class='co'># "George Lucas"</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sw_films</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>$</span><span class='va'>director</span>; <span class='va'>sw_films</span><span class='op'>[[</span><span class='fl'>7</span><span class='op'>]</span><span class='op'>]</span><span class='op'>$</span><span class='va'>director</span>
 </code></pre>
 </div>
 <pre><code>[1] &quot;George Lucas&quot;</code></pre>
+<pre><code>[1] &quot;J. J. Abrams&quot;</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sw_films</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_chr</a></span><span class='op'>(</span><span class='st'>"director"</span><span class='op'>)</span> <span class='co'># chr vector with 7 elements; e.g., "George Lucas"</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_chr</a></span><span class='op'>(</span><span class='va'>sw_films</span>,<span class='st'>"title"</span><span class='op'>)</span> <span class='co'># chr vector with 7 elements</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;A New Hope&quot;              &quot;Attack of the Clones&quot;   
+[3] &quot;The Phantom Menace&quot;      &quot;Revenge of the Sith&quot;    
+[5] &quot;Return of the Jedi&quot;      &quot;The Empire Strikes Back&quot;
+[7] &quot;The Force Awakens&quot;      </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># </span>
+<span class='co'>#</span>
+<span class='va'>sw_films</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_chr</a></span><span class='op'>(</span><span class='st'>"director"</span><span class='op'>)</span> <span class='co'># returns a chr vector with 7 elements</span>
 </code></pre>
 </div>
 <pre><code>[1] &quot;George Lucas&quot;     &quot;George Lucas&quot;     &quot;George Lucas&quot;    
 [4] &quot;George Lucas&quot;     &quot;Richard Marquand&quot; &quot;Irvin Kershner&quot;  
 [7] &quot;J. J. Abrams&quot;    </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sw_films</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_df</a></span><span class='op'>(</span><span class='va'>`[`</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"title"</span>, <span class='st'>"director"</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># tibble 7 * 2</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sw_films</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_df</a></span><span class='op'>(</span><span class='va'>`[`</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"title"</span>, <span class='st'>"director"</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># `[` is subsetting the index = c("title", "director")</span>
 </code></pre>
 </div>
 <pre><code># A tibble: 7 × 2
@@ -1723,17 +1786,25 @@ class="uri">https://stackoverflow.com/questions/57528110/what-does-the-argument-
 6 The Empire Strikes Back Irvin Kershner  
 7 The Force Awakens       J. J. Abrams    </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_chr</a></span><span class='op'>(</span><span class='va'>sw_films</span>,<span class='st'>"title"</span><span class='op'>)</span> <span class='co'># chr vector with 7 elements</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sw_films</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_df</a></span><span class='op'>(</span><span class='op'>~</span> <span class='va'>.x</span><span class='op'>[</span><span class='va'>.y</span><span class='op'>]</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"title"</span>, <span class='st'>"director"</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># and is equivalent to this which is easier for me</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;A New Hope&quot;              &quot;Attack of the Clones&quot;   
-[3] &quot;The Phantom Menace&quot;      &quot;Revenge of the Sith&quot;    
-[5] &quot;Return of the Jedi&quot;      &quot;The Empire Strikes Back&quot;
-[7] &quot;The Force Awakens&quot;      </code></pre>
+<pre><code># A tibble: 7 × 2
+  title                   director        
+  &lt;chr&gt;                   &lt;chr&gt;           
+1 A New Hope              George Lucas    
+2 Attack of the Clones    George Lucas    
+3 The Phantom Menace      George Lucas    
+4 Revenge of the Sith     George Lucas    
+5 Return of the Jedi      Richard Marquand
+6 The Empire Strikes Back Irvin Kershner  
+7 The Force Awakens       J. J. Abrams    </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_chr</a></span><span class='op'>(</span><span class='va'>sw_films</span>, <span class='op'>~</span><span class='va'>.x</span><span class='op'>[[</span><span class='st'>"episode_id"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>  <span class='co'># gets a 7-length chr vector c("4", "2", ... "7"_</span>
-    <span class='fu'><a href='https://purrr.tidyverse.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_chr</a></span><span class='op'>(</span><span class='va'>sw_films</span>, <span class='st'>"title"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='co'># names the chr vector</span>
-    <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#</span>
+<span class='co'>#</span>
+<span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_chr</a></span><span class='op'>(</span><span class='va'>sw_films</span>, <span class='op'>~</span><span class='va'>.x</span><span class='op'>[[</span><span class='st'>"episode_id"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>  <span class='co'># returns a 7-length chr vector c("4", "2", ... "7")</span>
+    <span class='fu'><a href='https://purrr.tidyverse.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_chr</a></span><span class='op'>(</span><span class='va'>sw_films</span>, <span class='st'>"title"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='co'># then names the chr vector</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='op'>)</span> <span class='co'># and finally sorts the vector </span>
 </code></pre>
 </div>
 <pre><code>     The Phantom Menace    Attack of the Clones 
@@ -1749,7 +1820,7 @@ The Empire Strikes Back      Return of the Jedi
 done the subsequent course in the track, <em>Intermediate Functional
 Programming with purrr</em>. That’s even more purrr, and I’ll collect
 those notes soon!</p>
-<div class="sourceCode" id="cb12"><pre
+<div class="sourceCode" id="cb21"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

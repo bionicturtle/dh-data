@@ -124,44 +124,75 @@ lm_results[[2]]$coefficients
 ```
 
 
-### Other stuff
+### Adverbs and other stuff
 
-The course includes an introduction to troubleshooting with safely() and possibly(). Also walk() *returns the input object invisibly*, so it is useful in a pipe that wants to perform an action (e.g., print), but then continues to pipe-operate on the same data.
+The course includes an introduction to troubleshooting with safely() and possibly(). Along with quietly(), these are *wrapper* functions. Wrapper functions rely on the dot-dot-dot (Some might call this an ellipsis, but apparently it's a dot-dot-dot). In the chunk below, I define a funciton, var_bhs(), that wraps the base quantile() function:
 
 ```{r}
+# Here is artificial L/P data, n = 100. In your opinion, what is the 95.0% HS VaR?
+library(tidyverse)
+LP_sim <- c(seq(1:94), 96, 99, 103, 108, 114, 121)
+quantile(LP_sim, probs = 0.95) # returns 961.5
 
-# b = list of 4 where b[[1]] = NaN
-b <- list(-10, 1, 10, 0) %>% 
-      map(log)
+# But if we want to follow Dowd's approach (which is the FRM's), we want:
+quantile(LP_sim, probs = 0.95, type = 1) 
 
-# Map safely where list of 4 but a[[1]] is list of 2
-# a[[1]]$result = NA and a[[1]]$error is the error
-a <- list("-10", 1, 10, 0) %>% 
-      map(safely(log, otherwise = NA_real_)) %>%
-      transpose() # Transpose the result
+# Here is my wrapper function; bhs refers to Basic Historical Simulation
+var_bhs <- function(...) {
+  quantile(..., type = 1, names = FALSE) 
+  # %>% format(nsmall = 2)
+}
 
-# possibly returns the resuls only
-a <- list("-10", 1, 10, 0) %>% 
-      map(possibly(log, otherwise = NA_real_))
+var_bhs(LP_sim, 0.95) # returns 96 which is correct
 
 ```
 
+In regard to purrr's troubleshooting wrappers, walk() *returns the input object invisibly*, so it is useful in a pipe that wants to perform an action (e.g., print), but then continues to pipe-operate on the same data. The chunk below illustrates the difference between safely() and possibly():
 
-In the code below (from the course), it wasn't immediately obvious to me how `[` is used. In regard to this subsetting operator, `[`, see https://stackoverflow.com/questions/57528110/what-does-the-argument-mean-inside-map-df 
+```{r}
+
+tiny_list <- list(-5, "zero", 0, 3, 12) # contains a negative and a chr
+
+# The won't work at all, object a is not even created. So I won't run it!
+# a <- tiny_list %>% map(log)
+
+# Map safely()
+# b1 is a list of 5 where each element is a list of 2: result and error
+b1 <- tiny_list %>% map(safely(log, otherwise = NA_real_)) 
+b1[[2]]$result; b1[[2]]$error
+
+# Map safely then transpose()
+# b2 is list of 2. The first element is a list of 5 results; 
+# and the second element is a list of 5 errors
+b2 <- tiny_list %>% map(safely(log, otherwise = NA_real_)) %>% transpose()
+b2[[1]][[2]]; b2[[2]][[2]]
+
+# Map possibly()
+# c is a list of 5 which is a simpler structure, 
+# but we can't flatten() into a vector b/c c[[1]] = NaN per otherwise
+c <- tiny_list %>% map(possibly(log, otherwise = NA_real_))
+
+```
+
+Finally, the code below (most of which is from the course, but the annotations are mine) did impress me. I am still vexed by how `[` is used, but I found the more intuitive equivalent. About this subsetting operator, `[`, see https://stackoverflow.com/questions/57528110/what-does-the-argument-mean-inside-map-df 
 
 ```{r}
 library(repurrrsive)
-names(sw_films) # list of 7 but no names
-sw_films[[1]]$director # "George Lucas"
-sw_films %>% map_chr("director") # chr vector with 7 elements; e.g., "George Lucas"
-sw_films %>% map_df(`[`, c("title", "director")) # tibble 7 * 2
-
+names(sw_films) # list of 7 SW films (not sure why not 9), but names() are NULL
+sw_films[[1]]$director; sw_films[[7]]$director
 map_chr(sw_films,"title") # chr vector with 7 elements
-
-map_chr(sw_films, ~.x[["episode_id"]]) %>%  # gets a 7-length chr vector c("4", "2", ... "7"_
-    set_names(map_chr(sw_films, "title")) %>% # names the chr vector
-    sort()
+# 
+#
+sw_films %>% map_chr("director") # returns a chr vector with 7 elements
+sw_films %>% map_df(`[`, c("title", "director")) # `[` is subsetting the index = c("title", "director")
+sw_films %>% map_df(~ .x[.y], c("title", "director")) # and is equivalent to this which is easier for me
+#
+#
+map_chr(sw_films, ~.x[["episode_id"]]) %>%  # returns a 7-length chr vector c("4", "2", ... "7")
+    set_names(map_chr(sw_films, "title")) %>% # then names the chr vector
+    sort() # and finally sorts the vector 
 ```
+
 Those are my highlights. As I finished the skills track, I've already done the subsequent course in the track, *Intermediate Functional Programming with purrr*. That's even more purrr, and I'll collect those notes soon!
 
 
