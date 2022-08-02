@@ -181,13 +181,11 @@ library(repurrrsive)
 names(sw_films) # list of 7 SW films (not sure why not 9), but names() are NULL
 sw_films[[1]]$director; sw_films[[7]]$director
 map_chr(sw_films,"title") # chr vector with 7 elements
-# 
-#
-sw_films %>% map_chr("director") # returns a chr vector with 7 elements
+sw_films %>% map_chr("director") # chr vector with 7 elements
+# ... now a more sophisticated retrieval:
 sw_films %>% map_df(`[`, c("title", "director")) # `[` is subsetting the index = c("title", "director")
-sw_films %>% map_df(~ .x[.y], c("title", "director")) # and is equivalent to this which is easier for me
-#
-#
+sw_films %>% map_df(~ .x[.y], c("title", "director")) # is equivalent to this, which is easier for me
+# ... and finally a very cool maneuver:
 map_chr(sw_films, ~.x[["episode_id"]]) %>%  # returns a 7-length chr vector c("4", "2", ... "7")
     set_names(map_chr(sw_films, "title")) %>% # then names the chr vector
     sort() # and finally sorts the vector 

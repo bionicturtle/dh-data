@@ -2619,9 +2619,9 @@ list of 11 elements that characterizes the regression). For example:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>lm_results</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span><span class='op'>$</span><span class='va'>coefficients</span>
 </code></pre>
 </div>
-<pre><code>               Estimate Std. Error   t value  Pr(&gt;|t|)
-(Intercept) 3.017444966 2.36044904 1.2783351 0.2026277
-b           0.008701541 0.01194953 0.7281913 0.4673568</code></pre>
+<pre><code>               Estimate Std. Error   t value   Pr(&gt;|t|)
+(Intercept) 4.321718041 2.41771085 1.7875248 0.07538217
+b           0.003348198 0.01200853 0.2788183 0.78067527</code></pre>
 </div>
 <h3 id="adverbs-and-other-stuff">Adverbs and other stuff</h3>
 <p>The course includes an introduction to troubleshooting with safely()
@@ -2725,16 +2725,15 @@ class="uri">https://stackoverflow.com/questions/57528110/what-does-the-argument-
 [5] &quot;Return of the Jedi&quot;      &quot;The Empire Strikes Back&quot;
 [7] &quot;The Force Awakens&quot;      </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># </span>
-<span class='co'>#</span>
-<span class='va'>sw_films</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_chr</a></span><span class='op'>(</span><span class='st'>"director"</span><span class='op'>)</span> <span class='co'># returns a chr vector with 7 elements</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sw_films</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_chr</a></span><span class='op'>(</span><span class='st'>"director"</span><span class='op'>)</span> <span class='co'># chr vector with 7 elements</span>
 </code></pre>
 </div>
 <pre><code>[1] &quot;George Lucas&quot;     &quot;George Lucas&quot;     &quot;George Lucas&quot;    
 [4] &quot;George Lucas&quot;     &quot;Richard Marquand&quot; &quot;Irvin Kershner&quot;  
 [7] &quot;J. J. Abrams&quot;    </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sw_films</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_df</a></span><span class='op'>(</span><span class='va'>`[`</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"title"</span>, <span class='st'>"director"</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># `[` is subsetting the index = c("title", "director")</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># ... now a more sophisticated retrieval:</span>
+<span class='va'>sw_films</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_df</a></span><span class='op'>(</span><span class='va'>`[`</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"title"</span>, <span class='st'>"director"</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># `[` is subsetting the index = c("title", "director")</span>
 </code></pre>
 </div>
 <pre><code># A tibble: 7 × 2
@@ -2748,7 +2747,7 @@ class="uri">https://stackoverflow.com/questions/57528110/what-does-the-argument-
 6 The Empire Strikes Back Irvin Kershner  
 7 The Force Awakens       J. J. Abrams    </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sw_films</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_df</a></span><span class='op'>(</span><span class='op'>~</span> <span class='va'>.x</span><span class='op'>[</span><span class='va'>.y</span><span class='op'>]</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"title"</span>, <span class='st'>"director"</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># and is equivalent to this which is easier for me</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sw_films</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_df</a></span><span class='op'>(</span><span class='op'>~</span> <span class='va'>.x</span><span class='op'>[</span><span class='va'>.y</span><span class='op'>]</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"title"</span>, <span class='st'>"director"</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># is equivalent to this, which is easier for me</span>
 </code></pre>
 </div>
 <pre><code># A tibble: 7 × 2
@@ -2762,8 +2761,7 @@ class="uri">https://stackoverflow.com/questions/57528110/what-does-the-argument-
 6 The Empire Strikes Back Irvin Kershner  
 7 The Force Awakens       J. J. Abrams    </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#</span>
-<span class='co'>#</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># ... and finally a very cool maneuver:</span>
 <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_chr</a></span><span class='op'>(</span><span class='va'>sw_films</span>, <span class='op'>~</span><span class='va'>.x</span><span class='op'>[[</span><span class='st'>"episode_id"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>  <span class='co'># returns a 7-length chr vector c("4", "2", ... "7")</span>
     <span class='fu'><a href='https://purrr.tidyverse.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_chr</a></span><span class='op'>(</span><span class='va'>sw_films</span>, <span class='st'>"title"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='co'># then names the chr vector</span>
     <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='op'>)</span> <span class='co'># and finally sorts the vector </span>
