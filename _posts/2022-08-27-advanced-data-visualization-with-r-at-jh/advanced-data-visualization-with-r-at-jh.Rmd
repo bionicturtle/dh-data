@@ -252,6 +252,7 @@ ggplotly(my_boxplot)
 
 ```
 
+I hope that's helpful and interesting. I almost forgot: the [course page is here](https://www.coursera.org/learn/jhu-advanced-data-visualization-r)
 
 
 
