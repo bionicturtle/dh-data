@@ -1,0 +1,257 @@
+---
+title: "Advanced Data Visualization with R at JH"
+description: |
+  The sequel in the JH dataviz specialization
+author:
+  - name: David Harper
+    url: https://dh-data.org/
+date: 2022-08-27
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+
+library(tidyverse)
+
+# echo =    FALSE: evaluates the code, hides the code, and shows output in the knit
+# include = FALSE: evaluates the code, hides the code, but DOES NOT SHOW the output in the knit
+
+```
+
+This three-week course follows Data Visualization in R with ggplot2 (I previously [shared my final submission](https://dh-data.org/posts/2022-06-06-my-jh-dataviz-submission/) to that prerequisite) and is also taught by the talented Collin Paschall. Despite being dubbed advanced, I perceived the difficulty to be low to moderate, if you are proficient with R. The strength of the course is that it gave me practice in plots that otherwise I'd never make. The weakness is a relative lack of theory. I actually expected this course to go deeper into the grammatical theory, but don't expect that here. For theory, I tend to rely on [ggplot2: elegant graphics for data analysis](https://ggplot2-book.org/), and obviously the indispensibele [reference](https://ggplot2.tidyverse.org/index.html). The course refers to [Dava Visualization with R](https://rkabacoff.github.io/datavis/) and [R Graphics Cookbook](https://r-graphics.org/). Below is a sample (< 50%) of the plots.
+
+### Extensions of scatterplots 
+
+Although it's easy to add a line to a scatterplot, there is an entire library of possibilities under the surface. To the geom_point() we only need to add geom_smooth() where the default is [locally weighted polynomial; aka, LOESS](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/loess.html). When adding a line to a scatterplot, a key choice is between the more familiar linear model (e.g., "method = lm") and the default. As illustrated by my fourth plot below, the lm method can plot a polynomial. I collected four plots with the [patchwork package](https://patchwork.data-imaginist.com/index.html) and it is indeed "ridiculously simple" to use!
+
+```{r include=FALSE}
+
+set.seed(19)
+var1<-runif(50,0,10)
+var2<-var1+rnorm(50,5,2)
+var3<- var1^2*(-rnorm(50,1,.2))
+dat1<-tibble(var1,var2)
+
+```
+
+```{r include=TRUE}
+
+library(patchwork) 
+
+p1 <- dat1 %>% ggplot(aes(x = var1, y = var2)) +
+    geom_point() +
+    geom_smooth() + 
+    labs(x = "Variable1", y = "Variable2")
+
+p2 <- dat1 %>% ggplot(aes(x = var1, y = var2)) +
+    geom_point() +
+    geom_smooth(span = 0.3) + 
+    labs(x = "Variable1", y = "Variable2")
+
+p3 <- dat1 %>% ggplot(aes(x = var1, y = var3)) +
+    geom_point() +
+    geom_smooth(method = lm, se = FALSE) + 
+    labs(x = "Variable1", y = "Variable2")
+
+p4 <- dat1 %>% ggplot(aes(x = var1, y = var3)) +
+    geom_point() +
+    geom_smooth(method = lm, formula = y ~ poly(x, 2), se = FALSE) + 
+    labs(x = "Variable1", y = "Variable2")
+
+lm_4 <- lm(var3 ~ poly(var1, 2), data = dat1)
+lm_4$coefficients
+
+(p1 + p2)/ (p3 + p4) # patchwork layout magic with simple arithmetic
+
+```
+
+<br>
+A scatterplot matrix is acheived with the GGally which [extends ggplot2](https://ggobi.github.io/ggally/index.html). Notice that ggpairs() generates a matrix where I have defined the diagonal and lower triangle with ggplot wrapper functions.
+
+```{r include=FALSE}
+
+library(GGally)
+
+set.seed(10)
+var1<-runif(50,0,10)
+var2<-var1+rnorm(50,5,2)
+var3<- var1*(-rnorm(50,1,.2))
+
+dat2<-tibble(var1,var2,var3)
+
+```
+
+```{r include=TRUE}
+my_density <- function(data, mapping, ...){
+  ggplot(data = data, mapping = mapping) + 
+    geom_density(fill = "#0433ff", ...)
+}
+
+my_scatter <- function(data, mapping, ...){
+  ggplot(data = data, mapping = mapping) + 
+    geom_point(size = 2,
+               color = "#ffa500")
+}
+
+ggpairs(dat2,
+        diag = list(continuous = my_density),
+        lower = list(continuous = my_scatter))
+```
+
+<br>
+I was reminded that a typical barplot is not an efficient use of ink. This is a lollipop plot; it is similar to a [Cleveland dot plot](https://r-graphics.org/recipe-bar-graph-dot-plot). It uses geom_segment() for the stem, and it uses geom_point() for the circle.
+
+```{r problem_5_data,include=FALSE}
+
+#####DO NOT MODIFY THIS CHUNK
+
+set.seed(13)
+var1<-rnorm(10,25,5)
+names<-letters[1:10]
+
+dat5<-tibble(names,var1)
+```
+
+```{r problem_5,echo=FALSE}
+
+####Make sure you load any necessary libraries
+
+dat5 %>% ggplot(aes(x = reorder(names, var1), y = var1)) + 
+    geom_point(size = 3, color = "#006400") + 
+    geom_segment(x = names, xend = names, y = 0, yend = var1, color = "#006400", size = 1) + 
+    ylim(0,35) +
+    theme(axis.text.x = element_text(angle = 90)) +
+    labs(x = NULL, y = "Variable 1")
+
+```
+
+<br>
+The correlation matrix is popular and useful for EDA. This courses uses [ggcorrplot](https://rpkgs.datanovia.com/ggcorrplot/index.html). To illustrate the package, I decided to retrieve cryptocurrency prices for the top dozen (in volume) coins. Notice how I used pivot_wider() to render the dataframe into a wide format that is friendly to the cor() function.
+
+```{r}
+library(ggcorrplot)
+library(lubridate)
+
+# install.packages("crypto2")
+# library(crypto2)
+# coins_top12 <- crypto_list(only_active = TRUE) %>% arrange(rank) %>% head(12)
+# coin_hist <- crypto_history(coins_top12, start_date = "20220101", end_date ="20220131")
+# saveRDS(coin_hist, file = "coin_hist.rds")
+
+coin_hist <- readRDS(file = "coin_hist.rds")
+coin_hist2 <- coin_hist %>% 
+    mutate(day_n = mday(timestamp)) %>% 
+    select(day_n, slug, close) %>% 
+    pivot_wider(id_cols = day_n, names_from = slug, values_from = close) %>% 
+    select(-day_n)
+coin_hist2_r <- cor(coin_hist2)
+coin_hist2_r %>% ggcorrplot(type = "lower", 
+                            show.diag = TRUE,
+                            hc.order = TRUE,
+                            lab = TRUE, lab_size = 2,
+                            colors = c("coral2", "azure3", "chartreuse2"))
+
+```
+
+### Geospatial visualization 
+
+My favorite was the second week's introduction to geospatial visualization. For reference, [Hadley's chapter](https://ggplot2-book.org/maps.html) is excellent. This is a choropleth with geom_polygon(). Basic maps can be generated with the maps package and geom_polygon().
+
+```{r problem_2_data,include=FALSE}
+
+library(maps)
+set.seed(15)
+Measurement<-rnorm(32,50,1)
+my_world_map <- map_data("world")
+countries <- unique(my_world_map$region)
+set.seed(987)
+some_data_values <- data.frame(
+  "region"=countries,
+  "Score"=runif(252,0,100))
+
+my_world_map_2 <- left_join(my_world_map,some_data_values,by="region")
+
+```
+
+Here is a bubble map with geom_polygon() + geom_point()
+
+```{r solution_p2, include=TRUE, message=FALSE}
+
+# library(maps)
+# my_world_map wrangled in dis-included chunk
+
+my_cities <-maps::world.cities
+latin_cities <- my_cities %>% filter(
+        country.etc == "Costa Rica" |
+        country.etc == "Panama" |  
+        country.etc == "Nicaragua") %>% filter(
+        pop > 40000) %>% add_column(Measurement)
+
+my_world_map %>% filter(region == "Costa Rica" | region == "Panama" | region == "Nicaragua") %>%
+    ggplot(aes(x = long, y = lat, group = group)) +
+    geom_polygon(color="black",fill="white") + 
+    geom_point(data = latin_cities,aes(x=long, y=lat, group=NULL, color = Measurement), size = 5) +
+    scale_color_distiller(palette=7)
+
+```
+
+<br>
+A better way is to use geom_sf() from the awesome [Simple Features for R](https://r-spatial.github.io/sf/index.html).
+
+```{r problem_3_data,include=FALSE}
+
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(rgeos)
+
+s_america<-ne_countries(scale="medium",continent='south america',returnclass="sf")
+
+```
+
+```{r problem3,echo=FALSE}
+# dis-included packages include {rnaturalearth}
+# s_america<-ne_countries(scale="medium",continent='south america',returnclass="sf")
+
+ggplot() + geom_sf(data = s_america, aes(fill = pop_est)) +
+    scale_fill_distiller(palette = 10)
+
+```
+
+
+### gganimate and plotly
+
+Plotly is powerful in ways I don't understand, but is also can simply convert a ggplot2 object. This was the third week. I hope that's an interesting tour of what you'd learn in this course.
+
+```{r problem_3_2_data,include=FALSE}
+
+Response<-c("Energize","Amazing","Great")
+set.seed(9819)
+Energize<-tibble(Company=rep("Energize",100),Output=rnorm(100,50,20))
+set.seed(9819)
+Amazing<-tibble(Company=rep("Amazing",100),Output=rnorm(100,50,10))
+set.seed(9819)
+Great<-tibble(Company=rep("Great",100),Output=rnorm(100,40,5))
+
+my_dat<-bind_rows(Energize,Amazing,Great)
+
+```
+
+```{r problem_2_solution,include=TRUE,message=FALSE,warning=FALSE}
+
+library(plotly)
+
+my_boxplot <- my_dat %>% ggplot(aes(x = Company, y = Output, fill = Company)) + 
+    geom_boxplot() +
+    theme(legend.position = "right")
+
+ggplotly(my_boxplot)
+
+```
+
+
+
+
