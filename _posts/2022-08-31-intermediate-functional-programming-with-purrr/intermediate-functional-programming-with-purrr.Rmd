@@ -1,7 +1,7 @@
 ---
 title: "Intermediate Functional Programming with purrr"
 description: |
-  Notes for my progress in learning purrr
+  My progress in learning how to purrr
 author:
   - name: David Harper
     url: https://dh-data.org/
@@ -146,6 +146,8 @@ This is just one example of an elegant structure for the conduct of MCS. Params 
 # Sample size versus Trial = Iteration (= Simulation)
 # For example, 3 Iterations of Sample = 50
 
+set.seed(17)
+
 n_iters <- 3 # Iterations, aka, trials
 
 params <- tibble(trial = 1:n_iters,
@@ -166,6 +168,10 @@ str(res_dh3) # 150 = 50 samples * 3 trials
 pivot_dh3 <- res_dh3 %>% pivot_wider(names_from = t, values_from = x)
 head(pivot_dh3)
 
+res_dh3 %>% ggplot(aes(x = x, fill = as_factor(t))) + 
+  geom_histogram(alpha = 0.4) +
+  scale_fill_discrete(h = c(90, 210))
+   
 ```
 
 ### Safe(ly) and Clean code
