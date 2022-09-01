@@ -1,0 +1,282 @@
+---
+title: "Intermediate Functional Programming with purrr"
+description: |
+  Notes for my progress in learning purrr
+author:
+  - name: David Harper
+    url: https://dh-data.org/
+date: 2022-08-31
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+
+library(here)
+library(fs)
+
+```
+
+I previously [shared my notes](https://dh-data.org/posts/2022-07-30-foundations-of-purrr/) from datacamp's Foundations of Functional Programming with purrr. The sequel is *Intermediate Functional Programming with purrr* and here are my notes; sometimes I capture notes to reinforce what I've learned especially if it's difficult. BTW, why this package name? [According to](https://www.rstudio.com/blog/purrr-0-1-0/) Hadley Wickham, purrr is "designed to make your pure functions purrr" [like a cat, I assume].
+
+This course is taught by Colin Fay who is the author of [A purrr cookbook](http://colinfay.me/purrr-cookbook/). Recall the essential purrr function is map():
+
+* map( .x, .f, ...) for each element of .x do .f and (always) return a list
+* map2(.x, .y, .f, ...) for each element of .x and .y
+* pmap(.l , .f, ...) for each sublist of .l
+
+The .x can be a vector, list, or data frame. The .f element can be either a
+
+* Function which is applied to every element of . x; the function can be named (aka, classic) function or a **lambda (aka, anonymous)** function
+* Number n such that the *nth element* of .x will be extracted 
+* Character vector such the *named elements* will be extracted; this ability of map() to simply *extract* named elements is very useful.
+
+An lambda (anonymous) function can also be written as a mapper. A **mapper** is an anonymous function with a one-sided formula. The following mappers are equivalent. They have a *single parameter* which can be referenced in three different ways. Here **visits2017** is a 12-element list and  each element is a integer vector of length 28 to 31; for example, visits2017[[1]][3] = 1544 visits to the website on January 31st:
+
+* map_dbl(visits2017, ~round(mean(.x))) 
+* map_dbl(visits2017, ~round(mean(.)))
+* map_dbl(visits2017, ~round(mean(..1)))
+
+For two parameters, we need to use either .x and .y, or ..1 and ..2. For three parameters, we can use ..1, ..2, and ..3 as folllows:
+
+* map_dbl(visits2017, ~round(mean(.x + .y)))
+* map_dbl(visits2017, ~round(mean(..1 + ..2)))
+* map_dbl(visits2017, ~round(mean(..1 + ..2 + ..3)))
+
+We can create a mapper object with as_mapper():
+
+```{r}
+library(tidyverse)
+
+# This is a classic function ...
+round_mean <- function(x) {
+    round(mean(x))
+}
+
+# ... and this is an equivalent mapper object
+round_mean_mapper <- as_mapper(~round(mean(.x)))
+
+v1 <- c(1,2,3,4)
+mean(v1); round_mean(v1); round_mean_mapper(v1)
+
+```
+
+Map employs purrr:pluck() to extract elements, which seems useful:
+
+```{r}
+
+# Example from hadley's book
+lst_lst <- list(
+  list(-1, x = 1, y = c(2), z = "a"),
+  list(-2, x = 4, y = c(5, 6), z = "b"),
+  list(-3, w = 25, x = 8, y = c(9, 10, 11))
+)
+
+# select by name
+lst_lst %>% map("x") # selecting "x" from each list-element
+
+# select by position
+lst_lst %>% map(3) # selecting the 3rd position from each list-element
+
+# both name and position 
+lst_lst %>% map(list("y", 2)) # the "y" names and their 2nd position
+
+```
+
+### Using mappers to clean up data
+
+The function set_names() is useful because it is easier to work with a named list. The keep() extracts elements that satisfy a condition, and its opposite is discard(). Each uses a **predicate function** per the help. A predicate returns TRUE of FALSE.
+
+keep(.x, .p, ...) where the predicate can be a mapper object
+
+```{r}
+df_list <- list(iris, airquality)  %>% map(head) # List of 2, 6 obs
+df_list_2 <- map(df_list, ~ keep(.x, is.factor))
+
+# the original list
+str(df_list)
+# the "cleaned" list ... and its strucure
+df_list_2; str(df_list_2)
+
+```
+
+A predicate function returns either TRUE or FALSE. About the elements of a list, we can ask the following questions with the predicate:
+
+* every(.x, .p, ...) i.e., does every element satisfy the condition?
+* some(.x, .p, ...) i.e., do some elements satisfy
+* none(.x, .p, ...) ie., do none satisfy?
+
+Also
+
+* detect() alone returns the value of the first item that matches the predicate
+* detect_index() returns position of the matching item 
+
+### From theory to practice
+
+As explained in [Advanced R](https://adv-r.hadley.nz/fp.html), there are three types of higher-order functions depending on whether input/ouput is a function, f(), or a vector, c():
+
+* functionals: input f() --> output c() # **map() is a functional**
+* function factories: input c() -->  output f()
+* function operators: input f() --> ouput f(); aka, adverbs
+
+Here is an example of a functional that is similar to the example in Hadley's book, except that I added two arguments. 
+
+```{r}
+# This "functional" takes a function as input and returns a vector
+norm_vars <- function(f, n, ...) f(rnorm(n), ...) 
+
+vars <- c(0.95, 0.99, 0.999)
+norm_vars(quantile, n = 100, probs = vars)
+
+```
+
+
+### Purrr looks to be excellent for Monte Carlo Simulation (MCS)
+
+I can't wait to explore purrr's application to simulations. The potential feels limitless; I've been obsessing over the different approaches given the multi-dimensionality of simulations. Beyond map2() is pmap() and "... a data frame is a very important special case, in which case pmap() and pwalk() apply the function .f to each row. map_dfr(), pmap_dfr() and map2_dfc(), pmap_dfc() return data frames created by row-binding and column-binding respectively".
+
+So that is super cool. For example, below the parameters are specified in the params tibble, where I've defined 3 iterations of the normal distribution. The first iteration is the standard normal, the second iteration (aka, trial) increases the standard deviation to 2, and the third trial specifies a standard deviation of 3. Each trial is a sample of n_sample  = 50. With pmap_dfr(), I create res_dh3 which is a "long" dataframe (150 obs * 3 variables) which I can pivot to wide version. 
+
+This is just one example of an elegant structure for the conduct of MCS. Params is a df that contains the parameters and mcs_normal() is the function the describes the simulation. We "map" the function to the parameters with pmap_dfr().
+
+```{r}
+
+# Sample size versus Trial = Iteration (= Simulation)
+# For example, 3 Iterations of Sample = 50
+
+n_iters <- 3 # Iterations, aka, trials
+
+params <- tibble(trial = 1:n_iters,
+                mu = c(0,0,1), 
+                sd = c(1,2,3))
+
+mcs_normal <- function(trial, mu, sd, n_sample = 100){
+    tibble(
+        t = trial, 
+        n = 1:n_sample,
+        x = rnorm(n = n_sample, mean = mu, sd = sd)    
+    )
+}
+
+res_dh3 <- pmap_dfr(params, mcs_normal, n_sample = 50)
+str(res_dh3) # 150 = 50 samples * 3 trials
+
+pivot_dh3 <- res_dh3 %>% pivot_wider(names_from = t, values_from = x)
+head(pivot_dh3)
+
+```
+
+### Safe(ly) and Clean code
+
+In the tidyverse, functions that take data and return a value are called VERBS. Purrr also has several **adverbs** (i.e., functions that return a modified function) including two that handle errors: possibly() and safely(). This code is not actually run here because it tends to hang up.
+
+```{r eval=FALSE}
+
+urls <- c("https://thinkr.fr", 
+          "https://colinfay.me", 
+          "http://not_working.org", # this URL does not work
+          "https://en.wikipedia.org",
+          "http://cran.r-project.org/",
+          "https://not_working_either.org") # this URL also does not work
+
+# Create a safely version of read_lines()
+# then map safe_read  to the urls vector
+safe_read <- safely(read_lines)
+res <- map(urls, safe_read)
+named_res <- set_names(res, urls)
+# Extracts "error" element of each sub-list
+map(named_res, "error") 
+
+```
+
+Clean code is light, readable, interpretable, and maintainable. 
+
+The compose() function passes from *right to left*. I admit that I prefer to use pipes, so the advantage of compose() is not obvious to me. Below I wrote a simple example to cover the raw price series, prices_raw, into the standard deviation of daily log returns (aka, daily volatility). Notice that I also used the partial() "adverb" function that prefills arguments, just for illustration's sake.
+
+```{r}
+prices_raw <- c(10, 11, 9, 8, 11, 12, 15, 14, 13, 15, 17)
+
+wealth_ratio <- function(x) {
+    d1 <- lead(x) / x 
+    d1[-length(d1)] # remove final NA
+}
+
+sd_na_rm <- partial(sd, na.rm = TRUE)
+
+# with pipes
+prices_raw %>% wealth_ratio() %>% log() %>% sd_na_rm
+
+# with compose 
+sd_composed <- compose(sd_na_rm, log, wealth_ratio)
+sd_composed(prices_raw)
+sd_composed # and we can see the composed function
+
+```
+
+### List columns
+
+A dataframe (tibble) is a list of equal-length vectors. These vectors are typically atomic (e.g., character, numeric) as they are observations per the row. However, the vector (i.e., column) can be a list and, inside the dataframe, that's naturally called a list column. See Jenny Bryan's [explanation](https://jennybc.github.io/purrr-tutorial/ls13_list-columns.html). 
+
+To illustrate, below I'll regress mpg against wt in the mtcars dataset.
+
+```{r}
+
+summary_lm <- compose(summary, lm) # aka, lm() %>% summary()
+# overall regression R^2
+summary_lm(mpg ~ wt, data = mtcars)$r.squared
+
+# Now let's group by auto vs manual transmission 
+# and regress within each group
+mtcars$am <- factor(mtcars$am, labels = c("auto", "man"))
+mtcars %>%
+    group_by(am) %>%
+    nest() %>%
+    mutate(data_lm = map(data, ~summary_lm(mpg ~ wt, data = .x)),
+           data_r2 = map(data_lm, "r.squared")) %>%
+    unnest(cols = data_r2)
+
+```
+
+In case that's not obvious, I'll break that down:
+
+```{r}
+
+step1 <- mtcars %>%
+    group_by(am) %>%
+    nest() 
+# step1 is a 2*2 tibble and where
+# its second column is a list column
+glimpse(step1)
+
+# data_lm is also a list column as the lm regression produces a list
+# data_r2 is also list but each is a list of 1 numeric
+step2 <- step1 %>%  mutate(data_lm = map(data, ~summary_lm(mpg ~ wt, data = .x)),
+           data_r2 = map(data_lm, "r.squared"))
+
+step2$data_r2 <- unlist(step2$data_r2)
+step2
+
+```
+
+In the way above, map() naturally creates list columns when we conduct a *row-wise* map, versus the perhaps more intuitive *column-wise* map. I actually first learned this in Matt Dancho's amazing course [DS4B 101-R](https://university.business-science.io/p/ds4b-101-r-business-analysis-r) where he showed me how to conduct row-wise mapping. 
+
+```{r}
+library(here); library(fs); library(readxl)
+
+here::i_am(path = "intermediate-functional-programming-with-purrr.Rmd")
+xls_path <- here("xls_subdir")
+
+excel_paths_tbl <- fs::dir_info(xls_path)
+paths_chr <- excel_paths_tbl %>% pull(path)
+
+excel_tbl <- excel_paths_tbl %>%
+    select(path) %>% 
+    mutate(data = path %>% map(read_excel))
+excel_tbl
+
+```
+
+I hope that's an interesting summary. For myself, mastery of purrr continues to require effort, but I think it will be a good investment, especially when I dive into [tidymodels](https://www.tidymodels.org/).
+
