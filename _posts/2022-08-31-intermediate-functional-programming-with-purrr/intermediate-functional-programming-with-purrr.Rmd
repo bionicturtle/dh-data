@@ -19,7 +19,7 @@ library(fs)
 
 ```
 
-I previously [shared my notes](https://dh-data.org/posts/2022-07-30-foundations-of-purrr/) from datacamp's Foundations of Functional Programming with purrr. The sequel is *Intermediate Functional Programming with purrr* and here are my notes; sometimes I capture notes to reinforce what I've learned especially if it's difficult. BTW, why this package name? [According to](https://www.rstudio.com/blog/purrr-0-1-0/) Hadley Wickham, purrr is "designed to make your pure functions purrr" [like a cat, I assume].
+I previously [shared my notes](https://dh-data.org/posts/2022-07-30-foundations-of-purrr/) from datacamp's Foundations of Functional Programming with purrr. The sequel is *Intermediate Functional Programming with purrr* and here are my notes from this sequel course; sometimes I capture notes to reinforce what I've learned especially if it's difficult. BTW, why this package name? [According to](https://www.rstudio.com/blog/purrr-0-1-0/) Hadley Wickham, purrr is "designed to make your pure functions purrr" [like a cat, I assume].
 
 This course is taught by Colin Fay who is the author of [A purrr cookbook](http://colinfay.me/purrr-cookbook/). Recall the essential purrr function is map():
 
@@ -33,7 +33,7 @@ The .x can be a vector, list, or data frame. The .f element can be either a
 * Number n such that the *nth element* of .x will be extracted 
 * Character vector such the *named elements* will be extracted; this ability of map() to simply *extract* named elements is very useful.
 
-An lambda (anonymous) function can also be written as a mapper. A **mapper** is an anonymous function with a one-sided formula. The following mappers are equivalent. They have a *single parameter* which can be referenced in three different ways. Here **visits2017** is a 12-element list and  each element is a integer vector of length 28 to 31; for example, visits2017[[1]][3] = 1544 visits to the website on January 31st:
+A lambda (anonymous) function can also be written as a mapper. A **mapper** is an anonymous function with a one-sided formula. The following mappers are equivalent. They have a *single parameter* which can be referenced in three different ways. Here **visits2017** is a 12-element list and  each element is a integer vector of length 28 to 31; for example, visits2017[[1]][31] = 1544 visits to the website on January 31st:
 
 * map_dbl(visits2017, ~round(mean(.x))) 
 * map_dbl(visits2017, ~round(mean(.)))
@@ -176,7 +176,7 @@ res_dh3 %>% ggplot(aes(x = x, fill = as_factor(t))) +
 
 ### Safe(ly) and Clean code
 
-In the tidyverse, functions that take data and return a value are called VERBS. Purrr also has several **adverbs** (i.e., functions that return a modified function) including two that handle errors: possibly() and safely(). This code is not actually run here because it tends to hang up.
+In the tidyverse, functions that take data and return a value are called **verbs**. Purrr also has several **adverbs**: functions that return a modified function. Two of its adverbs that handle errors are: possibly() and safely(). This code is not actually run here because it tends to hang up.
 
 ```{r eval=FALSE}
 
@@ -197,7 +197,7 @@ map(named_res, "error")
 
 ```
 
-Clean code is light, readable, interpretable, and maintainable. 
+What is clean code? **clean code** is light, readable, interpretable, and maintainable. 
 
 The compose() function passes from *right to left*. I admit that I prefer to use pipes, so the advantage of compose() is not obvious to me. Below I wrote a simple example to cover the raw price series, prices_raw, into the standard deviation of daily log returns (aka, daily volatility). Notice that I also used the partial() "adverb" function that prefills arguments, just for illustration's sake.
 

@@ -1517,11 +1517,12 @@ class="uri">https://dh-data.org/</a>
 href="https://dh-data.org/posts/2022-07-30-foundations-of-purrr/">shared
 my notes</a> from datacamp’s Foundations of Functional Programming with
 purrr. The sequel is <em>Intermediate Functional Programming with
-purrr</em> and here are my notes; sometimes I capture notes to reinforce
-what I’ve learned especially if it’s difficult. BTW, why this package
-name? <a href="https://www.rstudio.com/blog/purrr-0-1-0/">According
-to</a> Hadley Wickham, purrr is “designed to make your pure functions
-purrr” [like a cat, I assume].</p>
+purrr</em> and here are my notes from this sequel course; sometimes I
+capture notes to reinforce what I’ve learned especially if it’s
+difficult. BTW, why this package name? <a
+href="https://www.rstudio.com/blog/purrr-0-1-0/">According to</a> Hadley
+Wickham, purrr is “designed to make your pure functions purrr” [like a
+cat, I assume].</p>
 <p>This course is taught by Colin Fay who is the author of <a
 href="http://colinfay.me/purrr-cookbook/">A purrr cookbook</a>. Recall
 the essential purrr function is map():</p>
@@ -1543,12 +1544,12 @@ extracted</li>
 this ability of map() to simply <em>extract</em> named elements is very
 useful.</li>
 </ul>
-<p>An lambda (anonymous) function can also be written as a mapper. A
+<p>A lambda (anonymous) function can also be written as a mapper. A
 <strong>mapper</strong> is an anonymous function with a one-sided
 formula. The following mappers are equivalent. They have a <em>single
 parameter</em> which can be referenced in three different ways. Here
 <strong>visits2017</strong> is a 12-element list and each element is a
-integer vector of length 28 to 31; for example, visits2017[[1]][3] =
+integer vector of length 28 to 31; for example, visits2017[[1]][31] =
 1544 visits to the website on January 31st:</p>
 <ul>
 <li>map_dbl(visits2017, ~round(mean(.x)))</li>
@@ -1713,7 +1714,7 @@ Hadley’s book, except that I added two arguments.</p>
 <span><span class='fu'>norm_vars</span><span class='op'>(</span><span class='va'>quantile</span>, n <span class='op'>=</span> <span class='fl'>100</span>, probs <span class='op'>=</span> <span class='va'>vars</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>     95%      99%    99.9% 
-1.671739 3.512787 3.777368 </code></pre>
+1.700810 2.191218 2.276524 </code></pre>
 </div>
 <h3
 id="purrr-looks-to-be-excellent-for-monte-carlo-simulation-mcs">Purrr
@@ -1787,10 +1788,10 @@ parameters with pmap_dfr().</p>
 </div>
 <h3 id="safely-and-clean-code">Safe(ly) and Clean code</h3>
 <p>In the tidyverse, functions that take data and return a value are
-called VERBS. Purrr also has several <strong>adverbs</strong> (i.e.,
-functions that return a modified function) including two that handle
-errors: possibly() and safely(). This code is not actually run here
-because it tends to hang up.</p>
+called <strong>verbs</strong>. Purrr also has several
+<strong>adverbs</strong>: functions that return a modified function. Two
+of its adverbs that handle errors are: possibly() and safely(). This
+code is not actually run here because it tends to hang up.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>urls</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"https://thinkr.fr"</span>, </span>
@@ -1809,7 +1810,8 @@ because it tends to hang up.</p>
 <span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>named_res</span>, <span class='st'>"error"</span><span class='op'>)</span> </span></code></pre>
 </div>
 </div>
-<p>Clean code is light, readable, interpretable, and maintainable.</p>
+<p>What is clean code? <strong>clean code</strong> is light, readable,
+interpretable, and maintainable.</p>
 <p>The compose() function passes from <em>right to left</em>. I admit
 that I prefer to use pipes, so the advantage of compose() is not obvious
 to me. Below I wrote a simple example to cover the raw price series,
@@ -1845,7 +1847,7 @@ that prefills arguments, just for illustration’s sake.</p>
     d1 &lt;- lead(x) / x 
     d1[-length(d1)] # remove final NA
 }
-&lt;bytecode: 0x00000159ac4d4fb0&gt;
+&lt;bytecode: 0x0000014f1e34e0d8&gt;
 
 2. function (x, base = exp(1)) 
 .Primitive(&quot;log&quot;)(x, base)
