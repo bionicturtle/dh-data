@@ -1,0 +1,67 @@
+---
+title: "Using purrr to map over a range of k-means clusters"
+description: |
+  Mapping a k-means factory
+author:
+  - name: David Harper
+    url: https://dh-data.org/
+date: 2022-09-05
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+Since I'm (re-) learning k-means clustering in Matt Dancho's [brilliant course](https://university.business-science.io/p/ds4b-101-r-business-analysis-r), I thought I'd apply map() in pursuit of a "ggplot factory." Please note that **my ellipses are not proper renders of the k-means cluster**; e.g., their center is not the k-means centroid. I lazily here used ggplot's built-in stat_ellipse() as a bit of visual flair. I'm getting more comfortable with the power of purrr. Yay!
+
+```{r warning=FALSE, message=FALSE}
+
+library(tidyverse)
+library(patchwork)
+
+# bivariate normal 
+set.seed(55)
+rows <- 40
+simulation <- tibble(x = c(rnorm(rows/4), 
+                           rnorm(rows/4, mean = 1.0, sd = 0.8), 
+                           rnorm(rows/4, mean = 2.0, sd = 0.6), 
+                           rnorm(rows/4, mean = 3.0, sd = 0.4)),
+                     y = c(rnorm(rows/4), 
+                           rnorm(rows/4, mean = 1.0, sd = 0.8),
+                           rnorm(rows/4, mean = 2.0, sd = 0.6), 
+                           rnorm(rows/4, mean = 3.0, sd = 0.4)))
+
+# accepts data = matrix and number of k-means centers
+# and returns a vector of clusters
+kmeans_vec <- function(data, centers= 3){
+    w <- data %>% kmeans(centers = centers, nstart = 100)
+    w$cluster %>% as_factor()
+}
+
+range <- 3:6 # we want n = {4, 5, 6, 7} clusters
+clusters_df <- range %>% map_dfc(~kmeans_vec(simulation, .)) %>% setNames(range)
+clusters_df # map_dfc returns a column-bound dataframe, here it is:
+
+sim_bind_centers <- cbind(simulation, clusters_df) #bind the simulation matrix to the clusters df
+
+# this function returns a ggplot. Notice:
+# I had to use get()
+# stat_ellipse() works out of the box!
+gg_obj <- function(data, vector = 4) {
+    data %>% ggplot(aes(x = x, y = y, color = get(as.character(vector)))) +
+        geom_point() +
+        stat_ellipse() +
+        theme(legend.title = element_blank())
+}
+
+# p_output is a list of 4
+p_output <- range %>% map(~gg_obj(sim_bind_centers, .))
+p1 <- p_output[[1]]
+p2 <- p_output[[2]]
+p3 <- p_output[[3]]
+p4 <- p_output[[4]]
+
+(p1 + p2) / (p3 + p4)
+
+```
+
+
