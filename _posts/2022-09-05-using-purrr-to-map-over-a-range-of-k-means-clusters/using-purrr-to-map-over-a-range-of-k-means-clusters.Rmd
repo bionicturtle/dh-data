@@ -31,15 +31,20 @@ simulation <- tibble(x = c(rnorm(rows/4),
                            rnorm(rows/4, mean = 3.0, sd = 0.4)))
 
 # accepts data = matrix and number of k-means centers
-# and returns a vector of clusters
+# and returns a vector of clusters. 
+# Notice as_factor() returns a factored vector so ggplot's color will work
 kmeans_vec <- function(data, centers= 3){
     w <- data %>% kmeans(centers = centers, nstart = 100)
     w$cluster %>% as_factor()
 }
 
-range <- 3:6 # we want n = {4, 5, 6, 7} clusters
+range <- 3:6 # for example, we want n = {3, 4, 5, 6} clusters
 clusters_df <- range %>% map_dfc(~kmeans_vec(simulation, .)) %>% setNames(range)
-clusters_df # map_dfc returns a column-bound dataframe, here it is:
+# map_dfc returns a column-bound dataframe
+# each column is a vector that contains the cluster assignment
+# e.g., column named '3' has {1, 2, or 3}. 
+clusters_df 
+
 
 sim_bind_centers <- cbind(simulation, clusters_df) #bind the simulation matrix to the clusters df
 

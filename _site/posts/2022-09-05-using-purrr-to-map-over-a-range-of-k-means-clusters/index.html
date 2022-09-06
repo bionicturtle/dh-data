@@ -2501,15 +2501,19 @@ Yay!</p>
 <span>                           <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>rows</span><span class='op'>/</span><span class='fl'>4</span>, mean <span class='op'>=</span> <span class='fl'>3.0</span>, sd <span class='op'>=</span> <span class='fl'>0.4</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='co'># accepts data = matrix and number of k-means centers</span></span>
-<span><span class='co'># and returns a vector of clusters</span></span>
+<span><span class='co'># and returns a vector of clusters. </span></span>
+<span><span class='co'># Notice as_factor() returns a factored vector so ggplot's color will work</span></span>
 <span><span class='va'>kmeans_vec</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>centers</span><span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span><span class='op'>{</span></span>
 <span>    <span class='va'>w</span> <span class='op'>&lt;-</span> <span class='va'>data</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/stats/kmeans.html'>kmeans</a></span><span class='op'>(</span>centers <span class='op'>=</span> <span class='va'>centers</span>, nstart <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span></span>
 <span>    <span class='va'>w</span><span class='op'>$</span><span class='va'>cluster</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://forcats.tidyverse.org/reference/as_factor.html'>as_factor</a></span><span class='op'>(</span><span class='op'>)</span></span>
 <span><span class='op'>}</span></span>
 <span></span>
-<span><span class='va'>range</span> <span class='op'>&lt;-</span> <span class='fl'>3</span><span class='op'>:</span><span class='fl'>6</span> <span class='co'># we want n = {4, 5, 6, 7} clusters</span></span>
+<span><span class='va'>range</span> <span class='op'>&lt;-</span> <span class='fl'>3</span><span class='op'>:</span><span class='fl'>6</span> <span class='co'># for example, we want n = {3, 4, 5, 6} clusters</span></span>
 <span><span class='va'>clusters_df</span> <span class='op'>&lt;-</span> <span class='va'>range</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_dfc</a></span><span class='op'>(</span><span class='op'>~</span><span class='fu'>kmeans_vec</span><span class='op'>(</span><span class='va'>simulation</span>, <span class='va'>.</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/stats/setNames.html'>setNames</a></span><span class='op'>(</span><span class='va'>range</span><span class='op'>)</span></span>
-<span><span class='va'>clusters_df</span> <span class='co'># map_dfc returns a column-bound dataframe, here it is:</span></span></code></pre>
+<span><span class='co'># map_dfc returns a column-bound dataframe</span></span>
+<span><span class='co'># each column is a vector that contains the cluster assignment</span></span>
+<span><span class='co'># e.g., column named '3' has {1, 2, or 3}. </span></span>
+<span><span class='va'>clusters_df</span> </span></code></pre>
 </div>
 <pre><code># A tibble: 40 × 4
    `3`   `4`   `5`   `6`  
