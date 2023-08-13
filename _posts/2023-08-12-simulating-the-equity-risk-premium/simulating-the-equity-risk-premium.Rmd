@@ -1,0 +1,94 @@
+---
+title: "Simulating the equity risk premium"
+description: |
+  A short description of the post.
+author:
+  - name: David Harper
+    url: https://dh-data.org/
+date: 2023-08-12
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE)
+```
+
+Here is my text
+
+```{r echo=TRUE}
+
+library(tidyverse)
+library(scales)
+
+solve_for_R <- function(RF, ER_vector, CP_vector, G, PV) {
+  
+  # Calculate cash flow vector
+  CF_vector <- ER_vector * CP_vector
+  
+  # Define the objective function
+  objective_function <- function(R) {
+    PV_calculated <- sum(CF_vector[1:5] / (1 + R)^(1:5)) + CF_vector[6] / ((R - G) * (1 + R)^5)
+    return((PV - PV_calculated)^2)
+  }
+  
+  # Use the optim function to minimize the objective function
+  result <- optim(par = RF, fn = objective_function, method = "Brent", lower = -1, upper = 2)
+  
+  return(result$par)
+}
+
+
+RF <- 0.04
+ER_vector <- c(217.8, 245.2, 273.7, 295.1, 308.9, 324.9) # A. Damodaran's earnings vector
+CP_vector <- c(0.84, 0.82, 0.80, 0.78, 0.77, 0.77) # Cash payout ratios
+G <- 0.04
+PV <- 4600
+
+implied_equity <- solve_for_R(RF, ER_vector, CP_vector, G, PV)
+implied_ERP <- implied_equity - RF
+
+# Number of simulations
+n_simulations <- 10000
+coeff_variation <- 0.10
+
+# Assumed means and standard deviations for inputs
+mean_RF <- RF; sd_RF <- RF * coeff_variation
+mean_ER <- ER_vector; sd_ER <- ER_vector * coeff_variation
+mean_CP <- CP_vector; sd_CP <- CP_vector * coeff_variation
+mean_G <- G; sd_G <- G * coeff_variation
+mean_PV <- PV; sd_PV <- PV * coeff_variation
+
+# Monte Carlo simulation
+set.seed(379)
+R_values <- replicate(n_simulations, 
+  solve_for_R(
+    # RF = rnorm(1, mean_RF, sd_RF),
+    RF = RF,
+    ER_vector = rnorm(6, mean_ER, sd_ER),
+    CP_vector = rnorm(6, mean_CP, sd_CP),
+    G = rnorm(1, mean_G, sd_G),
+    PV = PV
+  )
+)
+
+# Histogram to visualize the distribution of R values
+R_values <- R_values[R_values > 0]
+ERP_values <- R_values - RF
+ERP_values_mean <- mean(ERP_values)
+ERP_values_df <- as_data_frame(ERP_values)
+
+ERP_values_df %>% ggplot(aes(value)) +
+    geom_histogram(color = "darkblue", fill = "lightblue") +
+    geom_vline(aes(xintercept = ERP_values_mean), color = "darkgreen", size = 1.5) +
+    scale_x_continuous(labels = percent_format(0.01)) +
+    labs(title = "ERP distribution under tight (COV = 10%) assumptions; Green is mean", y = "Count") +
+    # xlab("X label") + 
+    # ylab("Count") +
+    theme_classic() +
+    theme(axis.title = element_blank(),
+          axis.text = element_text(size = 12, face = "bold"))
+```
+
+
