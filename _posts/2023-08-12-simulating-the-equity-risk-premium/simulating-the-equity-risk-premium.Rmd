@@ -127,7 +127,9 @@ G_vs_ERP <-  tibble(
 
 G_vs_ERP %>% ggplot(aes(x = G2, y = ERP)) + 
   geom_point() + 
-  coord_cartesian(ylim = c(.02, .08))
+  coord_cartesian(ylim = c(.02, .08)) + 
+  labs(title = "Implied ERP as function of sustainable growth rate, G2",
+       subtitle = "Unlike prior/next visualization, predicted vectors are not randomized")
 ```
 
 And just for fun, let's add randomness to the earnings and cash payout vectors:
@@ -161,6 +163,7 @@ df %>% ggplot(aes(x = G2, y = ERP)) +
   geom_point() +
   coord_cartesian(ylim = c(.02, .08)) + 
   geom_smooth(method = "lm", se = TRUE, color = "blue") +
+  labs(title = "Restores 10% COV randomness to earnings and payout vectors") +
   annotate("text", x=0.025, y=0.065, label=label_R2, fontface="bold", hjust=0)
   # geom_text(aes(label = label_R2))
 ```
