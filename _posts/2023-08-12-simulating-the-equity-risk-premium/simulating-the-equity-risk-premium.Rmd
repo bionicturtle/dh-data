@@ -95,7 +95,7 @@ ERP_values_df %>% ggplot(aes(value)) +
 
 What is the relationship between the sustainable growth rate, G2, and the ERP?
 
-```{r}
+```{r echo=TRUE}
 
 G2_values <- seq(from = 0.02, to = 0.06, by = 0.001)
 R_values <- map_dbl(G2_values, function(G2) {
@@ -124,7 +124,7 @@ G_vs_ERP %>% ggplot(aes(x = G2, y = ERP)) +
 
 And just for fun, let's add randomness to the earnings and cash payout vectors:
 
-```{r}
+```{r echo=TRUE}
 
 G2_values <- seq(from = 0.02, to = 0.06, by = 0.001)
 

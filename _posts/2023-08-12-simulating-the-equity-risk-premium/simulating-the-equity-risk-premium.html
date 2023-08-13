@@ -1599,11 +1599,67 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p>What is the relationship between the sustainable growth rate, G2, and the ERP?</p>
 <div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>G2_values</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span>from <span class='op'>=</span> <span class='fl'>0.02</span>, to <span class='op'>=</span> <span class='fl'>0.06</span>, by <span class='op'>=</span> <span class='fl'>0.001</span><span class='op'>)</span></span>
+<span><span class='va'>R_values</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_dbl</a></span><span class='op'>(</span><span class='va'>G2_values</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>G2</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span>  <span class='fu'>solve_for_R</span><span class='op'>(</span></span>
+<span>    RF <span class='op'>=</span> <span class='va'>RF</span>,</span>
+<span>    ER_vector <span class='op'>=</span> <span class='va'>ER_vector</span>,</span>
+<span>    CP_vector <span class='op'>=</span> <span class='va'>CP_vector</span>,</span>
+<span>    G2 <span class='op'>=</span> <span class='va'>G2</span>,</span>
+<span>    PV <span class='op'>=</span> <span class='va'>PV</span></span>
+<span>  <span class='op'>)</span></span>
+<span><span class='op'>}</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>ERP_values</span> <span class='op'>&lt;-</span> <span class='va'>R_values</span> <span class='op'>-</span> <span class='va'>RF</span></span>
+<span></span>
+<span><span class='va'>G_vs_ERP</span> <span class='op'>&lt;-</span>  <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span></span>
+<span>  G2 <span class='op'>=</span> <span class='va'>G2_values</span>,</span>
+<span>  ERP <span class='op'>=</span> <span class='va'>ERP_values</span></span>
+<span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>G_vs_ERP</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>G2</span>, y <span class='op'>=</span> <span class='va'>ERP</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_cartesian.html'>coord_cartesian</a></span><span class='op'>(</span>ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>.02</span>, <span class='fl'>.08</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
 <p><img src="simulating-the-equity-risk-premium_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
 </div>
 <p>And just for fun, let’s add randomness to the earnings and cash payout vectors:</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="simulating-the-equity-risk-premium_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>G2_values</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span>from <span class='op'>=</span> <span class='fl'>0.02</span>, to <span class='op'>=</span> <span class='fl'>0.06</span>, by <span class='op'>=</span> <span class='fl'>0.001</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>R_values</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>G2_values</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>G2</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span><span class='op'>(</span><span class='fl'>30</span>, <span class='op'>{</span></span>
+<span>    <span class='fu'>solve_for_R</span><span class='op'>(</span></span>
+<span>      RF <span class='op'>=</span> <span class='va'>RF</span>,</span>
+<span>      ER_vector <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>6</span>, <span class='va'>mean_ER</span>, <span class='va'>sd_ER</span><span class='op'>)</span>,</span>
+<span>      CP_vector <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>6</span>, <span class='va'>mean_CP</span>, <span class='va'>sd_CP</span><span class='op'>)</span>,</span>
+<span>      G2 <span class='op'>=</span> <span class='va'>G2</span>,</span>
+<span>      PV <span class='op'>=</span> <span class='va'>PV</span></span>
+<span>    <span class='op'>)</span> <span class='op'>-</span> <span class='va'>RF</span> <span class='co'># subtracting RF here inside replicat</span></span>
+<span>  <span class='op'>}</span><span class='op'>)</span></span>
+<span><span class='op'>}</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span></span>
+<span>  G2 <span class='op'>=</span> <span class='va'>G2_values</span>,</span>
+<span>  ERP <span class='op'>=</span> <span class='va'>R_values</span></span>
+<span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://tidyr.tidyverse.org/reference/unnest.html'>unnest</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>model_line</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>ERP</span> <span class='op'>~</span> <span class='va'>G2</span>, data <span class='op'>=</span> <span class='va'>df</span><span class='op'>)</span></span>
+<span><span class='va'>rsq</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>model_line</span><span class='op'>)</span><span class='op'>$</span><span class='va'>r.squared</span></span>
+<span><span class='va'>label_R2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></span><span class='op'>(</span><span class='st'>"R^2 = %.2f"</span>, <span class='va'>rsq</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>df</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>G2</span>, y <span class='op'>=</span> <span class='va'>ERP</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_cartesian.html'>coord_cartesian</a></span><span class='op'>(</span>ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>.02</span>, <span class='fl'>.08</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>TRUE</span>, color <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/annotate.html'>annotate</a></span><span class='op'>(</span><span class='st'>"text"</span>, x<span class='op'>=</span><span class='fl'>0.025</span>, y<span class='op'>=</span><span class='fl'>0.065</span>, label<span class='op'>=</span><span class='va'>label_R2</span>, fontface<span class='op'>=</span><span class='st'>"bold"</span>, hjust<span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span></span></code></pre>
+</div>
+<img src="simulating-the-equity-risk-premium_files/figure-html5/unnamed-chunk-3-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span>  <span class='co'># geom_text(aes(label = label_R2))</span></span></code></pre>
+</div>
 </div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
