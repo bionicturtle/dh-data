@@ -93,6 +93,16 @@ ERP_values_df %>% ggplot(aes(value)) +
           axis.text = element_text(size = 12, face = "bold"))
 ```
 
+Quick check on the distribution:
+
+```{r echo=TRUE}
+library(moments)
+skewness(ERP_values_df$value)
+kurtosis(ERP_values_df$value)
+quantiles_v <- c(0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.975, 0.99)
+quantile(ERP_values_df$value, probs = quantiles_v)
+```
+
 What is the relationship between the sustainable growth rate, G2, and the ERP?
 
 ```{r echo=TRUE}
@@ -118,8 +128,6 @@ G_vs_ERP <-  tibble(
 G_vs_ERP %>% ggplot(aes(x = G2, y = ERP)) + 
   geom_point() + 
   coord_cartesian(ylim = c(.02, .08))
-
-  
 ```
 
 And just for fun, let's add randomness to the earnings and cash payout vectors:

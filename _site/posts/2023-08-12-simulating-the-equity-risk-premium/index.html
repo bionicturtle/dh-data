@@ -119,7 +119,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["simulating-the-equity-risk-premium_files/anchor-4.2.2/anchor.min.js","simulating-the-equity-risk-premium_files/bowser-1.9.3/bowser.min.js","simulating-the-equity-risk-premium_files/distill-2.2.21/template.v2.js","simulating-the-equity-risk-premium_files/figure-html5/setup-1.png","simulating-the-equity-risk-premium_files/figure-html5/setup-2.png","simulating-the-equity-risk-premium_files/figure-html5/unnamed-chunk-1-1.png","simulating-the-equity-risk-premium_files/figure-html5/unnamed-chunk-1-2.png","simulating-the-equity-risk-premium_files/figure-html5/unnamed-chunk-2-1.png","simulating-the-equity-risk-premium_files/figure-html5/unnamed-chunk-3-1.png","simulating-the-equity-risk-premium_files/header-attrs-2.23/header-attrs.js","simulating-the-equity-risk-premium_files/jquery-3.6.0/jquery-3.6.0.js","simulating-the-equity-risk-premium_files/jquery-3.6.0/jquery-3.6.0.min.js","simulating-the-equity-risk-premium_files/jquery-3.6.0/jquery-3.6.0.min.map","simulating-the-equity-risk-premium_files/popper-2.6.0/popper.min.js","simulating-the-equity-risk-premium_files/tippy-6.2.7/tippy-bundle.umd.min.js","simulating-the-equity-risk-premium_files/tippy-6.2.7/tippy-light-border.css","simulating-the-equity-risk-premium_files/tippy-6.2.7/tippy.css","simulating-the-equity-risk-premium_files/tippy-6.2.7/tippy.umd.min.js","simulating-the-equity-risk-premium_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["simulating-the-equity-risk-premium_files/anchor-4.2.2/anchor.min.js","simulating-the-equity-risk-premium_files/bowser-1.9.3/bowser.min.js","simulating-the-equity-risk-premium_files/distill-2.2.21/template.v2.js","simulating-the-equity-risk-premium_files/figure-html5/setup-1.png","simulating-the-equity-risk-premium_files/figure-html5/setup-2.png","simulating-the-equity-risk-premium_files/figure-html5/unnamed-chunk-1-1.png","simulating-the-equity-risk-premium_files/figure-html5/unnamed-chunk-1-2.png","simulating-the-equity-risk-premium_files/figure-html5/unnamed-chunk-2-1.png","simulating-the-equity-risk-premium_files/figure-html5/unnamed-chunk-3-1.png","simulating-the-equity-risk-premium_files/figure-html5/unnamed-chunk-4-1.png","simulating-the-equity-risk-premium_files/header-attrs-2.23/header-attrs.js","simulating-the-equity-risk-premium_files/jquery-3.6.0/jquery-3.6.0.js","simulating-the-equity-risk-premium_files/jquery-3.6.0/jquery-3.6.0.min.js","simulating-the-equity-risk-premium_files/jquery-3.6.0/jquery-3.6.0.min.map","simulating-the-equity-risk-premium_files/popper-2.6.0/popper.min.js","simulating-the-equity-risk-premium_files/tippy-6.2.7/tippy-bundle.umd.min.js","simulating-the-equity-risk-premium_files/tippy-6.2.7/tippy-light-border.css","simulating-the-equity-risk-premium_files/tippy-6.2.7/tippy.css","simulating-the-equity-risk-premium_files/tippy-6.2.7/tippy.umd.min.js","simulating-the-equity-risk-premium_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2559,6 +2559,26 @@ d-appendix d-footnote-list a.footnote-backlink {
 </div>
 <p><img src="simulating-the-equity-risk-premium_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
 </div>
+<p>Quick check on the distribution:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://www.r-project.org'>moments</a></span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/pkg/moments/man/skewness.html'>skewness</a></span><span class='op'>(</span><span class='va'>ERP_values_df</span><span class='op'>$</span><span class='va'>value</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 0.08903814</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/moments/man/kurtosis.html'>kurtosis</a></span><span class='op'>(</span><span class='va'>ERP_values_df</span><span class='op'>$</span><span class='va'>value</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 2.997992</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>quantiles_v</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.01</span>, <span class='fl'>0.025</span>, <span class='fl'>0.05</span>, <span class='fl'>0.1</span>, <span class='fl'>0.25</span>, <span class='fl'>0.5</span>, <span class='fl'>0.75</span>, <span class='fl'>0.9</span>, <span class='fl'>0.95</span>, <span class='fl'>0.975</span>, <span class='fl'>0.99</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>ERP_values_df</span><span class='op'>$</span><span class='va'>value</span>, probs <span class='op'>=</span> <span class='va'>quantiles_v</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>        1%       2.5%         5%        10%        25%        50% 
+0.03041180 0.03248300 0.03433620 0.03649075 0.04004356 0.04410500 
+       75%        90%        95%      97.5%        99% 
+0.04832614 0.05209407 0.05447292 0.05638444 0.05881702 </code></pre>
+</div>
 <p>What is the relationship between the sustainable growth rate, G2, and the ERP?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2584,7 +2604,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_cartesian.html'>coord_cartesian</a></span><span class='op'>(</span>ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>.02</span>, <span class='fl'>.08</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<p><img src="simulating-the-equity-risk-premium_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+<p><img src="simulating-the-equity-risk-premium_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
 </div>
 <p>And just for fun, let’s add randomness to the earnings and cash payout vectors:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2618,12 +2638,12 @@ d-appendix d-footnote-list a.footnote-backlink {
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>TRUE</span>, color <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/annotate.html'>annotate</a></span><span class='op'>(</span><span class='st'>"text"</span>, x<span class='op'>=</span><span class='fl'>0.025</span>, y<span class='op'>=</span><span class='fl'>0.065</span>, label<span class='op'>=</span><span class='va'>label_R2</span>, fontface<span class='op'>=</span><span class='st'>"bold"</span>, hjust<span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span></span></code></pre>
 </div>
-<img src="simulating-the-equity-risk-premium_files/figure-html5/unnamed-chunk-3-1.png" width="624" />
+<img src="simulating-the-equity-risk-premium_files/figure-html5/unnamed-chunk-4-1.png" width="624" />
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span>  <span class='co'># geom_text(aes(label = label_R2))</span></span></code></pre>
 </div>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
