@@ -85,8 +85,8 @@ ERP_values_df %>% ggplot(aes(value)) +
     geom_histogram(color = "darkblue", fill = "lightblue") +
     geom_vline(aes(xintercept = ERP_values_mean), color = "darkgreen", size = 1.5) +
     scale_x_continuous(labels = percent_format(0.01)) +
-    labs(title = "Implied ERP (n = 10,000 sims) under tight assumption dispersion (CV = σ/μ = 10%)",
-         subtitle = "Green vertical line is the mean",
+    labs(title = "Implied equity risk premium, ERP (n = 10,000 sims)",
+         subtitle = "Under tight assumption dispersion (CV = σ/μ =10%). Green vertical line is the mean.",
          y = "Count") +
     # xlab("X label") + 
     # ylab("Count") +
