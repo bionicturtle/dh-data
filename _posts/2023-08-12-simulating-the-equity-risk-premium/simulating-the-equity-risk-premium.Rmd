@@ -165,7 +165,7 @@ df %>% ggplot(aes(x = G2, y = ERP)) +
   geom_point() +
   coord_cartesian(ylim = c(.02, .08)) + 
   geom_smooth(method = "lm", se = TRUE, color = "blue") +
-  labs(title = "Restores 10% COV randomness to earnings and payout vectors") +
+  labs(title = "Restores 10% CV randomness to earnings and payout vectors") +
   annotate("text", x=0.025, y=0.065, label=label_R2, fontface="bold", hjust=0)
   # geom_text(aes(label = label_R2))
 ```
